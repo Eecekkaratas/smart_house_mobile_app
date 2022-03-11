@@ -49,20 +49,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-
-      var rng = Random();
-      _counter = rng.nextInt(13) + 12;
-      //print(rng.nextInt(25));
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -98,11 +84,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Rastgele:',
+              'GELEN VERİ:',
               style: Theme.of(context).textTheme.headline6,
             ),
             Text(
-              '$_counter',
+              'GELEN VERİ',
+
+              /// GELEN VERİ
               style: Theme.of(context).textTheme.headline4,
             ),
             FlatButton(
@@ -112,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text(
                 'Button',
               ),
-              onPressed: _incrementCounter,
+              onPressed: () {},
             ),
           ],
         ),
