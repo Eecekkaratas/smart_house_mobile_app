@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:smart_home/Widget/anasayfa.dart';
+import 'dart:developer';
 
 class HomeScreen extends StatelessWidget {
   final Stream<QuerySnapshot> users =
@@ -23,8 +24,8 @@ class humudity extends StatefulWidget {
 }
 
 class _humudity extends State<humudity> {
-  final Stream<QuerySnapshot> users =
-      FirebaseFirestore.instance.collection('odalar').snapshots();
+  final Stream<DocumentSnapshot> salon =
+      FirebaseFirestore.instance.collection('ev1').doc('salon').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +41,29 @@ class _humudity extends State<humudity> {
         child: Column(
           children: [
             Container(
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-              width: 90.0,
-              height: 90.0,
-              //mainAxisAlignment: MainAxisAlignment.center,
-              /*
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                width: 90.0,
+                height: 90.0,
+                child: StreamBuilder<DocumentSnapshot>(
+                  stream: salon,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Something went wrong.');
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Text('Loading...');
+                    }
+
+                    final data = snapshot.requireData;
+
+                    return Text(
+                        'The room of ${data.id}\'s humadity is %${data['nemlilik']}.');
+                  },
+                )
+                //mainAxisAlignment: MainAxisAlignment.center,
+                /*
                 child: StreamBuilder<QuerySnapshot>(
                   stream: users,
                   builder: (BuildContext context,
@@ -69,7 +87,7 @@ class _humudity extends State<humudity> {
                   },
                 )
                 */
-            ),
+                ),
           ],
         ),
       ),

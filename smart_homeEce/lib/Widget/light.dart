@@ -15,16 +15,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class NoteModel {
-  String title;
-  String content;
-
-  NoteModel({
-    required this.title,
-    required this.content,
-  });
-}
-
 class light extends StatefulWidget {
   const light({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -37,8 +27,11 @@ class _light extends State<light> {
   final Stream<DocumentSnapshot> users =
       FirebaseFirestore.instance.collection('ev1').doc('salon').snapshots();
 
+  var collection = FirebaseFirestore.instance.collection('ev1');
+
   @override
   Widget build(BuildContext context) {
+    var data;
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -53,31 +46,17 @@ class _light extends State<light> {
                   BoxDecoration(border: Border.all(color: Colors.blueAccent)),
               width: 200.0,
               height: 200.0,
-              child: StreamBuilder<DocumentSnapshot>(
-                stream: users,
-                builder: (BuildContext context,
-                    AsyncSnapshot<DocumentSnapshot> snapshot) {
-                  if (snapshot.hasError) {
-                    return Text('Something went wrong.');
-                  }
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text('Loading...');
-                  }
-
-                  final data = snapshot.requireData;
-                  if (data['aydinlatma'] == 1) {
-                    return const Text('The room\'s lights are on!');
-                  } else {
-                    return const Text('The room\'s lights are off!');
-                  }
-                },
-              ),
-              //mainAxisAlignment: MainAxisAlignment.center,
               /*
-                child: StreamBuilder<QuerySnapshot>(
+              child: Baseline(
+                baseline: 25,
+                baselineType: TextBaseline.alphabetic,*/
+              child: Container(
+                width: 100.0,
+                height: 100.0,
+                child: StreamBuilder<DocumentSnapshot>(
                   stream: users,
                   builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                      AsyncSnapshot<DocumentSnapshot> snapshot) {
                     if (snapshot.hasError) {
                       return Text('Something went wrong.');
                     }
@@ -85,27 +64,37 @@ class _light extends State<light> {
                       return Text('Loading...');
                     }
 
-                    final data = snapshot.requireData;
-
-                    return ListView.builder(
-                      itemCount: data.size,
-                      itemBuilder: (context, index) {
-                        return Text(
-                            'The room temperature is ${data.docs[index]['sicaklik']}');
-                      },
-                    );
+                    data = snapshot.requireData;
+                    if (data['aydinlatma'] == 1) {
+                      return const Text('The room\'s lights are on!');
+                    } else {
+                      return const Text('The room\'s lights are off!');
+                    }
                   },
-                )
+                ),
               ),
-                */
+              //),
             ),
             Container(
-              
               child: ElevatedButton(
-                child: Text("sa"),
+                //child: Text("sa"),
+
                 onPressed: () async {
+                  if (data['aydinlatma'] == 1) {
+                    collection
+                        .doc(
+                            'salon') // <-- Doc ID where data should be updated.
+                        .update({'aydinlatma': 0});
+                  } else {
+                    collection
+                        .doc(
+                            'salon') // <-- Doc ID where data should be updated.
+                        .update({'aydinlatma': 1});
+                  }
+
                   //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
                 },
+                child: null,
               ),
             ),
           ],

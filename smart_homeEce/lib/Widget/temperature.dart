@@ -48,7 +48,8 @@ class _temperature extends State<temperature> {
                     BoxDecoration(border: Border.all(color: Colors.blueAccent)),
                 width: 200.0,
                 height: 200.0,
-                //mainAxisAlignment: MainAxisAlignment.center,
+
+                
                 child: StreamBuilder<DocumentSnapshot>(
                   stream: salon,
                   builder: (BuildContext context,
