@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1067780214081",
+    "firebase_url": "https://smarthouse-9aa2d-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "smarthouse-9aa2d",
+    "storage_bucket": "smarthouse-9aa2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067780214081:android:13b26b1683afc787f925c0",
+        "android_client_info": {
+          "package_name": "com.smart_house.deneme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067780214081-dqbcll46k94j0ct2ccknab8ec4sbcn43.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm0okeQ2GFHFjHLgafGOzoEhaRaeJa9i0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067780214081-dqbcll46k94j0ct2ccknab8ec4sbcn43.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
