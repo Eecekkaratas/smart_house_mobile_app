@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:smart_home/Widget/anasayfa.dart';
-import 'dart:developer';
 
 class HomeScreen extends StatelessWidget {
   final Stream<QuerySnapshot> users =
@@ -15,20 +14,17 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class temperature extends StatefulWidget {
-  const temperature({Key? key, required this.title}) : super(key: key);
+class humudity extends StatefulWidget {
+  const humudity({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  _temperature createState() => _temperature();
+  _humudity createState() => _humudity();
 }
 
-class _temperature extends State<temperature> {
-  String docName =
-      FirebaseFirestore.instance.collection('odalar').doc().id; // Useles atm.
-
-  final Stream<DocumentSnapshot> salon =
-      FirebaseFirestore.instance.collection('ev1').doc('salon').snapshots();
+class _humudity extends State<humudity> {
+  final Stream<QuerySnapshot> users =
+      FirebaseFirestore.instance.collection('odalar').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +32,7 @@ class _temperature extends State<temperature> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text("humudity"),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -44,15 +40,16 @@ class _temperature extends State<temperature> {
         child: Column(
           children: [
             Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-                width: 200.0,
-                height: 200.0,
-                //mainAxisAlignment: MainAxisAlignment.center,
-                child: StreamBuilder<DocumentSnapshot>(
-                  stream: salon,
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+              width: 90.0,
+              height: 90.0,
+              //mainAxisAlignment: MainAxisAlignment.center,
+              /*
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: users,
                   builder: (BuildContext context,
-                      AsyncSnapshot<DocumentSnapshot> snapshot) {
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasError) {
                       return Text('Something went wrong.');
                     }
@@ -62,21 +59,21 @@ class _temperature extends State<temperature> {
 
                     final data = snapshot.requireData;
 
-                    return Text(
-                        'The room of ${data.id}\'s temperature is ${data['sicaklik']} degree.');
+                    return ListView.builder(
+                      itemCount: data.size,
+                      itemBuilder: (context, index) {
+                        return Text(
+                            'The room temperature is ${data.docs[index]['sicaklik']}');
+                      },
+                    );
                   },
-                )),
+                )
+                */
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          log(docName);
-          print(docName);
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
