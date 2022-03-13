@@ -27,6 +27,7 @@ class temperature extends StatefulWidget {
 }
 
 class _temperature extends State<temperature> {
+  final myController = TextEditingController();
   String docName =
       FirebaseFirestore.instance.collection('odalar').doc().id; // Useles atm.
 
@@ -34,6 +35,34 @@ class _temperature extends State<temperature> {
       FirebaseFirestore.instance.collection('ev1').doc('salon').snapshots();
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0);
   double numberFontSize = 10;
+
+  /* @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }*/
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start listening to changes.
+    myController.addListener(_printLatestValue);
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    // This also removes the _printLatestValue listener.
+    myController.dispose();
+    super.dispose();
+  }
+
+  void _printLatestValue() {
+    print('text field: ${myController.text}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +82,7 @@ class _temperature extends State<temperature> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),*/
+
       body: Center(
         child: Column(
           children: [
@@ -81,13 +111,13 @@ class _temperature extends State<temperature> {
                             padding: EdgeInsets.only(right: 53),
                             child: Icon(
                               Icons.thermostat_outlined,
-                              size: 30,
+                              size: 40,
                               color: Colors.red,
                             )),
                         Container(
                           child: Icon(
                             Icons.priority_high_outlined,
-                            size: 30,
+                            size: 40,
                             color: Colors.red,
                           ),
                         ),
@@ -585,56 +615,7 @@ class _temperature extends State<temperature> {
                           );
                         },
                       )),
-                  Container(
-                    width: 80,
-                    height: 40,
-                    padding: EdgeInsets.only(left: 10),
-                    //padding: EdgeInsets.only(left: 10),
-                    /*
-                    child: ElevatedButton.icon(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(bg_color),
-                      ),
-                      icon: Icon(
-                        Icons.settings_outlined,
-                        color: Colors.red,
-                        size: 35,
-                      ),
-                      label: Text(""),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const temperature(
-                                    title: '',
-                                  )),
-                        );
-                      },
-                    ),*/
-                    child: FlatButton(
-                        onPressed: () => null, //pop up
-                        child: Stack(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.center,
-                              child: Icon(
-                                Icons.settings_outlined,
-                                color: Colors.red,
-                                size: 35,
-                              ),
-                            ),
-                          ],
-                        ),
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0))),
-                  ),
+                  TempPopup(myController: myController),
                 ],
               ),
             ),
@@ -761,62 +742,159 @@ class _temperature extends State<temperature> {
                           );
                         },
                       )),
-                  Container(
-                    width: 80,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        //border: Border.all(color: Colors.blueAccent),
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    padding: EdgeInsets.only(left: 10),
-                    child: FlatButton(
-                      child: Icon(
-                        Icons.settings_outlined,
-                        color: Colors.red,
-                        size: 35,
-                      ),
-                      onPressed: () => showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                          title: const Text('Otomatik Sıcaklık Ayarlama'),
-                          content: const Text('AlertDialog description'),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'İptal'),
-                              child: const Text('Cancel'),
-                            ),
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'OK'),
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      //child: const Text('Show Dialog'),
-                    ),
-                    /*
-                    child: FlatButton(
-                        onPressed: () => null, //pop up
-                        child: Stack(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.center,
-                              child: Icon(
-                                Icons.settings_outlined,
-                                color: Colors.red,
-                                size: 35,
-                              ),
-                            ),
-                          ],
-                        ),
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0))),*/
-                  ),
+
+                  ///KOPYA BUTON
+                  TempPopup(myController: myController),
                 ],
               ),
             ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class TempPopup extends StatelessWidget {
+  const TempPopup({
+    Key? key,
+    required this.myController,
+  }) : super(key: key);
+
+  final TextEditingController myController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 60,
+      height: 40,
+      decoration: BoxDecoration(
+          //border: Border.all(color: Colors.blueAccent),
+          borderRadius: new BorderRadius.circular(30.0)),
+      //padding: EdgeInsets.only(left: 10),
+      child: FlatButton(
+        child: Stack(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.center,
+              child: Icon(
+                Icons.settings_outlined,
+                color: Colors.red,
+                size: 33,
+              ),
+            ),
+          ],
+        ),
+        shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(30.0)),
+        onPressed: () => showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('Otomatik Sıcaklık Ayarlama'),
+            content: Container(
+              //width: 90,
+              height: 150,
+
+              child: Column(
+                children: [
+                  Container(
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.white)),
+                    padding: EdgeInsets.only(top: 40),
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white)),
+                          //padding: EdgeInsets.only(top: 20),
+                          child: Text("Min:"),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white)),
+                          height: 30,
+
+                          padding: EdgeInsets.only(left: 10),
+                          margin: const EdgeInsets.only(left: 20.0),
+
+                          //child: Text("Değer:"),
+
+                          child: SizedBox(
+                            width: 100,
+                            child: TextField(
+                              controller: myController,
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 40),
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white)),
+                          //padding: EdgeInsets.only(top: 20),
+                          child: Text("Max:"),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white)),
+                          height: 30,
+
+                          padding: EdgeInsets.only(left: 10),
+                          margin: const EdgeInsets.only(left: 20.0),
+
+                          //child: Text("Değer:"),
+
+                          child: SizedBox(
+                            width: 100,
+                            child: TextField(
+                              controller: myController,
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'İptal'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        ),
+        //child: const Text('Show Dialog'),
+      ),
+      /*
+      child: FlatButton(
+          onPressed: () => null, //pop up
+          child: Stack(
+            children: <Widget>[
+              Align(
+                alignment: Alignment.center,
+                child: Icon(
+                  Icons.settings_outlined,
+                  color: Colors.red,
+                  size: 35,
+                ),
+              ),
+            ],
+          ),
+          shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(30.0))),*/
     );
   }
 }

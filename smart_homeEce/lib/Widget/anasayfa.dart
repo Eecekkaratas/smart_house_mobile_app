@@ -29,30 +29,43 @@ class _anasayfa extends State<anasayfa> {
       body: Center(
         child: Column(
           children: [
-            Container(
-                padding: EdgeInsets.only(top: 70),
-                child: Text(
-                  'APP ',
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: (Colors.blueGrey),
-                    fontSize: 17,
+            Padding(
+              padding: EdgeInsets.only(top: 70),
+              child: Container(
+                child: SizedBox(
+                  width: 100,
+                  child: TextField(
+                    //obscureText: true,
+                    decoration: new InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.greenAccent, width: 5.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red, width: 5.0),
+                      ),
+                    ),
                   ),
-                )),
+                ),
+              ),
+            ),
             Container(
-                padding: EdgeInsets.only(top: 80, bottom: 60),
-                child: Text(
-                  'APP  2  ',
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: (Colors.blueGrey),
-                    fontSize: 17,
-                  ),
-                )),
+                child: Row(
+              children: [
+                Container(
+                    padding: EdgeInsets.only(top: 80, bottom: 60),
+                    child: Text(
+                      'APP  2  ',
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: (Colors.blueGrey),
+                        fontSize: 17,
+                      ),
+                    ))
+              ],
+            )),
             Container(
               padding: EdgeInsets.only(top: 50),
               child: Row(children: [

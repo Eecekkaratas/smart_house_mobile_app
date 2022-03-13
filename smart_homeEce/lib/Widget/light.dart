@@ -25,15 +25,31 @@ class light extends StatefulWidget {
 }
 
 class _light extends State<light> {
-  bool isSwitched = true;
+  bool isSwitchedS = true;
+  bool isSwitchedM = true;
+  bool isSwitchedO1 = true;
+  bool isSwitchedO2 = true;
   final Stream<DocumentSnapshot> users =
       FirebaseFirestore.instance.collection('ev1').doc('salon').snapshots();
+  final Stream<DocumentSnapshot> mutfak =
+      FirebaseFirestore.instance.collection('ev1').doc('mutfak').snapshots();
+  final Stream<DocumentSnapshot> oda_1 =
+      FirebaseFirestore.instance.collection('ev1').doc('oda_1').snapshots();
+  final Stream<DocumentSnapshot> oda_2 =
+      FirebaseFirestore.instance.collection('ev1').doc('oda_2').snapshots();
 
   var collection = FirebaseFirestore.instance.collection('ev1');
+  var collectionM = FirebaseFirestore.instance.collection('ev1');
+  var collectionO1 = FirebaseFirestore.instance.collection('ev1');
+  var collectionO2 = FirebaseFirestore.instance.collection('ev1');
+
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0);
   @override
   Widget build(BuildContext context) {
     var data;
+    var dataM;
+    var dataO1;
+    var dataO2;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.arrow_back_outlined),
@@ -75,7 +91,7 @@ class _light extends State<light> {
                     ),
                     margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
-                    width: 345.0,
+                    width: 365.0,
                     height: 80.0,
 
                     child: Row(
@@ -84,7 +100,7 @@ class _light extends State<light> {
                             padding: EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),
-                            width: 90.0,
+                            width: 105.0,
                             height: 30.0,
                             child: Text(
                               'Salon : ',
@@ -103,7 +119,7 @@ class _light extends State<light> {
                               Align(
                                 alignment: Alignment.center,
                                 child: Switch(
-                                  value: isSwitched,
+                                  value: isSwitchedS,
                                   //child: Text("sa"),
 
                                   onChanged: (value) {
@@ -115,14 +131,14 @@ class _light extends State<light> {
                                                 'salon') // <-- Doc ID where data should be updated.
                                             .update({'aydinlatma': 1});
                                         print("ON");
-                                        isSwitched = true;
+                                        isSwitchedS = true;
                                       } else {
                                         collection
                                             .doc(
                                                 'salon') // <-- Doc ID where data should be updated.
                                             .update({'aydinlatma': 0});
                                         print("OFF");
-                                        isSwitched = false;
+                                        isSwitchedS = false;
                                       }
                                       //print(isSwitched);
                                     });
@@ -157,11 +173,11 @@ class _light extends State<light> {
 
                                 data = snapshot.requireData;
                                 if (data['aydinlatma'] == 0 &&
-                                    isSwitched == false) {
+                                    isSwitchedS == false) {
                                   return const Text(
                                       "OFF"); //'The room\'s lights are on!'
                                 } else if (data['aydinlatma'] == 1 &&
-                                    isSwitched == true) {
+                                    isSwitchedS == true) {
                                   return const Text(
                                       "ON"); //'The room\'s lights are off!'
                                 } else {
@@ -223,7 +239,7 @@ class _light extends State<light> {
                     ),
                     margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
-                    width: 345.0,
+                    width: 365.0,
                     height: 80.0,
 
                     child: Row(
@@ -232,10 +248,10 @@ class _light extends State<light> {
                             padding: EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),
-                            width: 90.0,
+                            width: 105.0,
                             height: 30.0,
                             child: Text(
-                              'Salon : ',
+                              'Mutfak : ',
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               //style: GoogleFonts.nunito(),
@@ -251,26 +267,26 @@ class _light extends State<light> {
                               Align(
                                 alignment: Alignment.center,
                                 child: Switch(
-                                  value: isSwitched,
+                                  value: isSwitchedM,
                                   //child: Text("sa"),
 
                                   onChanged: (value) {
                                     //print(isSwitched);
                                     setState(() {
-                                      if (data['aydinlatma'] == 0) {
-                                        collection
+                                      if (dataM['aydinlatma'] == 0) {
+                                        collectionM
                                             .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
+                                                'mutfak') // <-- Doc ID where data should be updated.
                                             .update({'aydinlatma': 1});
                                         print("ON");
-                                        isSwitched = true;
+                                        isSwitchedM = true;
                                       } else {
-                                        collection
+                                        collectionM
                                             .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
+                                                'mutfak') // <-- Doc ID where data should be updated.
                                             .update({'aydinlatma': 0});
                                         print("OFF");
-                                        isSwitched = false;
+                                        isSwitchedM = false;
                                       }
                                       //print(isSwitched);
                                     });
@@ -292,7 +308,7 @@ class _light extends State<light> {
                             width: 80.0,
                             height: 100.0,
                             child: StreamBuilder<DocumentSnapshot>(
-                              stream: users,
+                              stream: mutfak,
                               builder: (BuildContext context,
                                   AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
@@ -303,13 +319,13 @@ class _light extends State<light> {
                                   return Text('Loading...');
                                 }
 
-                                data = snapshot.requireData;
-                                if (data['aydinlatma'] == 0 &&
-                                    isSwitched == false) {
+                                dataM = snapshot.requireData;
+                                if (dataM['aydinlatma'] == 0 &&
+                                    isSwitchedM == false) {
                                   return const Text(
                                       "OFF"); //'The room\'s lights are on!'
-                                } else if (data['aydinlatma'] == 1 &&
-                                    isSwitched == true) {
+                                } else if (dataM['aydinlatma'] == 1 &&
+                                    isSwitchedM == true) {
                                   return const Text(
                                       "ON"); //'The room\'s lights are off!'
                                 } else {
@@ -371,7 +387,7 @@ class _light extends State<light> {
                     ),
                     margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
-                    width: 345.0,
+                    width: 365.0,
                     height: 80.0,
 
                     child: Row(
@@ -380,10 +396,10 @@ class _light extends State<light> {
                             padding: EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),
-                            width: 90.0,
+                            width: 105.0,
                             height: 30.0,
                             child: Text(
-                              'Salon : ',
+                              'Oda 1 : ',
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               //style: GoogleFonts.nunito(),
@@ -399,26 +415,26 @@ class _light extends State<light> {
                               Align(
                                 alignment: Alignment.center,
                                 child: Switch(
-                                  value: isSwitched,
+                                  value: isSwitchedO1,
                                   //child: Text("sa"),
 
                                   onChanged: (value) {
                                     //print(isSwitched);
                                     setState(() {
-                                      if (data['aydinlatma'] == 0) {
-                                        collection
+                                      if (dataO1['aydinlatma'] == 0) {
+                                        collectionO1
                                             .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
+                                                'oda_1') // <-- Doc ID where data should be updated.
                                             .update({'aydinlatma': 1});
                                         print("ON");
-                                        isSwitched = true;
+                                        isSwitchedO1 = true;
                                       } else {
-                                        collection
+                                        collectionO1
                                             .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
+                                                'oda_1') // <-- Doc ID where data should be updated.
                                             .update({'aydinlatma': 0});
                                         print("OFF");
-                                        isSwitched = false;
+                                        isSwitchedO1 = false;
                                       }
                                       //print(isSwitched);
                                     });
@@ -440,7 +456,7 @@ class _light extends State<light> {
                             width: 80.0,
                             height: 100.0,
                             child: StreamBuilder<DocumentSnapshot>(
-                              stream: users,
+                              stream: oda_1,
                               builder: (BuildContext context,
                                   AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
@@ -451,18 +467,19 @@ class _light extends State<light> {
                                   return Text('Loading...');
                                 }
 
-                                data = snapshot.requireData;
-                                if (data['aydinlatma'] == 0 &&
-                                    isSwitched == false) {
+                                dataO1 = snapshot.requireData;
+                                if (dataO1['aydinlatma'] == 0 &&
+                                    isSwitchedO1 == false) {
                                   return const Text(
                                       "OFF"); //'The room\'s lights are on!'
-                                } else if (data['aydinlatma'] == 1 &&
-                                    isSwitched == true) {
+                                } else if (dataO1['aydinlatma'] == 1 &&
+                                    isSwitchedO1 == true) {
                                   return const Text(
                                       "ON"); //'The room\'s lights are off!'
                                 } else {
                                   return const Text("");
                                 }
+                                //return const Text("");
                               },
                             ),
                           ),
@@ -519,7 +536,7 @@ class _light extends State<light> {
                     ),
                     margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
-                    width: 345.0,
+                    width: 365.0,
                     height: 80.0,
 
                     child: Row(
@@ -528,10 +545,10 @@ class _light extends State<light> {
                             padding: EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),
-                            width: 90.0,
+                            width: 105.0,
                             height: 30.0,
                             child: Text(
-                              'Salon : ',
+                              'Oda 2 : ',
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               //style: GoogleFonts.nunito(),
@@ -547,26 +564,26 @@ class _light extends State<light> {
                               Align(
                                 alignment: Alignment.center,
                                 child: Switch(
-                                  value: isSwitched,
+                                  value: isSwitchedO2,
                                   //child: Text("sa"),
 
                                   onChanged: (value) {
                                     //print(isSwitched);
                                     setState(() {
-                                      if (data['aydinlatma'] == 0) {
-                                        collection
+                                      if (dataO2['aydinlatma'] == 0) {
+                                        collectionO2
                                             .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
+                                                'oda_2') // <-- Doc ID where data should be updated.
                                             .update({'aydinlatma': 1});
                                         print("ON");
-                                        isSwitched = true;
+                                        isSwitchedO2 = true;
                                       } else {
-                                        collection
+                                        collectionO2
                                             .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
+                                                'oda_2') // <-- Doc ID where data should be updated.
                                             .update({'aydinlatma': 0});
                                         print("OFF");
-                                        isSwitched = false;
+                                        isSwitchedO2 = false;
                                       }
                                       //print(isSwitched);
                                     });
@@ -588,7 +605,7 @@ class _light extends State<light> {
                             width: 80.0,
                             height: 100.0,
                             child: StreamBuilder<DocumentSnapshot>(
-                              stream: users,
+                              stream: oda_2,
                               builder: (BuildContext context,
                                   AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
@@ -599,13 +616,13 @@ class _light extends State<light> {
                                   return Text('Loading...');
                                 }
 
-                                data = snapshot.requireData;
-                                if (data['aydinlatma'] == 0 &&
-                                    isSwitched == false) {
+                                dataO2 = snapshot.requireData;
+                                if (dataO2['aydinlatma'] == 0 &&
+                                    isSwitchedO2 == false) {
                                   return const Text(
                                       "OFF"); //'The room\'s lights are on!'
-                                } else if (data['aydinlatma'] == 1 &&
-                                    isSwitched == true) {
+                                } else if (dataO2['aydinlatma'] == 1 &&
+                                    isSwitchedO2 == true) {
                                   return const Text(
                                       "ON"); //'The room\'s lights are off!'
                                 } else {
