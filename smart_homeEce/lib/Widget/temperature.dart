@@ -67,11 +67,36 @@ class _temperature extends State<temperature> {
                   ),
                 )),
             Container(
+              padding: EdgeInsets.only(left: 125, top: 30),
+              child: Column(
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(right: 53),
+                            child: Icon(
+                              Icons.thermostat_outlined,
+                              size: 30,
+                              color: Colors.red,
+                            )),
+                        Container(
+                          child: Icon(
+                            Icons.priority_high_outlined,
+                            size: 30,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
               //padding: EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
-                  Container(child: Icon(Icons.thermostat_outlined)),
-                  Container(child: Icon(Icons.priority_high_outlined)),
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.blueAccent),
@@ -93,6 +118,7 @@ class _temperature extends State<temperature> {
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
+                                fontFamily: 'Playfair',
                                 fontWeight: FontWeight.bold,
                                 color: (Colors.blueGrey),
                                 fontSize: 17,
@@ -144,8 +170,6 @@ class _temperature extends State<temperature> {
 
               child: Row(
                 children: [
-                  Container(),
-                  Container(),
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.blueAccent)),
@@ -305,3 +329,9 @@ class _temperature extends State<temperature> {
           );
         },
       ),*/
+/*
+Container(
+                      padding: EdgeInsets.only(right: 20),
+                      child: Icon(Icons.thermostat_outlined)),
+                  Container(child: Icon(Icons.priority_high_outlined)),
+                  */
