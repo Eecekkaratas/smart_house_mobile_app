@@ -33,6 +33,7 @@ class _temperature extends State<temperature> {
   final Stream<DocumentSnapshot> salon =
       FirebaseFirestore.instance.collection('ev1').doc('salon').snapshots();
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0);
+  double numberFontSize = 10;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +59,7 @@ class _temperature extends State<temperature> {
             Container(
                 decoration:
                     BoxDecoration(border: Border.all(color: Colors.redAccent)),
-                padding: EdgeInsets.only(top: 50),
+                padding: EdgeInsets.only(top: 30),
                 child: Text(
                   'ODALAR ',
                   textAlign: TextAlign.center,
@@ -66,7 +67,7 @@ class _temperature extends State<temperature> {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: (Colors.blueGrey),
-                    fontSize: 17,
+                    fontSize: 37,
                   ),
                 )),
             Container(
@@ -110,8 +111,8 @@ class _temperature extends State<temperature> {
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.green)),
-                      width: 80.0,
-                      height: 25.0,
+                      width: 90.0,
+                      height: 30.0,
                       child: Text(
                         'Salon : ',
                         textAlign: TextAlign.center,
@@ -120,15 +121,15 @@ class _temperature extends State<temperature> {
                           fontFamily: 'Nunito-Light',
                           fontWeight: FontWeight.bold,
                           color: (Colors.blueGrey),
-                          fontSize: 17,
+                          fontSize: 23,
                         ),
                       )),
                   Container(
                       //padding: EdgeInsets.only(top: 70),
                       decoration:
                           BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 60.0,
-                      height: 20.0,
+                      width: 70.0,
+                      height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -150,12 +151,9 @@ class _temperature extends State<temperature> {
                             '${data['sicaklik']}°C',
                             //style: GoogleFonts.nunito(),
                             textAlign: TextAlign.center,
-                            /*style: const TextStyle(
-                              fontFamily: 'Nunito-Regular',
-                              fontWeight: FontWeight.bold,
-                              color: (Colors.blueGrey),
-                              fontSize: 17,
-                            ),*/
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
                           );
                         },
                       )),
@@ -183,8 +181,8 @@ class _temperature extends State<temperature> {
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.blueAccent)),
-                      width: 60.0,
-                      height: 20.0,
+                      width: 70.0,
+                      height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -207,13 +205,16 @@ class _temperature extends State<temperature> {
 
                           return Text(
                             '%${data['nemlilik']}',
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
                             textAlign: TextAlign.center,
                           );
                         },
                       )),
                   Container(
-                    width: 60,
-                    height: 20,
+                    width: 80,
+                    height: 40,
                     padding: EdgeInsets.only(left: 10),
                     /*
                     child: ElevatedButton.icon(
@@ -277,8 +278,8 @@ class _temperature extends State<temperature> {
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.green)),
-                      width: 80.0,
-                      height: 25.0,
+                      width: 90.0,
+                      height: 30.0,
                       child: Text(
                         'Mutfak : ',
                         textAlign: TextAlign.center,
@@ -287,15 +288,15 @@ class _temperature extends State<temperature> {
                           fontFamily: 'Nunito-Light',
                           fontWeight: FontWeight.bold,
                           color: (Colors.blueGrey),
-                          fontSize: 17,
+                          fontSize: 23,
                         ),
                       )),
                   Container(
                       //padding: EdgeInsets.only(top: 70),
                       decoration:
                           BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 60.0,
-                      height: 20.0,
+                      width: 70.0,
+                      height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -323,6 +324,9 @@ class _temperature extends State<temperature> {
                             '${data['sicaklik'] + rng.nextInt(4).toDouble() / 10}°C',
                             //style: GoogleFonts.nunito(),
                             textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
                             /*style: const TextStyle(
                               fontFamily: 'Nunito-Regular',
                               fontWeight: FontWeight.bold,
@@ -356,8 +360,8 @@ class _temperature extends State<temperature> {
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.blueAccent)),
-                      width: 60.0,
-                      height: 20.0,
+                      width: 70.0,
+                      height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -382,6 +386,9 @@ class _temperature extends State<temperature> {
                           return Text(
                             '%${data['nemlilik'] + rng.nextInt(6).toDouble() / 10}',
                             textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
                           );
                         },
                       )),
@@ -470,8 +477,8 @@ class _temperature extends State<temperature> {
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.green)),
-                      width: 80.0,
-                      height: 25.0,
+                      width: 90.0,
+                      height: 30.0,
                       child: Text(
                         'Oda 1 : ',
                         textAlign: TextAlign.center,
@@ -480,15 +487,15 @@ class _temperature extends State<temperature> {
                           fontFamily: 'Nunito-Light',
                           fontWeight: FontWeight.bold,
                           color: (Colors.blueGrey),
-                          fontSize: 17,
+                          fontSize: 23,
                         ),
                       )),
                   Container(
                       //padding: EdgeInsets.only(top: 70),
                       decoration:
                           BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 60.0,
-                      height: 20.0,
+                      width: 70.0,
+                      height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -507,9 +514,12 @@ class _temperature extends State<temperature> {
                           final data = snapshot.requireData;
                           var rng = new Random();
                           return Text(
-                            '${data['sicaklik'] + rng.nextInt(4) / 10 + 0.1}°C',
+                            '${data['sicaklik'] + rng.nextInt(4) / 10 + 1.2}°C',
                             //style: GoogleFonts.nunito(),
                             textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
                             /*style: const TextStyle(
                               fontFamily: 'Nunito-Regular',
                               fontWeight: FontWeight.bold,
@@ -543,8 +553,8 @@ class _temperature extends State<temperature> {
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.blueAccent)),
-                      width: 60.0,
-                      height: 20.0,
+                      width: 70.0,
+                      height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -569,12 +579,15 @@ class _temperature extends State<temperature> {
                           return Text(
                             '%${data['nemlilik'] + rng.nextInt(6) / 10 + 0.8}',
                             textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
                           );
                         },
                       )),
                   Container(
-                    width: 60,
-                    height: 20,
+                    width: 80,
+                    height: 40,
                     padding: EdgeInsets.only(left: 10),
                     //padding: EdgeInsets.only(left: 10),
                     /*
@@ -639,8 +652,8 @@ class _temperature extends State<temperature> {
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.green)),
-                      width: 80.0,
-                      height: 25.0,
+                      width: 90.0,
+                      height: 30.0,
                       child: Text(
                         'Oda 2 : ',
                         textAlign: TextAlign.center,
@@ -649,15 +662,15 @@ class _temperature extends State<temperature> {
                           fontFamily: 'Nunito-Light',
                           fontWeight: FontWeight.bold,
                           color: (Colors.blueGrey),
-                          fontSize: 17,
+                          fontSize: 25,
                         ),
                       )),
                   Container(
                       //padding: EdgeInsets.only(top: 70),
                       decoration:
                           BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 60.0,
-                      height: 20.0,
+                      width: 70.0,
+                      height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -674,11 +687,15 @@ class _temperature extends State<temperature> {
                           }
 
                           final data = snapshot.requireData;
+                          var rng = new Random();
 
                           return Text(
-                            '${data['sicaklik']}°C',
+                            '${data['sicaklik'] - rng.nextInt(4) / 10 + 0.1}°C',
                             //style: GoogleFonts.nunito(),
                             textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
                             /*style: const TextStyle(
                               fontFamily: 'Nunito-Regular',
                               fontWeight: FontWeight.bold,
@@ -712,8 +729,8 @@ class _temperature extends State<temperature> {
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.blueAccent)),
-                      width: 60.0,
-                      height: 20.0,
+                      width: 70.0,
+                      height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -733,45 +750,21 @@ class _temperature extends State<temperature> {
                           }
 
                           final data = snapshot.requireData;
+                          var rng = new Random();
 
                           return Text(
-                            '%${data['nemlilik']}',
+                            '%${data['nemlilik'] - rng.nextInt(5) / 10 + 1.4}',
                             textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
                           );
                         },
                       )),
                   Container(
-                    width: 60,
-                    height: 20,
+                    width: 80,
+                    height: 40,
                     padding: EdgeInsets.only(left: 10),
-                    /*
-                    child: ElevatedButton.icon(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(bg_color),
-                      ),
-                      icon: Icon(
-                        Icons.settings_outlined,
-                        color: Colors.red,
-                        size: 35,
-                      ),
-                      label: Text(""),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const temperature(
-                                    title: '',
-                                  )),
-                        );
-                      },
-                    ),*/
                     child: FlatButton(
                         onPressed: () => null, //pop up
                         child: Stack(

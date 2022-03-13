@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:smart_home/Widget/anasayfa.dart';
 import 'dart:developer';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   final Stream<QuerySnapshot> users =
@@ -58,20 +59,17 @@ class _light extends State<light> {
                     BoxDecoration(border: Border.all(color: Colors.redAccent)),
                 padding: EdgeInsets.only(top: 50),
                 child: Text(
-                  'ODALAR ',
+                  'Odalar ',
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: (Colors.blueGrey),
-                    fontSize: 17,
-                  ),
+                  style: GoogleFonts.fredokaOne(),
                 )),
             Container(
               //padding: EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
                   Container(
+                    padding: EdgeInsets.only(left: 20),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.blueAccent),
                     ),
@@ -83,6 +81,7 @@ class _light extends State<light> {
                     child: Row(
                       children: [
                         Container(
+                            padding: EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),
                             width: 80.0,
@@ -100,52 +99,52 @@ class _light extends State<light> {
                                 fontSize: 17,
                               ),*/
                             )),
-                        Container(
-                            //padding: EdgeInsets.only(top: 70),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
-                            width: 60.0,
-                            height: 30.0,
-                            child: StreamBuilder<DocumentSnapshot>(
-                              stream: users,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
-                                if (snapshot.hasError) {
-                                  return Text('Something went wrong.');
-                                }
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Text(
-                                    'Loading...',
-                                    textAlign: TextAlign.center,
-                                  );
-                                }
+                        Padding(
+                          padding: EdgeInsets.only(left: 40),
+                          child: Stack(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
+                                child: Switch(
+                                  value: isSwitched,
+                                  //child: Text("sa"),
 
-                                final data = snapshot.requireData;
+                                  onChanged: (value) {
+                                    //print(isSwitched);
+                                    setState(() {
+                                      if (data['aydinlatma'] == 0) {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 1});
+                                        print("ON");
+                                        isSwitched = true;
+                                      } else {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 0});
+                                        print("OFF");
+                                        isSwitched = false;
+                                      }
+                                      //print(isSwitched);
+                                    });
 
-                                return Text(
-                                  '${data['sicaklik']}°C',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontFamily: 'Nunito-Regular',
-                                    fontWeight: FontWeight.bold,
-                                    color: (Colors.blueGrey),
-                                    fontSize: 17,
-                                  ),
-                                );
-                              },
-                            )),
+                                    //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
+                                  },
+                                  activeTrackColor: Colors.lightGreenAccent,
+                                  activeColor: Colors.green,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.blueAccent)),
+                          padding: EdgeInsets.only(left: 10),
                           width: 50.0,
-                          height: 50.0,
-                          /*
-              child: Baseline(
-                baseline: 25,
-                baselineType: TextBaseline.alphabetic,*/
+                          height: 15.0,
                           child: Container(
-                            width: 100.0,
+                            width: 80.0,
                             height: 100.0,
                             child: StreamBuilder<DocumentSnapshot>(
                               stream: users,
@@ -176,38 +175,26 @@ class _light extends State<light> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(top: 50),
-                          child: Switch(
-                            value: isSwitched,
-                            //child: Text("sa"),
-
-                            onChanged: (value) {
-                              //print(isSwitched);
-                              setState(() {
-                                if (data['aydinlatma'] == 0) {
-                                  collection
-                                      .doc(
-                                          'salon') // <-- Doc ID where data should be updated.
-                                      .update({'aydinlatma': 1});
-                                  print("ON");
-                                  isSwitched = true;
-                                } else {
-                                  collection
-                                      .doc(
-                                          'salon') // <-- Doc ID where data should be updated.
-                                      .update({'aydinlatma': 0});
-                                  print("OFF");
-                                  isSwitched = false;
-                                }
-                                //print(isSwitched);
-                              });
-
-                              //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
-                            },
-                            activeTrackColor: Colors.lightGreenAccent,
-                            activeColor: Colors.green,
-                            //child: null,
-                          ),
+                          width: 80,
+                          height: 40,
+                          //padding: EdgeInsets.only(left: 10),
+                          child: FlatButton(
+                              onPressed: () => null, //pop up
+                              child: Stack(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Icon(
+                                      Icons.settings_outlined,
+                                      color: Colors.red,
+                                      size: 35,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                      new BorderRadius.circular(30.0))),
                         ),
                       ],
                     ),
