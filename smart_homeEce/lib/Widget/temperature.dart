@@ -27,7 +27,15 @@ class temperature extends StatefulWidget {
 }
 
 class _temperature extends State<temperature> {
-  final myController = TextEditingController();
+  final myController_S1_min = TextEditingController();
+  final myController_S1_max = TextEditingController();
+  final myController_S2_min = TextEditingController();
+  final myController_S2_max = TextEditingController();
+  final myController_S3_min = TextEditingController();
+  final myController_S3_max = TextEditingController();
+  final myController_S4_min = TextEditingController();
+  final myController_S4_max = TextEditingController();
+
   String docName =
       FirebaseFirestore.instance.collection('odalar').doc().id; // Useles atm.
 
@@ -36,31 +44,24 @@ class _temperature extends State<temperature> {
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0);
   double numberFontSize = 10;
 
-  /* @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
-  }*/
-
   @override
-  void initState() {
+  /*void initState() {
     super.initState();
 
     // Start listening to changes.
     myController.addListener(_printLatestValue);
   }
-
+*/
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the widget tree.
     // This also removes the _printLatestValue listener.
-    myController.dispose();
+    myController_S4_min.dispose();
     super.dispose();
   }
 
   void _printLatestValue() {
-    print('text field: ${myController.text}');
+    print('text field: ${myController_S4_min.text}');
   }
 
   @override
@@ -615,7 +616,10 @@ class _temperature extends State<temperature> {
                           );
                         },
                       )),
-                  TempPopup(myController: myController),
+                  TempPopup(
+                    minController: myController_S3_min,
+                    maxController: myController_S3_max,
+                  ),
                 ],
               ),
             ),
@@ -744,7 +748,9 @@ class _temperature extends State<temperature> {
                       )),
 
                   ///KOPYA BUTON
-                  TempPopup(myController: myController),
+                  TempPopup(
+                      minController: myController_S4_min,
+                      maxController: myController_S4_max),
                 ],
               ),
             ),
@@ -758,10 +764,12 @@ class _temperature extends State<temperature> {
 class TempPopup extends StatelessWidget {
   const TempPopup({
     Key? key,
-    required this.myController,
+    required this.minController,
+    required this.maxController,
   }) : super(key: key);
 
-  final TextEditingController myController;
+  final TextEditingController minController;
+  final TextEditingController maxController;
 
   @override
   Widget build(BuildContext context) {
@@ -822,7 +830,7 @@ class TempPopup extends StatelessWidget {
                           child: SizedBox(
                             width: 100,
                             child: TextField(
-                              controller: myController,
+                              controller: minController,
                               keyboardType: TextInputType.number,
                             ),
                           ),
@@ -853,7 +861,7 @@ class TempPopup extends StatelessWidget {
                           child: SizedBox(
                             width: 100,
                             child: TextField(
-                              controller: myController,
+                              controller: maxController,
                               keyboardType: TextInputType.number,
                             ),
                           ),
@@ -878,40 +886,6 @@ class TempPopup extends StatelessWidget {
         ),
         //child: const Text('Show Dialog'),
       ),
-      /*
-      child: FlatButton(
-          onPressed: () => null, //pop up
-          child: Stack(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.center,
-                child: Icon(
-                  Icons.settings_outlined,
-                  color: Colors.red,
-                  size: 35,
-                ),
-              ),
-            ],
-          ),
-          shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(30.0))),*/
     );
   }
 }
-/*      
-      floatingActionButton: FloatingActionButton(
-        //tooltip: 'Increment',
-        child: const Icon(Icons.arrow_back_outlined),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const anasayfa()),
-          );
-        },
-      ),*/
-/*
-Container(
-                      padding: EdgeInsets.only(right: 20),
-                      child: Icon(Icons.thermostat_outlined)),
-                  Container(child: Icon(Icons.priority_high_outlined)),
-                  */

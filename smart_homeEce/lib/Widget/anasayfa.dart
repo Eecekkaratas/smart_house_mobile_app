@@ -3,6 +3,8 @@ import 'package:smart_home/Widget/humudity.dart';
 import 'package:smart_home/Widget/light.dart';
 import 'package:smart_home/Widget/temperature.dart';
 import 'package:flutter/src/material/colors.dart';
+//import 'package:intl/intl.dart';
+
 //import 'package:smart_home/Widget/temperature.dart';
 //import 'package:smart_home_v4/Widget/temperature.dart';
 
@@ -14,11 +16,25 @@ class anasayfa extends StatefulWidget {
 }
 
 class _anasayfa extends State<anasayfa> {
+  late DateTime now;
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0); //239R 246G 251B
   Color btn_color = const Color.fromRGBO(233, 240, 245, 1.0);
 
   Color btn_color2 =
       const Color.fromRGBO(222, 235, 238, 1.0); //Buton: 238R 245G 250B
+
+  void _currentDate() {
+    setState(() {
+      //print(rng.nextInt(25));
+      now = DateTime.now();
+      print(now.hour.toString() +
+          ":" +
+          now.minute.toString() +
+          ":" +
+          now.second.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,23 +45,66 @@ class _anasayfa extends State<anasayfa> {
       body: Center(
         child: Column(
           children: [
+            Container(
+                padding: EdgeInsets.only(top: 30),
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.red)),
+                width: 320,
+                height: 100,
+                child: Row(
+                  children: [
+                    Container(
+                        margin: EdgeInsets.only(left: 60),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.blueAccent)),
+                        //padding: EdgeInsets.only(top: 60),
+                        child: Text(
+                          'Smart Home System',
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: (Colors.blueGrey),
+                            fontSize: 20,
+                          ),
+                        ))
+                  ],
+                )),
             Padding(
-              padding: EdgeInsets.only(top: 70),
+              padding: EdgeInsets.only(top: 30),
               child: Container(
-                child: SizedBox(
-                  width: 100,
-                  child: TextField(
-                    //obscureText: true,
-                    decoration: new InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.greenAccent, width: 5.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red, width: 5.0),
-                      ),
+                width: 320,
+                height: 150,
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                child: Row(
+                  children: [
+                    Container(
+                      child:
+                          Image(image: AssetImage('assets/Screenshot_233.png')),
+                      //padding: EdgeInsets.only(left: 20),
+                      margin: EdgeInsets.only(left: 25),
+                      width: 100,
+                      height: 100,
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.red)),
+                      //child: Text("sa"),
                     ),
-                  ),
+                    Container(
+                        //padding: EdgeInsets.only(left: 20),
+                        margin: EdgeInsets.only(left: 20),
+                        width: 150,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.red)),
+                        child: Text(
+                          "sa",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                  ],
                 ),
               ),
             ),
@@ -128,35 +187,6 @@ class _anasayfa extends State<anasayfa> {
                               );
                             },
                           )),
-                      /*child: ElevatedButton.icon(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(btn_color),
-                          ),
-                          icon: Icon(
-                            Icons.thermostat_outlined,
-                            color: Colors.red,
-                            size: 50,
-                            //IconAlign: TextAlign.center,
-                          ),
-                          label: Text(""),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const temperature(
-                                        title: '',
-                                      )),
-                            );
-                          },
-                        ),*/
-
                       Container(
                           padding: EdgeInsets.only(top: 10),
                           child: Text(
@@ -237,37 +267,7 @@ class _anasayfa extends State<anasayfa> {
                                               )),
                                     );
                                   },
-                                )
-                                /*
-                              child: ElevatedButton.icon(
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                    ),
-                                  ),
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          btn_color2),
-                                ),
-                                icon: Icon(
-                                  Icons.tungsten_outlined,
-                                  color: Colors.red,
-                                  size: 50,
-                                ),
-                                label: Text(""),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const light(
-                                              title: '',
-                                            )),
-                                  );
-                                },
-                              ),*/
-                                ),
+                                )),
                             Container(
                                 padding: EdgeInsets.only(top: 10),
                                 child: Text(
@@ -349,39 +349,7 @@ class _anasayfa extends State<anasayfa> {
                                                     )),
                                           );
                                         },
-                                      )
-                                      /*
-                                    child: ElevatedButton.icon(
-                                      style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0),
-                                          ),
-                                        ),
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.grey.shade200),
-                                      ),
-                                      icon: Icon(
-                                        Icons.priority_high_outlined,
-                                        color: Colors.red,
-                                        size: 50,
-                                      ),
-                                      label: Text(""),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const humudity(
-                                                    title: '',
-                                                  )),
-                                        );
-                                      },
-                                    ),*/
-                                      ),
+                                      )),
                                   Container(
                                       padding: EdgeInsets.only(top: 10),
                                       child: Text(
@@ -411,19 +379,3 @@ class _anasayfa extends State<anasayfa> {
     );
   }
 }
-//Icons.tungsten_outlined
-//Icons.priority_high_outlined,
-
-/*
-              child: ElevatedButton(
-                child: Text("Humidity"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const humudity(
-                              title: '',
-                            )),
-                  );
-                },
-              ),*/
