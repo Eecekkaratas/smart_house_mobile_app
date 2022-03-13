@@ -24,6 +24,7 @@ class light extends StatefulWidget {
 }
 
 class _light extends State<light> {
+  bool isSwitched = true;
   final Stream<DocumentSnapshot> users =
       FirebaseFirestore.instance.collection('ev1').doc('salon').snapshots();
 
@@ -134,48 +135,84 @@ class _light extends State<light> {
                                 );
                               },
                             )),
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.blueAccent)),
+                          width: 50.0,
+                          height: 50.0,
+                          /*
+              child: Baseline(
+                baseline: 25,
+                baselineType: TextBaseline.alphabetic,*/
+                          child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: users,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('Something went wrong.');
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text('Loading...');
+                                }
+
+                                data = snapshot.requireData;
+                                if (data['aydinlatma'] == 0 &&
+                                    isSwitched == false) {
+                                  return const Text(
+                                      "OFF"); //'The room\'s lights are on!'
+                                } else if (data['aydinlatma'] == 1 &&
+                                    isSwitched == true) {
+                                  return const Text(
+                                      "ON"); //'The room\'s lights are off!'
+                                } else {
+                                  return const Text("");
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 50),
+                          child: Switch(
+                            value: isSwitched,
+                            //child: Text("sa"),
+
+                            onChanged: (value) {
+                              //print(isSwitched);
+                              setState(() {
+                                if (data['aydinlatma'] == 0) {
+                                  collection
+                                      .doc(
+                                          'salon') // <-- Doc ID where data should be updated.
+                                      .update({'aydinlatma': 1});
+                                  print("ON");
+                                  isSwitched = true;
+                                } else {
+                                  collection
+                                      .doc(
+                                          'salon') // <-- Doc ID where data should be updated.
+                                      .update({'aydinlatma': 0});
+                                  print("OFF");
+                                  isSwitched = false;
+                                }
+                                //print(isSwitched);
+                              });
+
+                              //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
+                            },
+                            activeTrackColor: Colors.lightGreenAccent,
+                            activeColor: Colors.green,
+                            //child: null,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ],
-
-                /* Container(
-                    width: 60,
-                    height: 30,
-                    child: FlatButton(
-                      child: Icon(
-                        Icons.settings_outlined,
-                        color: Colors.red,
-                        size: 35,
-                      ),
-                      color: bg_color,
-                      onPressed: () {},
-                    ),
-                  ),
-                 */
-                /*Container(
-                    padding: EdgeInsets.only(top: 50),
-                    child: ElevatedButton(
-                      //child: Text("sa"),
-
-                      onPressed: () async {
-                        if (data['aydinlatma'] == 1) {
-                          collection
-                              .doc(
-                                  'salon') // <-- Doc ID where data should be updated.
-                              .update({'aydinlatma': 0});
-                        } else {
-                          collection
-                              .doc(
-                                  'salon') // <-- Doc ID where data should be updated.
-                              .update({'aydinlatma': 1});
-                        }
-
-                        //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
-                      },
-                      child: null,
-                    ),
-                  ),*/
               ),
             ),
           ],
@@ -186,38 +223,3 @@ class _light extends State<light> {
     );
   }
 }
-
-/*Container(
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-              width: 200.0,
-              height: 200.0,
-              /*
-              child: Baseline(
-                baseline: 25,
-                baselineType: TextBaseline.alphabetic,*/
-              child: Container(
-                width: 100.0,
-                height: 100.0,
-                child: StreamBuilder<DocumentSnapshot>(
-                  stream: users,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<DocumentSnapshot> snapshot) {
-                    if (snapshot.hasError) {
-                      return Text('Something went wrong.');
-                    }
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text('Loading...');
-                    }
-
-                    data = snapshot.requireData;
-                    if (data['aydinlatma'] == 1) {
-                      return const Text('The room\'s lights are on!');
-                    } else {
-                      return const Text('The room\'s lights are off!');
-                    }
-                  },
-                ),
-              ),
-              //),
-            ), */

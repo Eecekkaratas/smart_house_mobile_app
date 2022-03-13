@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:smart_home/Widget/anasayfa.dart';
 import 'dart:developer';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   final Stream<QuerySnapshot> users =
@@ -95,82 +97,8 @@ class _temperature extends State<temperature> {
               ),
             ),
             Container(
-              //padding: EdgeInsets.only(bottom: 50),
-              child: Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                    ),
-                    margin: const EdgeInsets.all(25.0),
-                    //color: Colors.white,
-                    width: 335.0,
-                    height: 80.0,
-
-                    child: Row(
-                      children: [
-                        Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
-                            width: 80.0,
-                            height: 30.0,
-                            child: Text(
-                              'Salon : ',
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.nunito(),
-                              /*
-                              style: const TextStyle(
-                                fontFamily: 'Nunito-Regular',
-                                fontWeight: FontWeight.bold,
-                                color: (Colors.blueGrey),
-                                fontSize: 17,
-                              ),*/
-                            )),
-                        Container(
-                            //padding: EdgeInsets.only(top: 70),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
-                            width: 60.0,
-                            height: 30.0,
-                            child: StreamBuilder<DocumentSnapshot>(
-                              stream: salon,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
-                                if (snapshot.hasError) {
-                                  return Text('Something went wrong.');
-                                }
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Text(
-                                    'Loading...',
-                                    textAlign: TextAlign.center,
-                                  );
-                                }
-
-                                final data = snapshot.requireData;
-
-                                return Text(
-                                  '${data['sicaklik']}°C',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontFamily: 'Nunito-Regular',
-                                    fontWeight: FontWeight.bold,
-                                    color: (Colors.blueGrey),
-                                    fontSize: 17,
-                                  ),
-                                );
-                              },
-                            )),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.red),
+                border: Border.all(color: Colors.black),
               ),
               margin: const EdgeInsets.all(5.0),
               //color: Colors.white,
@@ -185,7 +113,7 @@ class _temperature extends State<temperature> {
                       width: 80.0,
                       height: 25.0,
                       child: Text(
-                        'Mutfak : ',
+                        'Salon : ',
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -200,7 +128,7 @@ class _temperature extends State<temperature> {
                       decoration:
                           BoxDecoration(border: Border.all(color: Colors.red)),
                       width: 60.0,
-                      height: 30.0,
+                      height: 20.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -220,7 +148,7 @@ class _temperature extends State<temperature> {
 
                           return Text(
                             '${data['sicaklik']}°C',
-                            style: GoogleFonts.nunito(),
+                            //style: GoogleFonts.nunito(),
                             textAlign: TextAlign.center,
                             /*style: const TextStyle(
                               fontFamily: 'Nunito-Regular',
@@ -285,7 +213,8 @@ class _temperature extends State<temperature> {
                       )),
                   Container(
                     width: 60,
-                    height: 30,
+                    height: 20,
+                    padding: EdgeInsets.only(left: 10),
                     /*
                     child: ElevatedButton.icon(
                       style: ButtonStyle(
@@ -315,14 +244,550 @@ class _temperature extends State<temperature> {
                       },
                     ),*/
                     child: FlatButton(
-                      child: Icon(
+                        onPressed: () => null, //pop up
+                        child: Stack(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.settings_outlined,
+                                color: Colors.red,
+                                size: 35,
+                              ),
+                            ),
+                          ],
+                        ),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0))),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              margin: const EdgeInsets.all(5.0),
+              //color: Colors.white,
+              width: 335.0,
+              height: 80.0,
+
+              child: Row(
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.green)),
+                      width: 80.0,
+                      height: 25.0,
+                      child: Text(
+                        'Mutfak : ',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito-Light',
+                          fontWeight: FontWeight.bold,
+                          color: (Colors.blueGrey),
+                          fontSize: 17,
+                        ),
+                      )),
+                  Container(
+                      //padding: EdgeInsets.only(top: 70),
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.red)),
+                      width: 60.0,
+                      height: 20.0,
+                      child: StreamBuilder<DocumentSnapshot>(
+                        stream: salon,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<DocumentSnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return Text('Something went wrong.');
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Text(
+                              'Loading...',
+                              textAlign: TextAlign.center,
+                            );
+                          }
+
+                          final data = snapshot.requireData;
+
+                          /*double doubleInRange(
+                                  Random random, double end, double start) =>
+                              (random.nextDouble() * (end - start) + start);*/
+
+                          var rng = new Random();
+
+                          return Text(
+                            '${data['sicaklik'] + rng.nextInt(4).toDouble() / 10}°C',
+                            //style: GoogleFonts.nunito(),
+                            textAlign: TextAlign.center,
+                            /*style: const TextStyle(
+                              fontFamily: 'Nunito-Regular',
+                              fontWeight: FontWeight.bold,
+                              color: (Colors.blueGrey),
+                              fontSize: 17,
+                            ),*/
+                          );
+                        },
+                      )),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent)),
+                      width: 20.0,
+                      height: 50.0,
+
+                      /*child: Icon(
+                      Icons.thermostat_outlined,
+                      color: Colors.red,
+                      size: 40,
+                    ),*/
+                      child: Text(
+                        '|',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: (Colors.blueGrey),
+                          fontSize: 40,
+                        ),
+                      )),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent)),
+                      width: 60.0,
+                      height: 20.0,
+                      child: StreamBuilder<DocumentSnapshot>(
+                        stream: salon,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<DocumentSnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return Text(
+                              'Something went wrong.',
+                              textAlign: TextAlign.center,
+                            );
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Text(
+                              'Loading...',
+                              textAlign: TextAlign.center,
+                            );
+                          }
+
+                          final data = snapshot.requireData;
+                          var rng = new Random();
+
+                          return Text(
+                            '%${data['nemlilik'] + rng.nextInt(6).toDouble() / 10}',
+                            textAlign: TextAlign.center,
+                          );
+                        },
+                      )),
+                  Container(
+                    width: 80,
+                    height: 40,
+                    padding: EdgeInsets.only(left: 10),
+                    /*
+                    child: ElevatedButton.icon(
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(bg_color),
+                      ),
+                      icon: Icon(
                         Icons.settings_outlined,
                         color: Colors.red,
                         size: 35,
                       ),
-                      color: bg_color,
-                      onPressed: () {},
-                    ),
+                      label: Text(""),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const temperature(
+                                    title: '',
+                                  )),
+                        );
+                      },
+                    ),*/
+                    child: FlatButton(
+                        onPressed: () => null, //pop up
+                        child: Stack(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.settings_outlined,
+                                color: Colors.red,
+                                size: 35,
+                              ),
+                            ),
+                          ],
+                        ),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0))),
+                  ),
+                  /*child: Align(
+                      ElevatedButton.icon(
+                        icon: Icon(
+                          Icons.settings_outlined,
+                          color: Colors.red,
+                          size: 35,
+                        ),
+                        label: (""),
+                        onPressed: () {},
+                      ),
+                      */
+                  /*
+                      child: Icon(
+                        Icons.settings_outlined,
+                        color: Colors.red,
+                        size: 35,
+                      ),*/
+                  //color: bg_color,
+                  //onPressed: () {},
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              margin: const EdgeInsets.all(5.0),
+              //color: Colors.white,
+              width: 335.0,
+              height: 80.0,
+
+              child: Row(
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.green)),
+                      width: 80.0,
+                      height: 25.0,
+                      child: Text(
+                        'Oda 1 : ',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito-Light',
+                          fontWeight: FontWeight.bold,
+                          color: (Colors.blueGrey),
+                          fontSize: 17,
+                        ),
+                      )),
+                  Container(
+                      //padding: EdgeInsets.only(top: 70),
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.red)),
+                      width: 60.0,
+                      height: 20.0,
+                      child: StreamBuilder<DocumentSnapshot>(
+                        stream: salon,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<DocumentSnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return Text('Something went wrong.');
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Text(
+                              'Loading...',
+                              textAlign: TextAlign.center,
+                            );
+                          }
+
+                          final data = snapshot.requireData;
+                          var rng = new Random();
+                          return Text(
+                            '${data['sicaklik'] + rng.nextInt(4) / 10 + 0.1}°C',
+                            //style: GoogleFonts.nunito(),
+                            textAlign: TextAlign.center,
+                            /*style: const TextStyle(
+                              fontFamily: 'Nunito-Regular',
+                              fontWeight: FontWeight.bold,
+                              color: (Colors.blueGrey),
+                              fontSize: 17,
+                            ),*/
+                          );
+                        },
+                      )),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent)),
+                      width: 20.0,
+                      height: 50.0,
+
+                      /*child: Icon(
+                      Icons.thermostat_outlined,
+                      color: Colors.red,
+                      size: 40,
+                    ),*/
+                      child: Text(
+                        '|',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: (Colors.blueGrey),
+                          fontSize: 40,
+                        ),
+                      )),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent)),
+                      width: 60.0,
+                      height: 20.0,
+                      child: StreamBuilder<DocumentSnapshot>(
+                        stream: salon,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<DocumentSnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return Text(
+                              'Something went wrong.',
+                              textAlign: TextAlign.center,
+                            );
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Text(
+                              'Loading...',
+                              textAlign: TextAlign.center,
+                            );
+                          }
+
+                          final data = snapshot.requireData;
+                          var rng = new Random();
+
+                          return Text(
+                            '%${data['nemlilik'] + rng.nextInt(6) / 10 + 0.8}',
+                            textAlign: TextAlign.center,
+                          );
+                        },
+                      )),
+                  Container(
+                    width: 60,
+                    height: 20,
+                    padding: EdgeInsets.only(left: 10),
+                    //padding: EdgeInsets.only(left: 10),
+                    /*
+                    child: ElevatedButton.icon(
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(bg_color),
+                      ),
+                      icon: Icon(
+                        Icons.settings_outlined,
+                        color: Colors.red,
+                        size: 35,
+                      ),
+                      label: Text(""),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const temperature(
+                                    title: '',
+                                  )),
+                        );
+                      },
+                    ),*/
+                    child: FlatButton(
+                        onPressed: () => null, //pop up
+                        child: Stack(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.settings_outlined,
+                                color: Colors.red,
+                                size: 35,
+                              ),
+                            ),
+                          ],
+                        ),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0))),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              margin: const EdgeInsets.all(5.0),
+              //color: Colors.white,
+              width: 335.0,
+              height: 80.0,
+
+              child: Row(
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.green)),
+                      width: 80.0,
+                      height: 25.0,
+                      child: Text(
+                        'Oda 2 : ',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito-Light',
+                          fontWeight: FontWeight.bold,
+                          color: (Colors.blueGrey),
+                          fontSize: 17,
+                        ),
+                      )),
+                  Container(
+                      //padding: EdgeInsets.only(top: 70),
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.red)),
+                      width: 60.0,
+                      height: 20.0,
+                      child: StreamBuilder<DocumentSnapshot>(
+                        stream: salon,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<DocumentSnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return Text('Something went wrong.');
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Text(
+                              'Loading...',
+                              textAlign: TextAlign.center,
+                            );
+                          }
+
+                          final data = snapshot.requireData;
+
+                          return Text(
+                            '${data['sicaklik']}°C',
+                            //style: GoogleFonts.nunito(),
+                            textAlign: TextAlign.center,
+                            /*style: const TextStyle(
+                              fontFamily: 'Nunito-Regular',
+                              fontWeight: FontWeight.bold,
+                              color: (Colors.blueGrey),
+                              fontSize: 17,
+                            ),*/
+                          );
+                        },
+                      )),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent)),
+                      width: 20.0,
+                      height: 50.0,
+
+                      /*child: Icon(
+                      Icons.thermostat_outlined,
+                      color: Colors.red,
+                      size: 40,
+                    ),*/
+                      child: Text(
+                        '|',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: (Colors.blueGrey),
+                          fontSize: 40,
+                        ),
+                      )),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent)),
+                      width: 60.0,
+                      height: 20.0,
+                      child: StreamBuilder<DocumentSnapshot>(
+                        stream: salon,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<DocumentSnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return Text(
+                              'Something went wrong.',
+                              textAlign: TextAlign.center,
+                            );
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Text(
+                              'Loading...',
+                              textAlign: TextAlign.center,
+                            );
+                          }
+
+                          final data = snapshot.requireData;
+
+                          return Text(
+                            '%${data['nemlilik']}',
+                            textAlign: TextAlign.center,
+                          );
+                        },
+                      )),
+                  Container(
+                    width: 60,
+                    height: 20,
+                    padding: EdgeInsets.only(left: 10),
+                    /*
+                    child: ElevatedButton.icon(
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(bg_color),
+                      ),
+                      icon: Icon(
+                        Icons.settings_outlined,
+                        color: Colors.red,
+                        size: 35,
+                      ),
+                      label: Text(""),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const temperature(
+                                    title: '',
+                                  )),
+                        );
+                      },
+                    ),*/
+                    child: FlatButton(
+                        onPressed: () => null, //pop up
+                        child: Stack(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.settings_outlined,
+                                color: Colors.red,
+                                size: 35,
+                              ),
+                            ),
+                          ],
+                        ),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0))),
                   ),
                 ],
               ),

@@ -68,21 +68,54 @@ class _anasayfa extends State<anasayfa> {
                   child: Column(
                     children: [
                       Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              offset: const Offset(10.0, 10.0),
-                              blurRadius: 20.0,
-                              spreadRadius: 0.1,
-                            ), //BoxShadow
-                          ],
-                          borderRadius:
-                              BorderRadius.all(const Radius.circular(50)),
-                        ),
-                        width: 90.0,
-                        height: 90.0,
-                        child: ElevatedButton.icon(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: const Offset(10.0, 10.0),
+                                blurRadius: 20.0,
+                                spreadRadius: 0.1,
+                              ), //BoxShadow
+                            ],
+                            borderRadius:
+                                BorderRadius.all(const Radius.circular(50)),
+                          ),
+                          width: 90.0,
+                          height: 90.0,
+                          child: ElevatedButton(
+                            child: Stack(
+                              children: <Widget>[
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.thermostat_outlined,
+                                    color: Colors.red,
+                                    size: 45,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const temperature(
+                                          title: '',
+                                        )),
+                              );
+                            },
+                          )),
+                      /*child: ElevatedButton.icon(
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(
@@ -109,8 +142,8 @@ class _anasayfa extends State<anasayfa> {
                                       )),
                             );
                           },
-                        ),
-                      ),
+                        ),*/
+
                       Container(
                           padding: EdgeInsets.only(top: 10),
                           child: Text(
@@ -143,20 +176,56 @@ class _anasayfa extends State<anasayfa> {
                         child: Column(
                           children: [
                             Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    offset: const Offset(10.0, 10.0),
-                                    blurRadius: 25.0,
-                                    spreadRadius: 0.1,
-                                  ), //BoxShadow
-                                ],
-                                borderRadius:
-                                    BorderRadius.all(const Radius.circular(50)),
-                              ),
-                              width: 90.0,
-                              height: 90.0,
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey,
+                                      offset: const Offset(10.0, 10.0),
+                                      blurRadius: 25.0,
+                                      spreadRadius: 0.1,
+                                    ), //BoxShadow
+                                  ],
+                                  borderRadius: BorderRadius.all(
+                                      const Radius.circular(50)),
+                                ),
+                                width: 90.0,
+                                height: 90.0,
+                                child: ElevatedButton(
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Icon(
+                                          Icons.tungsten_outlined,
+                                          color: Colors.red,
+                                          size: 45,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.0),
+                                      ),
+                                    ),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            btn_color),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const light(
+                                                title: '',
+                                              )),
+                                    );
+                                  },
+                                )
+                                /*
                               child: ElevatedButton.icon(
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all<
@@ -184,8 +253,8 @@ class _anasayfa extends State<anasayfa> {
                                             )),
                                   );
                                 },
-                              ),
-                            ),
+                              ),*/
+                                ),
                             Container(
                                 padding: EdgeInsets.only(top: 10),
                                 child: Text(
@@ -218,20 +287,57 @@ class _anasayfa extends State<anasayfa> {
                               child: Column(
                                 children: [
                                   Container(
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey,
-                                          offset: const Offset(10.0, 10.0),
-                                          blurRadius: 25.0,
-                                          spreadRadius: 0.1,
-                                        ), //BoxShadow
-                                      ],
-                                      borderRadius: BorderRadius.all(
-                                          const Radius.circular(50)),
-                                    ),
-                                    width: 90.0,
-                                    height: 90.0,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            offset: const Offset(10.0, 10.0),
+                                            blurRadius: 25.0,
+                                            spreadRadius: 0.1,
+                                          ), //BoxShadow
+                                        ],
+                                        borderRadius: BorderRadius.all(
+                                            const Radius.circular(50)),
+                                      ),
+                                      width: 90.0,
+                                      height: 90.0,
+                                      child: ElevatedButton(
+                                        child: Stack(
+                                          children: <Widget>[
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Icon(
+                                                Icons.priority_high_outlined,
+                                                color: Colors.red,
+                                                size: 45,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30.0),
+                                            ),
+                                          ),
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  btn_color),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const humudity(
+                                                      title: '',
+                                                    )),
+                                          );
+                                        },
+                                      )
+                                      /*
                                     child: ElevatedButton.icon(
                                       style: ButtonStyle(
                                         shape: MaterialStateProperty.all<
@@ -261,8 +367,8 @@ class _anasayfa extends State<anasayfa> {
                                                   )),
                                         );
                                       },
-                                    ),
-                                  ),
+                                    ),*/
+                                      ),
                                   Container(
                                       padding: EdgeInsets.only(top: 10),
                                       child: Text(
