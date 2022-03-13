@@ -765,7 +765,7 @@ class _temperature extends State<temperature> {
                     width: 80,
                     height: 40,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent),
+                        //border: Border.all(color: Colors.blueAccent),
                         borderRadius: new BorderRadius.circular(30.0)),
                     padding: EdgeInsets.only(left: 10),
                     child: FlatButton(
@@ -777,11 +777,11 @@ class _temperature extends State<temperature> {
                       onPressed: () => showDialog<String>(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
-                          title: const Text('AlertDialog Title'),
+                          title: const Text('Otomatik Sıcaklık Ayarlama'),
                           content: const Text('AlertDialog description'),
                           actions: <Widget>[
                             TextButton(
-                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              onPressed: () => Navigator.pop(context, 'İptal'),
                               child: const Text('Cancel'),
                             ),
                             TextButton(
