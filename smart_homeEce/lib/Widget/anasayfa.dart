@@ -16,23 +16,20 @@ class anasayfa extends StatefulWidget {
 }
 
 class _anasayfa extends State<anasayfa> {
-  late DateTime now;
+  late DateTime now = DateTime.now();
+
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0); //239R 246G 251B
   Color btn_color = const Color.fromRGBO(233, 240, 245, 1.0);
 
   Color btn_color2 =
       const Color.fromRGBO(222, 235, 238, 1.0); //Buton: 238R 245G 250B
 
-  void _currentDate() {
-    setState(() {
-      //print(rng.nextInt(25));
-      now = DateTime.now();
-      print(now.hour.toString() +
-          ":" +
-          now.minute.toString() +
-          ":" +
-          now.second.toString());
-    });
+  String getDate() {
+    return (now.day.toString() +
+        "/" +
+        now.month.toString() +
+        "/" +
+        now.year.toString());
   }
 
   @override
@@ -91,19 +88,20 @@ class _anasayfa extends State<anasayfa> {
                       //child: Text("sa"),
                     ),
                     Container(
-                        //padding: EdgeInsets.only(left: 20),
-                        margin: EdgeInsets.only(left: 20),
-                        width: 150,
-                        height: 100,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.red)),
-                        child: Text(
-                          "sa",
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                          textAlign: TextAlign.center,
-                        )),
+                      //padding: EdgeInsets.only(left: 20),
+                      margin: EdgeInsets.only(left: 20),
+                      width: 150,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent)),
+                      child: Text(
+                        getDate(),
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -112,7 +110,7 @@ class _anasayfa extends State<anasayfa> {
                 child: Row(
               children: [
                 Container(
-                    padding: EdgeInsets.only(top: 80, bottom: 60),
+                    padding: EdgeInsets.only(top: 40, bottom: 20),
                     child: Text(
                       'APP  2  ',
                       textAlign: TextAlign.center,

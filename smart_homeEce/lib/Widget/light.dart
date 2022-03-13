@@ -29,6 +29,9 @@ class _light extends State<light> {
   bool isSwitchedM = true;
   bool isSwitchedO1 = true;
   bool isSwitchedO2 = true;
+
+  bool isDeneme = true;
+
   final Stream<DocumentSnapshot> users =
       FirebaseFirestore.instance.collection('ev1').doc('salon').snapshots();
   final Stream<DocumentSnapshot> mutfak =
@@ -50,6 +53,14 @@ class _light extends State<light> {
     var dataM;
     var dataO1;
     var dataO2;
+    //isDeneme = !isDeneme;
+
+    /*if (data['aydinlatma'] == 0) {
+      isSwitchedS = true;
+    } else {
+      isSwitchedS = false;
+    }*/
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.arrow_back_outlined),
@@ -122,7 +133,24 @@ class _light extends State<light> {
                                   value: isSwitchedS,
                                   //child: Text("sa"),
 
-                                  onChanged: (value) {
+                                  /*if (data['aydinlatma'] == 0) {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 1});
+                                        print("ON");
+                                        isSwitchedS = true;
+                                      } else {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 0});
+                                        print("OFF");
+                                        isSwitchedS = false;
+                                      }*/
+                                  //print(isSwitched);
+
+                                  onChanged: (isDeneme) {
                                     //print(isSwitched);
                                     setState(() {
                                       if (data['aydinlatma'] == 0) {
@@ -145,6 +173,7 @@ class _light extends State<light> {
 
                                     //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
                                   },
+
                                   activeTrackColor: Colors.lightGreenAccent,
                                   activeColor: Colors.green,
                                 ),
