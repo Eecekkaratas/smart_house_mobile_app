@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:smart_home/Widget/anasayfa.dart';
 import 'dart:developer';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   final Stream<QuerySnapshot> users =
@@ -44,18 +45,18 @@ class _temperature extends State<temperature> {
         },
       ),
       backgroundColor: bg_color,
-      appBar: AppBar(
+      /*appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
-      ),
+      ),*/
       body: Center(
         child: Column(
           children: [
             Container(
                 decoration:
                     BoxDecoration(border: Border.all(color: Colors.redAccent)),
-                padding: EdgeInsets.only(top: 20),
+                padding: EdgeInsets.only(top: 50),
                 child: Text(
                   'ODALAR ',
                   textAlign: TextAlign.center,
@@ -117,12 +118,14 @@ class _temperature extends State<temperature> {
                               'Salon : ',
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.nunito(),
+                              /*
                               style: const TextStyle(
-                                fontFamily: 'Playfair',
+                                fontFamily: 'Nunito-Regular',
                                 fontWeight: FontWeight.bold,
                                 color: (Colors.blueGrey),
                                 fontSize: 17,
-                              ),
+                              ),*/
                             )),
                         Container(
                             //padding: EdgeInsets.only(top: 70),
@@ -150,6 +153,12 @@ class _temperature extends State<temperature> {
                                 return Text(
                                   '${data['sicaklik']}°C',
                                   textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontFamily: 'Nunito-Regular',
+                                    fontWeight: FontWeight.bold,
+                                    color: (Colors.blueGrey),
+                                    fontSize: 17,
+                                  ),
                                 );
                               },
                             )),
@@ -161,7 +170,7 @@ class _temperature extends State<temperature> {
             ),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.blueAccent),
+                border: Border.all(color: Colors.red),
               ),
               margin: const EdgeInsets.all(5.0),
               //color: Colors.white,
@@ -172,7 +181,7 @@ class _temperature extends State<temperature> {
                 children: [
                   Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
+                          border: Border.all(color: Colors.green)),
                       width: 80.0,
                       height: 25.0,
                       child: Text(
@@ -180,7 +189,7 @@ class _temperature extends State<temperature> {
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                          fontFamily: 'ArcelikTurkish',
+                          fontFamily: 'Nunito-Light',
                           fontWeight: FontWeight.bold,
                           color: (Colors.blueGrey),
                           fontSize: 17,
@@ -188,10 +197,10 @@ class _temperature extends State<temperature> {
                       )),
                   Container(
                       //padding: EdgeInsets.only(top: 70),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.red)),
                       width: 60.0,
-                      height: 20.0,
+                      height: 30.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
                         builder: (BuildContext context,
@@ -211,8 +220,14 @@ class _temperature extends State<temperature> {
 
                           return Text(
                             '${data['sicaklik']}°C',
+                            style: GoogleFonts.nunito(),
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontFamily: 'ArcelikTurkish'),
+                            /*style: const TextStyle(
+                              fontFamily: 'Nunito-Regular',
+                              fontWeight: FontWeight.bold,
+                              color: (Colors.blueGrey),
+                              fontSize: 17,
+                            ),*/
                           );
                         },
                       )),
