@@ -62,7 +62,7 @@ class _light extends State<light> {
                   'Odalar ',
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.fredokaOne(),
+                  style: GoogleFonts.nunitoSans(),
                 )),
             Container(
               //padding: EdgeInsets.only(bottom: 50),
@@ -73,9 +73,9 @@ class _light extends State<light> {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.blueAccent),
                     ),
-                    margin: const EdgeInsets.all(25.0),
+                    margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
-                    width: 335.0,
+                    width: 345.0,
                     height: 80.0,
 
                     child: Row(
@@ -84,20 +84,17 @@ class _light extends State<light> {
                             padding: EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),
-                            width: 80.0,
+                            width: 90.0,
                             height: 30.0,
                             child: Text(
                               'Salon : ',
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               //style: GoogleFonts.nunito(),
-                              /*
+
                               style: const TextStyle(
-                                fontFamily: 'Nunito-Regular',
-                                fontWeight: FontWeight.bold,
-                                color: (Colors.blueGrey),
-                                fontSize: 17,
-                              ),*/
+                                fontSize: 23,
+                              ),
                             )),
                         Padding(
                           padding: EdgeInsets.only(left: 40),
@@ -178,6 +175,463 @@ class _light extends State<light> {
                           width: 80,
                           height: 40,
                           //padding: EdgeInsets.only(left: 10),
+                          /*
+                          child: PopupMenuButton(
+                            child: Center(child: Text('click here')),
+                            itemBuilder: (context) {
+                              return List.generate(5, (index) {
+                                return PopupMenuItem(
+                                  child: Text('button no $index'),
+                                );
+                              });
+                            },
+                          ),
+
+                          */
+                          child: FlatButton(
+                              onPressed: () => null, //pop up
+                              child: Stack(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Icon(
+                                      Icons.settings_outlined,
+                                      color: Colors.red,
+                                      size: 35,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                      new BorderRadius.circular(30.0))),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              //padding: EdgeInsets.only(bottom: 50),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                    ),
+                    margin: const EdgeInsets.all(10.0),
+                    //color: Colors.white,
+                    width: 345.0,
+                    height: 80.0,
+
+                    child: Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: 10),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),
+                            width: 90.0,
+                            height: 30.0,
+                            child: Text(
+                              'Salon : ',
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              //style: GoogleFonts.nunito(),
+
+                              style: const TextStyle(
+                                fontSize: 23,
+                              ),
+                            )),
+                        Padding(
+                          padding: EdgeInsets.only(left: 40),
+                          child: Stack(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
+                                child: Switch(
+                                  value: isSwitched,
+                                  //child: Text("sa"),
+
+                                  onChanged: (value) {
+                                    //print(isSwitched);
+                                    setState(() {
+                                      if (data['aydinlatma'] == 0) {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 1});
+                                        print("ON");
+                                        isSwitched = true;
+                                      } else {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 0});
+                                        print("OFF");
+                                        isSwitched = false;
+                                      }
+                                      //print(isSwitched);
+                                    });
+
+                                    //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
+                                  },
+                                  activeTrackColor: Colors.lightGreenAccent,
+                                  activeColor: Colors.green,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 10),
+                          width: 50.0,
+                          height: 15.0,
+                          child: Container(
+                            width: 80.0,
+                            height: 100.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: users,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('Something went wrong.');
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text('Loading...');
+                                }
+
+                                data = snapshot.requireData;
+                                if (data['aydinlatma'] == 0 &&
+                                    isSwitched == false) {
+                                  return const Text(
+                                      "OFF"); //'The room\'s lights are on!'
+                                } else if (data['aydinlatma'] == 1 &&
+                                    isSwitched == true) {
+                                  return const Text(
+                                      "ON"); //'The room\'s lights are off!'
+                                } else {
+                                  return const Text("");
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 80,
+                          height: 40,
+                          //padding: EdgeInsets.only(left: 10),
+                          /*
+                          child: PopupMenuButton(
+                            child: Center(child: Text('click here')),
+                            itemBuilder: (context) {
+                              return List.generate(5, (index) {
+                                return PopupMenuItem(
+                                  child: Text('button no $index'),
+                                );
+                              });
+                            },
+                          ),
+
+                          */
+                          child: FlatButton(
+                              onPressed: () => null, //pop up
+                              child: Stack(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Icon(
+                                      Icons.settings_outlined,
+                                      color: Colors.red,
+                                      size: 35,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                      new BorderRadius.circular(30.0))),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              //padding: EdgeInsets.only(bottom: 50),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                    ),
+                    margin: const EdgeInsets.all(10.0),
+                    //color: Colors.white,
+                    width: 345.0,
+                    height: 80.0,
+
+                    child: Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: 10),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),
+                            width: 90.0,
+                            height: 30.0,
+                            child: Text(
+                              'Salon : ',
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              //style: GoogleFonts.nunito(),
+
+                              style: const TextStyle(
+                                fontSize: 23,
+                              ),
+                            )),
+                        Padding(
+                          padding: EdgeInsets.only(left: 40),
+                          child: Stack(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
+                                child: Switch(
+                                  value: isSwitched,
+                                  //child: Text("sa"),
+
+                                  onChanged: (value) {
+                                    //print(isSwitched);
+                                    setState(() {
+                                      if (data['aydinlatma'] == 0) {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 1});
+                                        print("ON");
+                                        isSwitched = true;
+                                      } else {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 0});
+                                        print("OFF");
+                                        isSwitched = false;
+                                      }
+                                      //print(isSwitched);
+                                    });
+
+                                    //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
+                                  },
+                                  activeTrackColor: Colors.lightGreenAccent,
+                                  activeColor: Colors.green,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 10),
+                          width: 50.0,
+                          height: 15.0,
+                          child: Container(
+                            width: 80.0,
+                            height: 100.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: users,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('Something went wrong.');
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text('Loading...');
+                                }
+
+                                data = snapshot.requireData;
+                                if (data['aydinlatma'] == 0 &&
+                                    isSwitched == false) {
+                                  return const Text(
+                                      "OFF"); //'The room\'s lights are on!'
+                                } else if (data['aydinlatma'] == 1 &&
+                                    isSwitched == true) {
+                                  return const Text(
+                                      "ON"); //'The room\'s lights are off!'
+                                } else {
+                                  return const Text("");
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 80,
+                          height: 40,
+                          //padding: EdgeInsets.only(left: 10),
+                          /*
+                          child: PopupMenuButton(
+                            child: Center(child: Text('click here')),
+                            itemBuilder: (context) {
+                              return List.generate(5, (index) {
+                                return PopupMenuItem(
+                                  child: Text('button no $index'),
+                                );
+                              });
+                            },
+                          ),
+
+                          */
+                          child: FlatButton(
+                              onPressed: () => null, //pop up
+                              child: Stack(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Icon(
+                                      Icons.settings_outlined,
+                                      color: Colors.red,
+                                      size: 35,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                      new BorderRadius.circular(30.0))),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              //padding: EdgeInsets.only(bottom: 50),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                    ),
+                    margin: const EdgeInsets.all(10.0),
+                    //color: Colors.white,
+                    width: 345.0,
+                    height: 80.0,
+
+                    child: Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: 10),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),
+                            width: 90.0,
+                            height: 30.0,
+                            child: Text(
+                              'Salon : ',
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              //style: GoogleFonts.nunito(),
+
+                              style: const TextStyle(
+                                fontSize: 23,
+                              ),
+                            )),
+                        Padding(
+                          padding: EdgeInsets.only(left: 40),
+                          child: Stack(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
+                                child: Switch(
+                                  value: isSwitched,
+                                  //child: Text("sa"),
+
+                                  onChanged: (value) {
+                                    //print(isSwitched);
+                                    setState(() {
+                                      if (data['aydinlatma'] == 0) {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 1});
+                                        print("ON");
+                                        isSwitched = true;
+                                      } else {
+                                        collection
+                                            .doc(
+                                                'salon') // <-- Doc ID where data should be updated.
+                                            .update({'aydinlatma': 0});
+                                        print("OFF");
+                                        isSwitched = false;
+                                      }
+                                      //print(isSwitched);
+                                    });
+
+                                    //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
+                                  },
+                                  activeTrackColor: Colors.lightGreenAccent,
+                                  activeColor: Colors.green,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 10),
+                          width: 50.0,
+                          height: 15.0,
+                          child: Container(
+                            width: 80.0,
+                            height: 100.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: users,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('Something went wrong.');
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text('Loading...');
+                                }
+
+                                data = snapshot.requireData;
+                                if (data['aydinlatma'] == 0 &&
+                                    isSwitched == false) {
+                                  return const Text(
+                                      "OFF"); //'The room\'s lights are on!'
+                                } else if (data['aydinlatma'] == 1 &&
+                                    isSwitched == true) {
+                                  return const Text(
+                                      "ON"); //'The room\'s lights are off!'
+                                } else {
+                                  return const Text("");
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 80,
+                          height: 40,
+                          //padding: EdgeInsets.only(left: 10),
+                          /*
+                          child: PopupMenuButton(
+                            child: Center(child: Text('click here')),
+                            itemBuilder: (context) {
+                              return List.generate(5, (index) {
+                                return PopupMenuItem(
+                                  child: Text('button no $index'),
+                                );
+                              });
+                            },
+                          ),
+
+                          */
                           child: FlatButton(
                               onPressed: () => null, //pop up
                               child: Stack(

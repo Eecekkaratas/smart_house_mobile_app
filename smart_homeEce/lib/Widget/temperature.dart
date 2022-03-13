@@ -764,7 +764,36 @@ class _temperature extends State<temperature> {
                   Container(
                     width: 80,
                     height: 40,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blueAccent),
+                        borderRadius: new BorderRadius.circular(30.0)),
                     padding: EdgeInsets.only(left: 10),
+                    child: FlatButton(
+                      child: Icon(
+                        Icons.settings_outlined,
+                        color: Colors.red,
+                        size: 35,
+                      ),
+                      onPressed: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('AlertDialog Title'),
+                          content: const Text('AlertDialog description'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'OK'),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      //child: const Text('Show Dialog'),
+                    ),
+                    /*
                     child: FlatButton(
                         onPressed: () => null, //pop up
                         child: Stack(
@@ -780,7 +809,7 @@ class _temperature extends State<temperature> {
                           ],
                         ),
                         shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0))),
+                            borderRadius: new BorderRadius.circular(30.0))),*/
                   ),
                 ],
               ),
