@@ -27,6 +27,7 @@ class temperature extends StatefulWidget {
 }
 
 class _temperature extends State<temperature> {
+  bool isSwitchedS = false;
   final myController_S1_min = TextEditingController();
   final myController_S1_max = TextEditingController();
   final myController_S2_min = TextEditingController();
@@ -244,54 +245,141 @@ class _temperature extends State<temperature> {
                         },
                       )),
                   Container(
-                    width: 80,
+                    width: 60,
                     height: 40,
-                    padding: EdgeInsets.only(left: 10),
-                    /*
-                    child: ElevatedButton.icon(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(bg_color),
-                      ),
-                      icon: Icon(
-                        Icons.settings_outlined,
-                        color: Colors.red,
-                        size: 35,
-                      ),
-                      label: Text(""),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const temperature(
-                                    title: '',
-                                  )),
-                        );
-                      },
-                    ),*/
+                    decoration: BoxDecoration(
+                        //border: Border.all(color: Colors.blueAccent),
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    //padding: EdgeInsets.only(left: 10),
                     child: FlatButton(
-                        onPressed: () => null, //pop up
-                        child: Stack(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.center,
-                              child: Icon(
-                                Icons.settings_outlined,
-                                color: Colors.red,
-                                size: 35,
-                              ),
+                      child: Stack(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.center,
+                            child: Icon(
+                              Icons.settings_outlined,
+                              color: Colors.red,
+                              size: 33,
+                            ),
+                          ),
+                        ],
+                      ),
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(30.0)),
+                      onPressed: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Otomatik Sıcaklık Ayarlama'),
+                          content: Container(
+                            //width: 90,
+                            height: 180,
+
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.white)),
+                                  //padding: EdgeInsets.only(top: 20),
+                                  child: Switch(
+                                    value: isSwitchedS,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        isSwitchedS = value;
+                                      });
+                                    },
+                                    activeTrackColor: Colors.lightGreenAccent,
+                                    activeColor: Colors.green,
+                                  ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.white)),
+                                  //padding: EdgeInsets.only(top: 40),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white)),
+                                        //padding: EdgeInsets.only(top: 20),
+                                        child: Text("Min:"),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white)),
+                                        height: 30,
+
+                                        padding: EdgeInsets.only(left: 10),
+                                        margin:
+                                            const EdgeInsets.only(left: 20.0),
+
+                                        //child: Text("Değer:"),
+
+                                        child: SizedBox(
+                                          width: 100,
+                                          child: TextField(
+                                            controller: myController_S1_min,
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(top: 40),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white)),
+                                        //padding: EdgeInsets.only(top: 20),
+                                        child: Text("Max:"),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white)),
+                                        height: 30,
+
+                                        padding: EdgeInsets.only(left: 10),
+                                        margin:
+                                            const EdgeInsets.only(left: 20.0),
+
+                                        //child: Text("Değer:"),
+
+                                        child: SizedBox(
+                                          width: 100,
+                                          child: TextField(
+                                            controller: myController_S1_max,
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'İptal'),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'OK'),
+                              child: const Text('OK'),
                             ),
                           ],
                         ),
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0))),
-                  ),
+                      ),
+                      //child: const Text('Show Dialog'),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -761,7 +849,7 @@ class _temperature extends State<temperature> {
   }
 }
 
-class TempPopup extends StatelessWidget {
+class TempPopup extends StatefulWidget {
   const TempPopup({
     Key? key,
     required this.minController,
@@ -772,7 +860,19 @@ class TempPopup extends StatelessWidget {
   final TextEditingController maxController;
 
   @override
+  _TempPopup createState() => _TempPopup();
+}
+
+class _TempPopup extends State<TempPopup> {
+  bool isSwitchedS = true;
+  bool isSwitchedM = true;
+  bool isSwitchedO1 = true;
+  bool isSwitchedO2 = true;
+  @override
+  TempPopup get widget => super.widget;
+  @override
   Widget build(BuildContext context) {
+    bool isSwitchedS = false;
     return Container(
       width: 60,
       height: 40,
@@ -801,14 +901,30 @@ class TempPopup extends StatelessWidget {
             title: const Text('Otomatik Sıcaklık Ayarlama'),
             content: Container(
               //width: 90,
-              height: 150,
+              height: 180,
 
               child: Column(
                 children: [
                   Container(
+                    height: 40,
                     decoration:
                         BoxDecoration(border: Border.all(color: Colors.white)),
-                    padding: EdgeInsets.only(top: 40),
+                    //padding: EdgeInsets.only(top: 20),
+                    child: Switch(
+                      value: isSwitchedS,
+                      onChanged: (value) {
+                        setState(() {
+                          isSwitchedS = !isSwitchedS;
+                        });
+                      },
+                      activeTrackColor: Colors.lightGreenAccent,
+                      activeColor: Colors.green,
+                    ),
+                  ),
+                  Container(
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.white)),
+                    //padding: EdgeInsets.only(top: 40),
                     child: Row(
                       children: [
                         Container(
@@ -830,7 +946,7 @@ class TempPopup extends StatelessWidget {
                           child: SizedBox(
                             width: 100,
                             child: TextField(
-                              controller: minController,
+                              controller: widget.minController,
                               keyboardType: TextInputType.number,
                             ),
                           ),
@@ -861,7 +977,7 @@ class TempPopup extends StatelessWidget {
                           child: SizedBox(
                             width: 100,
                             child: TextField(
-                              controller: maxController,
+                              controller: widget.maxController,
                               keyboardType: TextInputType.number,
                             ),
                           ),

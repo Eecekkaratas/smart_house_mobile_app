@@ -131,25 +131,6 @@ class _light extends State<light> {
                                 alignment: Alignment.center,
                                 child: Switch(
                                   value: isSwitchedS,
-                                  //child: Text("sa"),
-
-                                  /*if (data['aydinlatma'] == 0) {
-                                        collection
-                                            .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
-                                            .update({'aydinlatma': 1});
-                                        print("ON");
-                                        isSwitchedS = true;
-                                      } else {
-                                        collection
-                                            .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
-                                            .update({'aydinlatma': 0});
-                                        print("OFF");
-                                        isSwitchedS = false;
-                                      }*/
-                                  //print(isSwitched);
-
                                   onChanged: (isDeneme) {
                                     //print(isSwitched);
                                     setState(() {
@@ -173,7 +154,6 @@ class _light extends State<light> {
 
                                     //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
                                   },
-
                                   activeTrackColor: Colors.lightGreenAccent,
                                   activeColor: Colors.green,
                                 ),
