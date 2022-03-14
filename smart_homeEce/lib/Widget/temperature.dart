@@ -1,5 +1,8 @@
+import 'dart:core';
+//import 'dart:html';
 import 'dart:math';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,6 +39,8 @@ class _temperature extends State<temperature> {
   final myController_S3_max = TextEditingController();
   final myController_S4_min = TextEditingController();
   final myController_S4_max = TextEditingController();
+  final switchState_S4 = true;
+  final switchState_S3 = false;
 
   String docName =
       FirebaseFirestore.instance.collection('odalar').doc().id; // Useles atm.
@@ -281,15 +286,30 @@ class _temperature extends State<temperature> {
                                   decoration: BoxDecoration(
                                       border: Border.all(color: Colors.white)),
                                   //padding: EdgeInsets.only(top: 20),
-                                  child: Switch(
-                                    value: isSwitchedS,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        isSwitchedS = value;
-                                      });
-                                    },
-                                    activeTrackColor: Colors.lightGreenAccent,
-                                    activeColor: Colors.green,
+
+                                  child: Container(
+                                    child: FlatButton(
+                                      onPressed: () {},
+                                      child: Text("sa"),
+                                    ), /*
+                                        Switch(
+                                      value: isSwitchedS,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          if (value == true) {
+                                            isSwitchedS = true;
+                                          } else {
+                                            isSwitchedS = false;
+                                            //value = true;
+                                          }
+                                          value = true;
+                                          print(isSwitchedS);
+                                          print(value);
+                                        });
+                                      },
+                                      activeTrackColor: Colors.lightGreenAccent,
+                                      activeColor: Colors.green,
+                                    ),*/
                                   ),
                                 ),
                                 Container(
@@ -707,6 +727,7 @@ class _temperature extends State<temperature> {
                   TempPopup(
                     minController: myController_S3_min,
                     maxController: myController_S3_max,
+                    switchState: switchState_S3,
                   ),
                 ],
               ),
@@ -837,8 +858,10 @@ class _temperature extends State<temperature> {
 
                   ///KOPYA BUTON
                   TempPopup(
-                      minController: myController_S4_min,
-                      maxController: myController_S4_max),
+                    minController: myController_S4_min,
+                    maxController: myController_S4_max,
+                    switchState: switchState_S4,
+                  ),
                 ],
               ),
             ),
@@ -850,14 +873,16 @@ class _temperature extends State<temperature> {
 }
 
 class TempPopup extends StatefulWidget {
-  const TempPopup({
+  TempPopup({
     Key? key,
     required this.minController,
     required this.maxController,
+    required this.switchState,
   }) : super(key: key);
 
   final TextEditingController minController;
   final TextEditingController maxController;
+  bool switchState;
 
   @override
   _TempPopup createState() => _TempPopup();
@@ -868,11 +893,11 @@ class _TempPopup extends State<TempPopup> {
   bool isSwitchedM = true;
   bool isSwitchedO1 = true;
   bool isSwitchedO2 = true;
+  bool sw = false;
   @override
   TempPopup get widget => super.widget;
   @override
   Widget build(BuildContext context) {
-    bool isSwitchedS = false;
     return Container(
       width: 60,
       height: 40,
@@ -911,10 +936,11 @@ class _TempPopup extends State<TempPopup> {
                         BoxDecoration(border: Border.all(color: Colors.white)),
                     //padding: EdgeInsets.only(top: 20),
                     child: Switch(
-                      value: isSwitchedS,
+                      value: sw,
                       onChanged: (value) {
                         setState(() {
-                          isSwitchedS = !isSwitchedS;
+                          print(value);
+                          sw = value;
                         });
                       },
                       activeTrackColor: Colors.lightGreenAccent,
