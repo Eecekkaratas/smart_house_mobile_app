@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:smart_home/Widget/humudity.dart';
 import 'package:smart_home/Widget/light.dart';
 import 'package:smart_home/Widget/temperature.dart';
+import 'package:smart_home/Widget/auth.dart';
 import 'package:flutter/src/material/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 //import 'package:intl/intl.dart';
 
 //import 'package:smart_home/Widget/temperature.dart';
@@ -18,11 +21,14 @@ class anasayfa extends StatefulWidget {
 class _anasayfa extends State<anasayfa> {
   late DateTime now = DateTime.now();
 
+  var user = FirebaseAuth.instance.currentUser;
+
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0); //239R 246G 251B
   Color btn_color = const Color.fromRGBO(233, 240, 245, 1.0);
 
-  Color btn_color2 =
-      const Color.fromRGBO(222, 235, 238, 1.0); //Buton: 238R 245G 250B
+  Color btn_color2 = const Color.fromRGBO(222, 235, 238, 1.0);
+
+  //Buton: 238R 245G 250B
 
   String getDate() {
     return (now.day.toString() +
@@ -139,7 +145,7 @@ class _anasayfa extends State<anasayfa> {
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),
                             child: Text(
-                              ("Can"),
+                              (getUsername()),
                               style: TextStyle(
                                 fontSize: 25,
                               ),

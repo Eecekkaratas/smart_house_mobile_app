@@ -13,6 +13,8 @@ class Authentication extends StatefulWidget {
 }
 
 class _AuthenticationState extends State<Authentication> {
+  Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0);
+
   TextEditingController _emailField = TextEditingController();
   TextEditingController _passwordField = TextEditingController();
 
@@ -46,6 +48,7 @@ class _AuthenticationState extends State<Authentication> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bg_color,
       resizeToAvoidBottomInset: false, //sarı-siyah hatası
       // appBar: AppBar(
       //   title: Text("ParKap", textAlign: TextAlign.center),
@@ -58,7 +61,7 @@ class _AuthenticationState extends State<Authentication> {
             Padding(
               padding: EdgeInsets.only(bottom: 25, top: 25),
               child: Text(
-                "Parkap'a Hoşgeldiniz",
+                "Hoşgeldiniz",
                 style: new TextStyle(
                   fontSize: 30.0,
                   //color: Colors.yellow,

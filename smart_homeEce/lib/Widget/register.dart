@@ -18,24 +18,21 @@ class NewObject {
 }
 
 class _RegisterState extends State<Register> {
+  Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0);
   //bool value = false;
   TextEditingController _emailField = TextEditingController();
   TextEditingController _passwordField = TextEditingController();
-  TextEditingController _cityField = TextEditingController();
+
   TextEditingController _usernameField = TextEditingController();
   TextEditingController _telField = TextEditingController();
   @override
-  static final List<NewObject> items = <NewObject>[
-    NewObject('İstanbul', Icons.home_work_outlined),
-    NewObject('Ankara', Icons.home_work_outlined),
-    NewObject('İzmir', Icons.home_work_outlined),
-    NewObject('Antalya', Icons.home_work_outlined),
-  ];
+  static final List<NewObject> items = <NewObject>[];
 
   NewObject value = items.first;
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bg_color,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Kayıt Ol"),

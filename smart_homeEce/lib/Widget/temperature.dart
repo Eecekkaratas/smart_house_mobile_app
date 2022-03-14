@@ -84,11 +84,6 @@ class _temperature extends State<temperature> {
         },
       ),
       backgroundColor: bg_color,
-      /*appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),*/
 
       body: Center(
         child: Column(

@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
+String username = "";
 Future<bool> signIn(String email, String password) async {
   try {
     await FirebaseAuth.instance
@@ -59,5 +60,25 @@ Future<bool> register(String email, String password, String tel, String city,
   } catch (e) {
     print(e.toString());
     return false;
+  }
+}
+
+String getUsername() {
+  // Trigger the authentication flow
+  var firebaseUser = FirebaseAuth.instance.currentUser;
+  FirebaseFirestore.instance
+      .collection("users")
+      .doc(firebaseUser!.uid)
+      .get()
+      .then((value) {
+    print("BAK");
+    print(value.data());
+    username = value.data()!["username"];
+  });
+  print(username);
+  if (username != null) {
+    return username;
+  } else {
+    return '';
   }
 }
