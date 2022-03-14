@@ -531,11 +531,11 @@ class _temperature extends State<temperature> {
                           );
                         },
                       )),
-                  Container(
+                  /*Container(
                     width: 80,
                     height: 40,
-                    padding: EdgeInsets.only(left: 10),
-                    /*
+                    padding: EdgeInsets.only(left: 10),*/
+                  /*
                     child: ElevatedButton.icon(
                       style: ButtonStyle(
                         shape:
@@ -563,7 +563,7 @@ class _temperature extends State<temperature> {
                         );
                       },
                     ),*/
-                    child: FlatButton(
+                  /*child: FlatButton(
                         onPressed: () => null, //pop up
                         child: Stack(
                           children: <Widget>[
@@ -578,8 +578,8 @@ class _temperature extends State<temperature> {
                           ],
                         ),
                         shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0))),
-                  ),
+                            borderRadius: new BorderRadius.circular(30.0))),*/
+                  //),
                   /*child: Align(
                       ElevatedButton.icon(
                         icon: Icon(
@@ -599,6 +599,11 @@ class _temperature extends State<temperature> {
                       ),*/
                   //color: bg_color,
                   //onPressed: () {},
+                  TempPopup(
+                    minController: myController_S4_min,
+                    maxController: myController_S4_max,
+                    switchState: switchState_S4,
+                  ),
                 ],
               ),
             ),
@@ -894,13 +899,26 @@ class _TempPopup extends State<TempPopup> {
   bool isSwitchedO1 = true;
   bool isSwitchedO2 = true;
   bool sw = false;
+  bool isChecked = false;
   @override
   TempPopup get widget => super.widget;
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     return Container(
       width: 60,
-      height: 40,
+      height: 150,
       decoration: BoxDecoration(
           //border: Border.all(color: Colors.blueAccent),
           borderRadius: new BorderRadius.circular(30.0)),
@@ -925,28 +943,13 @@ class _TempPopup extends State<TempPopup> {
           builder: (BuildContext context) => AlertDialog(
             title: const Text('Otomatik Sıcaklık Ayarlama'),
             content: Container(
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.white)),
               //width: 90,
-              height: 180,
+              height: 150,
 
               child: Column(
                 children: [
-                  Container(
-                    height: 40,
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.white)),
-                    //padding: EdgeInsets.only(top: 20),
-                    child: Switch(
-                      value: sw,
-                      onChanged: (value) {
-                        setState(() {
-                          print(value);
-                          sw = value;
-                        });
-                      },
-                      activeTrackColor: Colors.lightGreenAccent,
-                      activeColor: Colors.green,
-                    ),
-                  ),
                   Container(
                     decoration:
                         BoxDecoration(border: Border.all(color: Colors.white)),
@@ -993,7 +996,7 @@ class _TempPopup extends State<TempPopup> {
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.white)),
-                          height: 30,
+                          height: 20,
 
                           padding: EdgeInsets.only(left: 10),
                           margin: const EdgeInsets.only(left: 20.0),
@@ -1008,6 +1011,37 @@ class _TempPopup extends State<TempPopup> {
                             ),
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.white)),
+                    padding: EdgeInsets.only(top: 30),
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white)),
+                          //padding: EdgeInsets.only(top: 20),
+                          child: Text("Auto Temperature Control: "),
+                        ),
+                        Container(
+                            height: 20,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white)),
+                            //padding: EdgeInsets.only(top: 20),
+                            child: Checkbox(
+                              checkColor: Colors.red,
+                              fillColor:
+                                  MaterialStateProperty.resolveWith(getColor),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            )),
                       ],
                     ),
                   ),

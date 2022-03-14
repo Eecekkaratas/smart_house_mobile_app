@@ -42,6 +42,10 @@ dependencies:
   intl: ^0.16.1
   flutter_switch: ^0.3.2
 
+  #firebase_auth: ^3.3.10
+  google_sign_in: ^5.2.4
+  firebase_auth: ^0.6.2+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

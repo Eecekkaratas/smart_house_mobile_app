@@ -32,6 +32,16 @@ class _anasayfa extends State<anasayfa> {
         now.year.toString());
   }
 
+  String getDate_hour() {
+    if (now.hour < 12) {
+      return ("Günaydın,");
+    } else if (12 <= now.hour && now.hour < 18) {
+      return ("İyi Günler,");
+    } else {
+      return ("İyi Geceler,");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,18 +98,55 @@ class _anasayfa extends State<anasayfa> {
                       //child: Text("sa"),
                     ),
                     Container(
-                      //padding: EdgeInsets.only(left: 20),
-                      margin: EdgeInsets.only(left: 20),
-                      width: 150,
-                      height: 100,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      child: Text(
-                        getDate(),
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                        textAlign: TextAlign.center,
+                      child: Column(
+                        children: [
+                          Container(
+                            //Tarih çekimi
+                            //padding: EdgeInsets.only(left: 20),
+                            margin: EdgeInsets.only(left: 20),
+                            width: 150,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),
+                            child: Text(
+                              getDate(),
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Container(
+                            //padding: EdgeInsets.only(left: 20),
+                            margin: EdgeInsets.only(left: 20),
+                            width: 150,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),
+                            child: Text(
+                              getDate_hour(),
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Container(
+                            //padding: EdgeInsets.only(left: 20),
+                            margin: EdgeInsets.only(left: 20),
+                            width: 150,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),
+                            child: Text(
+                              ("Can"),
+                              style: TextStyle(
+                                fontSize: 25,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
