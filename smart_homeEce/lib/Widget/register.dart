@@ -126,7 +126,17 @@ class _RegisterState extends State<Register> {
                   );
                 }
               },
+              child: null,
+              /*
+            FlatButton(
               child: Text('Kayıt Ol'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const anasayfa()),
+                );
+              },
+            ),*/
             ),
           ],
         ),
