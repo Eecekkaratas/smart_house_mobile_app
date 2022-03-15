@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:smart_home/Widget/register.dart';
+import 'package:smart_home/Widget/zeplin.dart';
 import 'anasayfa.dart';
 import 'auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -59,6 +60,34 @@ class _AuthenticationState extends State<Authentication> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
+              padding: EdgeInsets.only(bottom: 25),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    textStyle: TextStyle(fontSize: 20)),
+                onPressed: () async {
+                  bool shouldNavigate =
+                      await signIn(_emailField.text, _passwordField.text);
+                  if (shouldNavigate) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => register(),
+                      ),
+                    );
+                  } else {
+                    /*Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => anasayfa(),
+                      ),
+                    );*/
+                    _showMyDialog();
+                  }
+                },
+                child: const Text('DİREKT ANASAYFAYA KAÇIŞ'),
+              ),
+            ),
+            Padding(
               padding: EdgeInsets.only(bottom: 25, top: 25),
               child: Text(
                 "Hoşgeldiniz",
@@ -115,6 +144,12 @@ class _AuthenticationState extends State<Authentication> {
                       ),
                     );
                   } else {
+                    /*Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => anasayfa(),
+                      ),
+                    );*/
                     _showMyDialog();
                   }
                 },
