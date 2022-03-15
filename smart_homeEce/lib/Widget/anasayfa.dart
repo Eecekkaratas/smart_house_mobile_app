@@ -68,12 +68,12 @@ class _anasayfa extends State<anasayfa> {
                 child: Row(
                   children: [
                     Container(
-                        margin: EdgeInsets.only(left: 45),
+                        margin: EdgeInsets.only(left: 95),
                         /*decoration: BoxDecoration(
                             border: Border.all(color: Colors.blueAccent)),*/
                         //padding: EdgeInsets.only(top: 60),
                         child: Text(
-                          'Smart Home System',
+                          'SMARTçelik',
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(

@@ -41,6 +41,7 @@ class _temperature extends State<temperature> {
   final myController_S4_max = TextEditingController();
   final switchState_S4 = true;
   final switchState_S3 = false;
+  final switchState_S2 = false;
 
   String docName =
       FirebaseFirestore.instance.collection('odalar').doc().id; // Useles atm.
@@ -106,7 +107,7 @@ class _temperature extends State<temperature> {
                 )),
             Container(
               margin: const EdgeInsets.only(bottom: 5),
-              padding: EdgeInsets.only(left: 135, top: 30),
+              padding: EdgeInsets.only(left: 150, top: 30),
               child: Column(
                 children: [
                   Container(
@@ -133,9 +134,12 @@ class _temperature extends State<temperature> {
               ),
             ),
 
-            ////// SALON BAŞLIYOR
+            ///
+            ///     SALON BAŞLIYOR
+            ///
+
             Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(15),
               margin: const EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
                 color: const Color(0xfff7ebe9),
@@ -146,36 +150,53 @@ class _temperature extends State<temperature> {
                 children: [
                   Container(
                     /*decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
+                      border: Border.all(color: Colors.red),
                     ),*/
                     //margin: const EdgeInsets.all(5.0),
                     //color: Colors.white,
-                    width: 335.0,
+                    width: 340.0,
                     height: 60.0,
 
                     child: Row(
                       children: [
                         Container(
-                            /*decoration: BoxDecoration(
-                                border: Border.all(color: Colors.green)),*/
-                            width: 90.0,
-                            height: 30.0,
-                            child: Text(
-                              'Salon : ',
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontFamily: 'Nunito-Light',
-                                fontWeight: FontWeight.bold,
-                                color: (Colors.blueGrey),
-                                fontSize: 23,
+                          /*decoration: BoxDecoration(
+                              border: Border.all(color: Colors.blue)),*/
+                          width: 100,
+                          height: 30,
+                          //margin: const EdgeInsets.only(left: 65, right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              //elevation: 20.0,
+                              Text(
+                                "Salon",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: (Colors.blueGrey),
+                                  fontSize: 24,
+                                ),
                               ),
-                            )),
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
                         Container(
+                            margin: const EdgeInsets.only(left: 12, right: 8),
                             //padding: EdgeInsets.only(top: 70),
                             /*decoration: BoxDecoration(
                                 border: Border.all(color: Colors.red)),*/
-                            width: 80.0,
+                            width: 70.0,
                             height: 25.0,
                             child: StreamBuilder<DocumentSnapshot>(
                               stream: salon,
@@ -195,7 +216,7 @@ class _temperature extends State<temperature> {
                                 final data = snapshot.requireData;
 
                                 return Text(
-                                  '${data['sicaklik']}°C',
+                                  '${data['sicaklik']}°C    ',
                                   //style: GoogleFonts.nunito(),
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
@@ -205,7 +226,7 @@ class _temperature extends State<temperature> {
                               },
                             )),
                         Container(
-                            padding: EdgeInsets.only(left: 10, right: 10),
+                            padding: EdgeInsets.only(left: 19, right: 10),
                             decoration: BoxDecoration(
                                 color: Colors.blueGrey,
                                 border: Border.all(color: Colors.blueGrey)),
@@ -255,168 +276,11 @@ class _temperature extends State<temperature> {
                                 );
                               },
                             )),
-                        Container(
-                          width: 60,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              //border: Border.all(color: Colors.blueAccent),
-                              borderRadius: new BorderRadius.circular(30.0)),
-                          //padding: EdgeInsets.only(left: 10),
-                          child: FlatButton(
-                            child: Stack(
-                              children: <Widget>[
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(
-                                    Icons.settings_outlined,
-                                    color: Colors.red,
-                                    size: 33,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(30.0)),
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: const Text('Otomatik Sıcaklık Ayarlama'),
-                                content: Container(
-                                  //width: 90,
-                                  height: 180,
-
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.white)),
-                                        //padding: EdgeInsets.only(top: 20),
-
-                                        child: Container(
-                                          child: FlatButton(
-                                            onPressed: () {},
-                                            child: Text("Auto"),
-                                          ), /*
-                                        Switch(
-                                      value: isSwitchedS,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          if (value == true) {
-                                            isSwitchedS = true;
-                                          } else {
-                                            isSwitchedS = false;
-                                            //value = true;
-                                          }
-                                          value = true;
-                                          print(isSwitchedS);
-                                          print(value);
-                                        });
-                                      },
-                                      activeTrackColor: Colors.lightGreenAccent,
-                                      activeColor: Colors.green,
-                                    ),*/
-                                        ),
-                                      ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.white)),
-                                        //padding: EdgeInsets.only(top: 40),
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.white)),
-                                              //padding: EdgeInsets.only(top: 20),
-                                              child: Text("Min:"),
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.white)),
-                                              height: 30,
-
-                                              padding:
-                                                  EdgeInsets.only(left: 10),
-                                              margin: const EdgeInsets.only(
-                                                  left: 20.0),
-
-                                              //child: Text("Değer:"),
-
-                                              child: SizedBox(
-                                                width: 100,
-                                                child: TextField(
-                                                  controller:
-                                                      myController_S1_min,
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.only(top: 40),
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.white)),
-                                              //padding: EdgeInsets.only(top: 20),
-                                              child: Text("Max:"),
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.white)),
-                                              height: 30,
-
-                                              padding:
-                                                  EdgeInsets.only(left: 10),
-                                              margin: const EdgeInsets.only(
-                                                  left: 20.0),
-
-                                              //child: Te
-                                              //xt("Değer:"),
-
-                                              child: SizedBox(
-                                                width: 100,
-                                                child: TextField(
-                                                  controller:
-                                                      myController_S1_max,
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context, 'İptal'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            //child: const Text('Show Dialog'),
-                          ),
-                        )
+                        TempPopup(
+                    minController: myController_S1_min,
+                    maxController: myController_S1_max,
+                    switchState: switchState_S2,
+                  ),
                       ],
                     ),
                   ),
@@ -534,473 +398,802 @@ class _temperature extends State<temperature> {
                 ],
               ),
             ),
-            /////
+
+            ///
             ///     SALON BİTİYOR
             ///
 
             Container(
+              padding: EdgeInsets.all(15),
+              margin: const EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
               ),
-              margin: const EdgeInsets.all(5.0),
-              //color: Colors.white,
-              width: 335.0,
-              height: 80.0,
-
-              child: Row(
+              child: Column(
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green)),
-                      width: 90.0,
-                      height: 30.0,
-                      child: Text(
-                        'Mutfak : ',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontFamily: 'Nunito-Light',
-                          fontWeight: FontWeight.bold,
-                          color: (Colors.blueGrey),
-                          fontSize: 23,
-                        ),
-                      )),
-                  Container(
-                      //padding: EdgeInsets.only(top: 70),
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 70.0,
-                      height: 25.0,
-                      child: StreamBuilder<DocumentSnapshot>(
-                        stream: salon,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<DocumentSnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Something went wrong.');
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text(
-                              'Loading...',
-                              textAlign: TextAlign.center,
-                            );
-                          }
-
-                          final data = snapshot.requireData;
-
-                          /*double doubleInRange(
-                                  Random random, double end, double start) =>
-                              (random.nextDouble() * (end - start) + start);*/
-
-                          var rng = new Random();
-
-                          return Text(
-                            '${data['sicaklik'] + rng.nextInt(4).toDouble() / 10}°C',
-                            //style: GoogleFonts.nunito(),
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
-                            /*style: const TextStyle(
-                              fontFamily: 'Nunito-Regular',
-                              fontWeight: FontWeight.bold,
-                              color: (Colors.blueGrey),
-                              fontSize: 17,
-                            ),*/
-                          );
-                        },
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      width: 20.0,
-                      height: 50.0,
-
-                      /*child: Icon(
-                      Icons.thermostat_outlined,
-                      color: Colors.red,
-                      size: 40,
+                    /*decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
                     ),*/
-                      child: Text(
-                        '|',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: (Colors.blueGrey),
-                          fontSize: 40,
-                        ),
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      width: 70.0,
-                      height: 25.0,
-                      child: StreamBuilder<DocumentSnapshot>(
-                        stream: salon,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<DocumentSnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text(
-                              'Something went wrong.',
-                              textAlign: TextAlign.center,
-                            );
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text(
-                              'Loading...',
-                              textAlign: TextAlign.center,
-                            );
-                          }
+                    //margin: const EdgeInsets.all(5.0),
+                    //color: Colors.white,
+                    width: 340.0,
+                    height: 60.0,
 
-                          final data = snapshot.requireData;
-                          var rng = new Random();
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 110,
+                          height: 25,
+                          //margin: const EdgeInsets.only(left: 65, right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
 
-                          return Text(
-                            '%${data['nemlilik'] + rng.nextInt(6).toDouble() / 10}',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
-                          );
-                        },
-                      )),
-                  /*Container(
-                    width: 80,
-                    height: 40,
-                    padding: EdgeInsets.only(left: 10),*/
-                  /*
-                    child: ElevatedButton.icon(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(bg_color),
-                      ),
-                      icon: Icon(
-                        Icons.settings_outlined,
-                        color: Colors.red,
-                        size: 35,
-                      ),
-                      label: Text(""),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const temperature(
-                                    title: '',
-                                  )),
-                        );
-                      },
-                    ),*/
-                  /*child: FlatButton(
-                        onPressed: () => null, //pop up
-                        child: Stack(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.center,
-                              child: Icon(
-                                Icons.settings_outlined,
-                                color: Colors.red,
-                                size: 35,
+                                //elevation: 20.0,
+                                child: Text(
+                                  "Mutfak : ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: (Colors.blueGrey),
+                                    fontSize: 24,
+                                  ),
+                                ),
                               ),
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
                             ),
-                          ],
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
                         ),
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0))),*/
-                  //),
-                  /*child: Align(
-                      ElevatedButton.icon(
-                        icon: Icon(
-                          Icons.settings_outlined,
-                          color: Colors.red,
-                          size: 35,
-                        ),
-                        label: (""),
-                        onPressed: () {},
-                      ),
-                      */
-                  /*
-                      child: Icon(
-                        Icons.settings_outlined,
-                        color: Colors.red,
-                        size: 35,
-                      ),*/
-                  //color: bg_color,
-                  //onPressed: () {},
-                  TempPopup(
+                        Container(
+                            //padding: EdgeInsets.only(top: 70),
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.red)),*/
+                            width: 80.0,
+                            height: 25.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: salon,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('Something went wrong.');
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text(
+                                    'Loading...',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+
+                                final data = snapshot.requireData;
+                                var rng = new Random();
+                                return Text(
+                                  '${data['sicaklik'] + rng.nextInt(4).toDouble() / 10}°C',
+                                  //style: GoogleFonts.nunito(),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                );
+                              },
+                            )),
+                        Container(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            decoration: BoxDecoration(
+                                color: Colors.blueGrey,
+                                border: Border.all(color: Colors.blueGrey)),
+                            width: 5.0,
+                            height: 40.0,
+                            child: Text(
+                              '|',
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: (Colors.blueGrey),
+                                fontSize: 40,
+                              ),
+                            )),
+                        Container(
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),*/
+                            width: 80.0,
+                            height: 25.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: salon,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text(
+                                    'Something went wrong.',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text(
+                                    'Loading...',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+
+                                final data = snapshot.requireData;
+                                var rng = new Random();
+                                return Text(
+                                  '%${data['nemlilik'] + rng.nextInt(6).toDouble() / 10}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                );
+                              },
+                            )),
+                        TempPopup(
                     minController: myController_S4_min,
                     maxController: myController_S4_max,
                     switchState: switchState_S4,
                   ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 335,
+                    height: 30,
+                    /*decoration:
+                        BoxDecoration(border: Border.all(color: Colors.green)),*/
+                    //padding: EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 80,
+                          margin: const EdgeInsets.only(left: 65, right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: PopupMenuButton(
+                                      //elevation: 20.0,
+                                      child: Text(
+                                        " Fan ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: (Colors.red),
+                                          fontSize: 17,
+                                        ),
+                                      ),
+
+                                      //key: _menuKey,
+                                      itemBuilder: (_) =>
+                                          const <PopupMenuItem<String>>[
+                                            PopupMenuItem<String>(
+                                                child: Text('On'),
+                                                value: 'Doge'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Circulate'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Auto'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Off'),
+                                                value: 'Lion'),
+                                          ],
+                                      onSelected: (_) {}))
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                        Container(
+                          width: 80,
+                          margin: const EdgeInsets.only(right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: PopupMenuButton(
+                                      //elevation: 20.0,
+                                      child: Text(
+                                        " Mode ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: (Colors.red),
+                                          fontSize: 17,
+                                        ),
+                                      ),
+
+                                      //key: _menuKey,
+                                      itemBuilder: (_) =>
+                                          const <PopupMenuItem<String>>[
+                                            PopupMenuItem<String>(
+                                                child: Text('Heat'),
+                                                value: 'Doge'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Cool'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Auto'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Off'),
+                                                value: 'Lion'),
+                                          ],
+                                      onSelected: (_) {}))
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-              ),
-              margin: const EdgeInsets.all(5.0),
-              //color: Colors.white,
-              width: 335.0,
-              height: 80.0,
 
-              child: Row(
+            ///
+            ///     Mutfak Bitiyor
+            ///
+
+            Container(
+              padding: EdgeInsets.all(15),
+              margin: const EdgeInsets.only(bottom: 20),
+              decoration: BoxDecoration(
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: Column(
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green)),
-                      width: 90.0,
-                      height: 30.0,
-                      child: Text(
-                        'Oda 1 : ',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontFamily: 'Nunito-Light',
-                          fontWeight: FontWeight.bold,
-                          color: (Colors.blueGrey),
-                          fontSize: 23,
-                        ),
-                      )),
-                  Container(
-                      //padding: EdgeInsets.only(top: 70),
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 70.0,
-                      height: 25.0,
-                      child: StreamBuilder<DocumentSnapshot>(
-                        stream: salon,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<DocumentSnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Something went wrong.');
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text(
-                              'Loading...',
-                              textAlign: TextAlign.center,
-                            );
-                          }
-
-                          final data = snapshot.requireData;
-                          var rng = new Random();
-                          return Text(
-                            '${data['sicaklik'] + rng.nextInt(4) / 10 + 1.2}°C',
-                            //style: GoogleFonts.nunito(),
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
-                            /*style: const TextStyle(
-                              fontFamily: 'Nunito-Regular',
-                              fontWeight: FontWeight.bold,
-                              color: (Colors.blueGrey),
-                              fontSize: 17,
-                            ),*/
-                          );
-                        },
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      width: 20.0,
-                      height: 50.0,
-
-                      /*child: Icon(
-                      Icons.thermostat_outlined,
-                      color: Colors.red,
-                      size: 40,
+                    /*decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
                     ),*/
-                      child: Text(
-                        '|',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: (Colors.blueGrey),
-                          fontSize: 40,
-                        ),
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      width: 70.0,
-                      height: 25.0,
-                      child: StreamBuilder<DocumentSnapshot>(
-                        stream: salon,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<DocumentSnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text(
-                              'Something went wrong.',
-                              textAlign: TextAlign.center,
-                            );
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text(
-                              'Loading...',
-                              textAlign: TextAlign.center,
-                            );
-                          }
+                    //margin: const EdgeInsets.all(5.0),
+                    //color: Colors.white,
+                    width: 335.0,
+                    height: 60.0,
 
-                          final data = snapshot.requireData;
-                          var rng = new Random();
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 95,
+                          height: 25,
+                          //margin: const EdgeInsets.only(left: 65, right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
 
-                          return Text(
-                            '%${data['nemlilik'] + rng.nextInt(6) / 10 + 0.8}',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 20,
+                                //elevation: 20.0,
+                                child: Text(
+                                  "Oda 1",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: (Colors.blueGrey),
+                                    fontSize: 24,
+                                  ),
+                                ),
+                              ),
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
                             ),
-                          );
-                        },
-                      )),
-                  TempPopup(
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 15, right: 8),
+                            //padding: EdgeInsets.only(top: 70),
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.red)),*/
+                            width: 70.0,
+                            height: 25.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: salon,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('Something went wrong.');
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text(
+                                    'Loading...',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+
+                                final data = snapshot.requireData;
+                                var rng = new Random();
+                                return Text(
+                                  '${data['sicaklik'] + rng.nextInt(4) / 10 + 1.2}°C',
+                                  //style: GoogleFonts.nunito(),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                );
+                              },
+                            )),
+                        Container(
+                            padding: EdgeInsets.only(left: 19, right: 10),
+                            decoration: BoxDecoration(
+                                color: Colors.blueGrey,
+                                border: Border.all(color: Colors.blueGrey)),
+                            width: 5.0,
+                            height: 40.0,
+                            child: Text(
+                              '|',
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: (Colors.blueGrey),
+                                fontSize: 40,
+                              ),
+                            )),
+                        Container(
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),*/
+                            width: 80.0,
+                            height: 25.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: salon,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text(
+                                    'Something went wrong.',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text(
+                                    'Loading...',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+
+                                final data = snapshot.requireData;
+                                var rng = new Random();
+                                return Text(
+                                  '%${data['nemlilik'] + rng.nextInt(6) / 10 + 0.8}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                );
+                              },
+                            )),
+                        TempPopup(
                     minController: myController_S3_min,
                     maxController: myController_S3_max,
                     switchState: switchState_S3,
                   ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 335,
+                    height: 30,
+                    /*decoration:
+                        BoxDecoration(border: Border.all(color: Colors.green)),*/
+                    //padding: EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 80,
+                          margin: const EdgeInsets.only(left: 65, right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: PopupMenuButton(
+                                      //elevation: 20.0,
+                                      child: Text(
+                                        " Fan ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: (Colors.red),
+                                          fontSize: 17,
+                                        ),
+                                      ),
+
+                                      //key: _menuKey,
+                                      itemBuilder: (_) =>
+                                          const <PopupMenuItem<String>>[
+                                            PopupMenuItem<String>(
+                                                child: Text('On'),
+                                                value: 'Doge'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Circulate'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Auto'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Off'),
+                                                value: 'Lion'),
+                                          ],
+                                      onSelected: (_) {}))
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                        Container(
+                          width: 80,
+                          margin: const EdgeInsets.only(right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: PopupMenuButton(
+                                      //elevation: 20.0,
+                                      child: Text(
+                                        " Mode ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: (Colors.red),
+                                          fontSize: 17,
+                                        ),
+                                      ),
+
+                                      //key: _menuKey,
+                                      itemBuilder: (_) =>
+                                          const <PopupMenuItem<String>>[
+                                            PopupMenuItem<String>(
+                                                child: Text('Heat'),
+                                                value: 'Doge'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Cool'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Auto'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Off'),
+                                                value: 'Lion'),
+                                          ],
+                                      onSelected: (_) {}))
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-              ),
-              margin: const EdgeInsets.all(5.0),
-              //color: Colors.white,
-              width: 335.0,
-              height: 80.0,
 
-              child: Row(
+            ///
+            ///     Oda 1 Bitiyor
+            ///
+
+            Container(
+              padding: EdgeInsets.all(15),
+              margin: const EdgeInsets.only(bottom: 20),
+              decoration: BoxDecoration(
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: Column(
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green)),
-                      width: 90.0,
-                      height: 30.0,
-                      child: Text(
-                        'Oda 2 : ',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontFamily: 'Nunito-Light',
-                          fontWeight: FontWeight.bold,
-                          color: (Colors.blueGrey),
-                          fontSize: 25,
-                        ),
-                      )),
-                  Container(
-                      //padding: EdgeInsets.only(top: 70),
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 70.0,
-                      height: 25.0,
-                      child: StreamBuilder<DocumentSnapshot>(
-                        stream: salon,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<DocumentSnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Something went wrong.');
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text(
-                              'Loading...',
-                              textAlign: TextAlign.center,
-                            );
-                          }
-
-                          final data = snapshot.requireData;
-                          var rng = new Random();
-
-                          return Text(
-                            '${data['sicaklik'] - rng.nextInt(4) / 10 + 0.1}°C',
-                            //style: GoogleFonts.nunito(),
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
-                            /*style: const TextStyle(
-                              fontFamily: 'Nunito-Regular',
-                              fontWeight: FontWeight.bold,
-                              color: (Colors.blueGrey),
-                              fontSize: 17,
-                            ),*/
-                          );
-                        },
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      width: 20.0,
-                      height: 50.0,
-
-                      /*child: Icon(
-                      Icons.thermostat_outlined,
-                      color: Colors.red,
-                      size: 40,
+                    /*decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
                     ),*/
-                      child: Text(
-                        '|',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: (Colors.blueGrey),
-                          fontSize: 40,
-                        ),
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      width: 70.0,
-                      height: 25.0,
-                      child: StreamBuilder<DocumentSnapshot>(
-                        stream: salon,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<DocumentSnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text(
-                              'Something went wrong.',
-                              textAlign: TextAlign.center,
-                            );
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text(
-                              'Loading...',
-                              textAlign: TextAlign.center,
-                            );
-                          }
+                    //margin: const EdgeInsets.all(5.0),
+                    //color: Colors.white,
+                    width: 335.0,
+                    height: 60.0,
 
-                          final data = snapshot.requireData;
-                          var rng = new Random();
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 95,
+                          height: 25,
+                          //margin: const EdgeInsets.only(left: 65, right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
 
-                          return Text(
-                            '%${data['nemlilik'] - rng.nextInt(5) / 10 + 1.4}',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 20,
+                                //elevation: 20.0,
+                                child: Text(
+                                  "Oda 2",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: (Colors.blueGrey),
+                                    fontSize: 24,
+                                  ),
+                                ),
+                              ),
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
                             ),
-                          );
-                        },
-                      )),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 5, right: 8),
+                            //padding: EdgeInsets.only(top: 70),
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.red)),*/
+                            width: 80.0,
+                            height: 25.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: salon,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('Something went wrong.');
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text(
+                                    'Loading...',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
 
-                  ///KOPYA BUTON
-                  TempPopup(
-                    minController: myController_S4_min,
-                    maxController: myController_S4_max,
-                    switchState: switchState_S4,
+                                final data = snapshot.requireData;
+                                var rng = new Random();
+                                return Text(
+                                  '${data['sicaklik'] - rng.nextInt(4) / 10 + 0.1}°C',
+                                  //style: GoogleFonts.nunito(),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                );
+                              },
+                            )),
+                        Container(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            decoration: BoxDecoration(
+                                color: Colors.blueGrey,
+                                border: Border.all(color: Colors.blueGrey)),
+                            width: 5.0,
+                            height: 40.0,
+                            child: Text(
+                              '|',
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: (Colors.blueGrey),
+                                fontSize: 40,
+                              ),
+                            )),
+                        Container(
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),*/
+                            width: 80.0,
+                            height: 25.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: salon,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text(
+                                    'Something went wrong.',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text(
+                                    'Loading...',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+
+                                final data = snapshot.requireData;
+                                var rng = new Random();
+                                return Text(
+                                  '%${data['nemlilik'] - rng.nextInt(5) / 10 + 1.4}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                );
+                              },
+                            )),
+                        TempPopup(
+                    minController: myController_S2_min,
+                    maxController: myController_S2_max,
+                    switchState: switchState_S2,
+                  ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 335,
+                    height: 30,
+                    /*decoration:
+                        BoxDecoration(border: Border.all(color: Colors.green)),*/
+                    //padding: EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 80,
+                          margin: const EdgeInsets.only(left: 65, right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: PopupMenuButton(
+                                      //elevation: 20.0,
+                                      child: Text(
+                                        " Fan ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: (Colors.red),
+                                          fontSize: 17,
+                                        ),
+                                      ),
+
+                                      //key: _menuKey,
+                                      itemBuilder: (_) =>
+                                          const <PopupMenuItem<String>>[
+                                            PopupMenuItem<String>(
+                                                child: Text('On'),
+                                                value: 'Doge'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Circulate'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Auto'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Off'),
+                                                value: 'Lion'),
+                                          ],
+                                      onSelected: (_) {}))
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                        Container(
+                          width: 80,
+                          margin: const EdgeInsets.only(right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: PopupMenuButton(
+                                      //elevation: 20.0,
+                                      child: Text(
+                                        " Mode ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: (Colors.red),
+                                          fontSize: 17,
+                                        ),
+                                      ),
+
+                                      //key: _menuKey,
+                                      itemBuilder: (_) =>
+                                          const <PopupMenuItem<String>>[
+                                            PopupMenuItem<String>(
+                                                child: Text('Heat'),
+                                                value: 'Doge'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Cool'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Auto'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Off'),
+                                                value: 'Lion'),
+                                          ],
+                                      onSelected: (_) {}))
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
