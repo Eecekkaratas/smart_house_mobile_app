@@ -91,8 +91,8 @@ class _temperature extends State<temperature> {
           children: [
             Container(
                 //margin: const EdgeInsets.only(bottom: 20),
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.redAccent)),
+                /*decoration:
+                    BoxDecoration(border: Border.all(color: Colors.redAccent)),*/
                 padding: EdgeInsets.only(top: 30),
                 child: Text(
                   'ODALAR ',
@@ -106,7 +106,7 @@ class _temperature extends State<temperature> {
                 )),
             Container(
               margin: const EdgeInsets.only(bottom: 5),
-              padding: EdgeInsets.only(left: 125, top: 30),
+              padding: EdgeInsets.only(left: 135, top: 30),
               child: Column(
                 children: [
                   Container(
@@ -121,7 +121,7 @@ class _temperature extends State<temperature> {
                             )),
                         Container(
                           child: Icon(
-                            Icons.priority_high_outlined,
+                            Icons.opacity_outlined,
                             size: 40,
                             color: Colors.red,
                           ),
@@ -138,15 +138,16 @@ class _temperature extends State<temperature> {
               padding: EdgeInsets.all(20),
               margin: const EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
-                //color: const Color(0xff7c94b6),
-                border: Border.all(color: Colors.black),
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
               ),
               child: Column(
                 children: [
                   Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blue),
-                    ),
+                    /*decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
+                    ),*/
                     //margin: const EdgeInsets.all(5.0),
                     //color: Colors.white,
                     width: 335.0,
@@ -155,8 +156,8 @@ class _temperature extends State<temperature> {
                     child: Row(
                       children: [
                         Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.green)),
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.green)),*/
                             width: 90.0,
                             height: 30.0,
                             child: Text(
@@ -172,9 +173,9 @@ class _temperature extends State<temperature> {
                             )),
                         Container(
                             //padding: EdgeInsets.only(top: 70),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.red)),
-                            width: 70.0,
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.red)),*/
+                            width: 80.0,
                             height: 25.0,
                             child: StreamBuilder<DocumentSnapshot>(
                               stream: salon,
@@ -204,10 +205,12 @@ class _temperature extends State<temperature> {
                               },
                             )),
                         Container(
+                            padding: EdgeInsets.only(left: 10, right: 10),
                             decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
-                            width: 20.0,
-                            height: 50.0,
+                                color: Colors.blueGrey,
+                                border: Border.all(color: Colors.blueGrey)),
+                            width: 5.0,
+                            height: 40.0,
                             child: Text(
                               '|',
                               textAlign: TextAlign.center,
@@ -219,9 +222,9 @@ class _temperature extends State<temperature> {
                               ),
                             )),
                         Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
-                            width: 70.0,
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),*/
+                            width: 80.0,
                             height: 25.0,
                             child: StreamBuilder<DocumentSnapshot>(
                               stream: salon,
@@ -294,7 +297,7 @@ class _temperature extends State<temperature> {
                                         child: Container(
                                           child: FlatButton(
                                             onPressed: () {},
-                                            child: Text("sa"),
+                                            child: Text("Auto"),
                                           ), /*
                                         Switch(
                                       value: isSwitchedS,
@@ -420,8 +423,8 @@ class _temperature extends State<temperature> {
                   Container(
                     width: 335,
                     height: 30,
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.green)),
+                    /*decoration:
+                        BoxDecoration(border: Border.all(color: Colors.green)),*/
                     //padding: EdgeInsets.only(top: 20),
                     child: Row(
                       children: [

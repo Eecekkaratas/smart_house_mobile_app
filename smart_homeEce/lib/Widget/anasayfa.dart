@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:smart_home/Widget/humudity.dart';
 import 'package:smart_home/Widget/light.dart';
 import 'package:smart_home/Widget/temperature.dart';
@@ -27,15 +28,15 @@ class _anasayfa extends State<anasayfa> {
   Color btn_color = const Color.fromRGBO(233, 240, 245, 1.0);
 
   Color btn_color2 = const Color.fromRGBO(222, 235, 238, 1.0);
-
+  DateTime date = DateTime.now();
   //Buton: 238R 245G 250B
 
   String getDate() {
     return (now.day.toString() +
-        "/" +
+        "/0" +
         now.month.toString() +
-        "/" +
-        now.year.toString());
+        " " +
+        DateFormat('EEEE').format(date));
   }
 
   String getDate_hour() {
@@ -60,16 +61,16 @@ class _anasayfa extends State<anasayfa> {
           children: [
             Container(
                 padding: EdgeInsets.only(top: 30),
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.red)),
+                /*decoration:
+                    BoxDecoration(border: Border.all(color: Colors.red)),*/
                 width: 320,
-                height: 100,
+                height: 90,
                 child: Row(
                   children: [
                     Container(
-                        margin: EdgeInsets.only(left: 60),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.blueAccent)),
+                        margin: EdgeInsets.only(left: 45),
+                        /*decoration: BoxDecoration(
+                            border: Border.all(color: Colors.blueAccent)),*/
                         //padding: EdgeInsets.only(top: 60),
                         child: Text(
                           'Smart Home System',
@@ -78,7 +79,7 @@ class _anasayfa extends State<anasayfa> {
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: (Colors.blueGrey),
-                            fontSize: 20,
+                            fontSize: 24,
                           ),
                         ))
                   ],
@@ -88,8 +89,16 @@ class _anasayfa extends State<anasayfa> {
               child: Container(
                 width: 320,
                 height: 150,
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade400,
+                      blurRadius: 1,
+                      spreadRadius: 0,
+                    ), //BoxShadow
+                  ],
+                  borderRadius: BorderRadius.all(const Radius.circular(20)),
+                ),
                 child: Row(
                   children: [
                     Container(
@@ -99,8 +108,8 @@ class _anasayfa extends State<anasayfa> {
                       margin: EdgeInsets.only(left: 25),
                       width: 100,
                       height: 100,
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.red)),
+                      /*decoration:
+                          BoxDecoration(border: Border.all(color: Colors.red)),*/
                       //child: Text("sa"),
                     ),
                     Container(
@@ -109,11 +118,11 @@ class _anasayfa extends State<anasayfa> {
                           Container(
                             //Tarih çekimi
                             //padding: EdgeInsets.only(left: 20),
-                            margin: EdgeInsets.only(left: 20),
+                            margin: EdgeInsets.only(left: 8, top: 15),
                             width: 150,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
+                            height: 30,
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),*/
                             child: Text(
                               getDate(),
                               style: TextStyle(
@@ -123,12 +132,24 @@ class _anasayfa extends State<anasayfa> {
                             ),
                           ),
                           Container(
+                            height: 17,
+                            margin: EdgeInsets.only(left: 8),
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),*/
+                            child: Text(
+                              "___________________________",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          Container(
                             //padding: EdgeInsets.only(left: 20),
-                            margin: EdgeInsets.only(left: 20),
+                            margin: EdgeInsets.only(left: 8, top: 15),
                             width: 150,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
+                            height: 25,
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),*/
                             child: Text(
                               getDate_hour(),
                               style: TextStyle(
@@ -139,11 +160,11 @@ class _anasayfa extends State<anasayfa> {
                           ),
                           Container(
                             //padding: EdgeInsets.only(left: 20),
-                            margin: EdgeInsets.only(left: 20),
+                            margin: EdgeInsets.only(left: 8),
                             width: 150,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
+                            height: 26,
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),*/
                             child: Text(
                               (setUsername()),
                               style: TextStyle(
@@ -163,11 +184,11 @@ class _anasayfa extends State<anasayfa> {
                 child: Row(
               children: [
                 Container(
-                    //padding: EdgeInsets.only(top: 30, bottom: 20),
+                    padding: EdgeInsets.only(top: 40),
                     width: 391,
-                    height: 40,
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.red)),
+                    height: 100,
+                    /*decoration:
+                        BoxDecoration(border: Border.all(color: Colors.red)),*/
                     child: Text(
                       'Kontroller',
                       textAlign: TextAlign.center,
@@ -181,12 +202,30 @@ class _anasayfa extends State<anasayfa> {
               ],
             )),
             Container(
+              width: 350,
+              height: 2,
+              //margin: EdgeInsets.only(left: 0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey.shade600)),
+            ),
+            Container(
+              width: 350,
+              height: 2,
+              //margin: EdgeInsets.only(left: 0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey.shade600)),
+            ),
+            Container(
+              /*decoration:
+                  BoxDecoration(border: Border.all(color: Colors.blueAccent)),*/
+
               padding: EdgeInsets.only(top: 50),
               child: Row(children: [
                 Container(
-                  //decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.blueAccent),
-                  // borderRadius: BorderRadius.all(const Radius.circular(2000))),
+                  /*decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius:
+                          BorderRadius.all(const Radius.circular(2000))),*/
                   margin: const EdgeInsets.all(5.0),
                   //color: Colors.white,
                   width: 120.0,
@@ -375,7 +414,7 @@ class _anasayfa extends State<anasayfa> {
                                             Align(
                                               alignment: Alignment.center,
                                               child: Icon(
-                                                Icons.priority_high_outlined,
+                                                Icons.person_outlined,
                                                 color: Colors.red,
                                                 size: 45,
                                               ),
@@ -408,7 +447,7 @@ class _anasayfa extends State<anasayfa> {
                                   Container(
                                       padding: EdgeInsets.only(top: 10),
                                       child: Text(
-                                        'Işık',
+                                        'Doluluk',
                                         textAlign: TextAlign.center,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(
