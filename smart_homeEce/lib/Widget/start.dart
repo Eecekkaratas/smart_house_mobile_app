@@ -71,7 +71,7 @@ class _AuthenticationState extends State<Authentication> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => register(),
+                        builder: (context) => Register(),
                       ),
                     );
                   } else {
