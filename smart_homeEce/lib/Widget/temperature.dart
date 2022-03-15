@@ -48,6 +48,7 @@ class _temperature extends State<temperature> {
   final Stream<DocumentSnapshot> salon =
       FirebaseFirestore.instance.collection('ev1').doc('salon').snapshots();
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0);
+  Color btn_color = const Color.fromRGBO(233, 240, 245, 1.0);
   double numberFontSize = 10;
 
   @override
@@ -89,6 +90,7 @@ class _temperature extends State<temperature> {
         child: Column(
           children: [
             Container(
+                //margin: const EdgeInsets.only(bottom: 20),
                 decoration:
                     BoxDecoration(border: Border.all(color: Colors.redAccent)),
                 padding: EdgeInsets.only(top: 30),
@@ -103,6 +105,7 @@ class _temperature extends State<temperature> {
                   ),
                 )),
             Container(
+              margin: const EdgeInsets.only(bottom: 5),
               padding: EdgeInsets.only(left: 125, top: 30),
               child: Column(
                 children: [
@@ -130,163 +133,172 @@ class _temperature extends State<temperature> {
               ),
             ),
             Container(
+              padding: EdgeInsets.all(20),
+              margin: const EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
               ),
-              margin: const EdgeInsets.all(5.0),
-              //color: Colors.white,
-              width: 335.0,
-              height: 80.0,
-
-              child: Row(
+              child: Column(
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green)),
-                      width: 90.0,
-                      height: 30.0,
-                      child: Text(
-                        'Salon : ',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontFamily: 'Nunito-Light',
-                          fontWeight: FontWeight.bold,
-                          color: (Colors.blueGrey),
-                          fontSize: 23,
-                        ),
-                      )),
-                  Container(
-                      //padding: EdgeInsets.only(top: 70),
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 70.0,
-                      height: 25.0,
-                      child: StreamBuilder<DocumentSnapshot>(
-                        stream: salon,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<DocumentSnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Something went wrong.');
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text(
-                              'Loading...',
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue),
+                    ),
+                    //margin: const EdgeInsets.all(5.0),
+                    //color: Colors.white,
+                    width: 335.0,
+                    height: 60.0,
+
+                    child: Row(
+                      children: [
+                        Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.green)),
+                            width: 90.0,
+                            height: 30.0,
+                            child: Text(
+                              'Salon : ',
                               textAlign: TextAlign.center,
-                            );
-                          }
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontFamily: 'Nunito-Light',
+                                fontWeight: FontWeight.bold,
+                                color: (Colors.blueGrey),
+                                fontSize: 23,
+                              ),
+                            )),
+                        Container(
+                            //padding: EdgeInsets.only(top: 70),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.red)),
+                            width: 70.0,
+                            height: 25.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: salon,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('Something went wrong.');
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text(
+                                    'Loading...',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
 
-                          final data = snapshot.requireData;
+                                final data = snapshot.requireData;
 
-                          return Text(
-                            '${data['sicaklik']}°C',
-                            //style: GoogleFonts.nunito(),
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
-                          );
-                        },
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      width: 20.0,
-                      height: 50.0,
+                                return Text(
+                                  '${data['sicaklik']}°C',
+                                  //style: GoogleFonts.nunito(),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                );
+                              },
+                            )),
+                        Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),
+                            width: 20.0,
+                            height: 50.0,
 
-                      /*child: Icon(
+                            /*child: Icon(
                       Icons.thermostat_outlined,
                       color: Colors.red,
                       size: 40,
                     ),*/
-                      child: Text(
-                        '|',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: (Colors.blueGrey),
-                          fontSize: 40,
-                        ),
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      width: 70.0,
-                      height: 25.0,
-                      child: StreamBuilder<DocumentSnapshot>(
-                        stream: salon,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<DocumentSnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text(
-                              'Something went wrong.',
+                            child: Text(
+                              '|',
                               textAlign: TextAlign.center,
-                            );
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text(
-                              'Loading...',
-                              textAlign: TextAlign.center,
-                            );
-                          }
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: (Colors.blueGrey),
+                                fontSize: 40,
+                              ),
+                            )),
+                        Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),
+                            width: 70.0,
+                            height: 25.0,
+                            child: StreamBuilder<DocumentSnapshot>(
+                              stream: salon,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text(
+                                    'Something went wrong.',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text(
+                                    'Loading...',
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
 
-                          final data = snapshot.requireData;
+                                final data = snapshot.requireData;
 
-                          return Text(
-                            '%${data['nemlilik']}',
-                            style: const TextStyle(
-                              fontSize: 20,
+                                return Text(
+                                  '%${data['nemlilik']}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                );
+                              },
+                            )),
+                        Container(
+                          width: 60,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              //border: Border.all(color: Colors.blueAccent),
+                              borderRadius: new BorderRadius.circular(30.0)),
+                          //padding: EdgeInsets.only(left: 10),
+                          child: FlatButton(
+                            child: Stack(
+                              children: <Widget>[
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.settings_outlined,
+                                    color: Colors.red,
+                                    size: 33,
+                                  ),
+                                ),
+                              ],
                             ),
-                            textAlign: TextAlign.center,
-                          );
-                        },
-                      )),
-                  Container(
-                    width: 60,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        //border: Border.all(color: Colors.blueAccent),
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    //padding: EdgeInsets.only(left: 10),
-                    child: FlatButton(
-                      child: Stack(
-                        children: <Widget>[
-                          Align(
-                            alignment: Alignment.center,
-                            child: Icon(
-                              Icons.settings_outlined,
-                              color: Colors.red,
-                              size: 33,
-                            ),
-                          ),
-                        ],
-                      ),
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
-                      onPressed: () => showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                          title: const Text('Otomatik Sıcaklık Ayarlama'),
-                          content: Container(
-                            //width: 90,
-                            height: 180,
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0)),
+                            onPressed: () => showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Otomatik Sıcaklık Ayarlama'),
+                                content: Container(
+                                  //width: 90,
+                                  height: 180,
 
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.white)),
-                                  //padding: EdgeInsets.only(top: 20),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white)),
+                                        //padding: EdgeInsets.only(top: 20),
 
-                                  child: Container(
-                                    child: FlatButton(
-                                      onPressed: () {},
-                                      child: Text("sa"),
-                                    ), /*
+                                        child: Container(
+                                          child: FlatButton(
+                                            onPressed: () {},
+                                            child: Text("sa"),
+                                          ), /*
                                         Switch(
                                       value: isSwitchedS,
                                       onChanged: (value) {
@@ -305,96 +317,220 @@ class _temperature extends State<temperature> {
                                       activeTrackColor: Colors.lightGreenAccent,
                                       activeColor: Colors.green,
                                     ),*/
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.white)),
-                                  //padding: EdgeInsets.only(top: 40),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.white)),
-                                        //padding: EdgeInsets.only(top: 20),
-                                        child: Text("Min:"),
+                                        ),
                                       ),
                                       Container(
                                         decoration: BoxDecoration(
                                             border: Border.all(
                                                 color: Colors.white)),
-                                        height: 30,
+                                        //padding: EdgeInsets.only(top: 40),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.white)),
+                                              //padding: EdgeInsets.only(top: 20),
+                                              child: Text("Min:"),
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.white)),
+                                              height: 30,
 
-                                        padding: EdgeInsets.only(left: 10),
-                                        margin:
-                                            const EdgeInsets.only(left: 20.0),
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              margin: const EdgeInsets.only(
+                                                  left: 20.0),
 
-                                        //child: Text("Değer:"),
+                                              //child: Text("Değer:"),
 
-                                        child: SizedBox(
-                                          width: 100,
-                                          child: TextField(
-                                            controller: myController_S1_min,
-                                            keyboardType: TextInputType.number,
-                                          ),
+                                              child: SizedBox(
+                                                width: 100,
+                                                child: TextField(
+                                                  controller:
+                                                      myController_S1_min,
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.only(top: 40),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.white)),
+                                              //padding: EdgeInsets.only(top: 20),
+                                              child: Text("Max:"),
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.white)),
+                                              height: 30,
+
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              margin: const EdgeInsets.only(
+                                                  left: 20.0),
+
+                                              //child: Te
+                                              //xt("Değer:"),
+
+                                              child: SizedBox(
+                                                width: 100,
+                                                child: TextField(
+                                                  controller:
+                                                      myController_S1_max,
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                Container(
-                                  padding: EdgeInsets.only(top: 40),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.white)),
-                                        //padding: EdgeInsets.only(top: 20),
-                                        child: Text("Max:"),
-                                      ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.white)),
-                                        height: 30,
-
-                                        padding: EdgeInsets.only(left: 10),
-                                        margin:
-                                            const EdgeInsets.only(left: 20.0),
-
-                                        //child: Text("Değer:"),
-
-                                        child: SizedBox(
-                                          width: 100,
-                                          child: TextField(
-                                            controller: myController_S1_max,
-                                            keyboardType: TextInputType.number,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(context, 'İptal'),
+                                    child: const Text('Cancel'),
                                   ),
-                                ),
-                              ],
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(context, 'OK'),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
                             ),
+                            //child: const Text('Show Dialog'),
                           ),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'İptal'),
-                              child: const Text('Cancel'),
-                            ),
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'OK'),
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      //child: const Text('Show Dialog'),
+                        )
+                      ],
                     ),
-                  )
+                  ),
+                  Container(
+                    width: 335,
+                    height: 30,
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.green)),
+                    //padding: EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 80,
+                          margin: const EdgeInsets.only(left: 65, right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: PopupMenuButton(
+                                      //elevation: 20.0,
+                                      child: Text(
+                                        " Fan ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: (Colors.red),
+                                          fontSize: 17,
+                                        ),
+                                      ),
+
+                                      //key: _menuKey,
+                                      itemBuilder: (_) =>
+                                          const <PopupMenuItem<String>>[
+                                            PopupMenuItem<String>(
+                                                child: Text('On'),
+                                                value: 'Doge'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Circulate'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Auto'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Off'),
+                                                value: 'Lion'),
+                                          ],
+                                      onSelected: (_) {}))
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                        Container(
+                          width: 80,
+                          margin: const EdgeInsets.only(right: 50),
+                          child: ElevatedButton(
+                            child: Stack(children: <Widget>[
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: PopupMenuButton(
+                                      //elevation: 20.0,
+                                      child: Text(
+                                        " Mode ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: (Colors.red),
+                                          fontSize: 17,
+                                        ),
+                                      ),
+
+                                      //key: _menuKey,
+                                      itemBuilder: (_) =>
+                                          const <PopupMenuItem<String>>[
+                                            PopupMenuItem<String>(
+                                                child: Text('Heat'),
+                                                value: 'Doge'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Cool'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Auto'),
+                                                value: 'Lion'),
+                                            PopupMenuItem<String>(
+                                                child: Text('Off'),
+                                                value: 'Lion'),
+                                          ],
+                                      onSelected: (_) {}))
+                            ]),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(btn_color),
+                            ),
+                            onPressed: () {},
+                          ),
+                          //onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

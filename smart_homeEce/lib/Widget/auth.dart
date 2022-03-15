@@ -3,7 +3,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
-String username = "";
+String usernamex = "";
+
+String str = "";
+String getter() {
+  return usernamex;
+}
+
+void setter(String setvar) {
+  usernamex = setvar;
+}
+
 Future<bool> signIn(String email, String password) async {
   try {
     await FirebaseAuth.instance
@@ -43,7 +53,6 @@ Future<bool> register(String email, String password, String tel, String city,
     String uid = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
     var myJSONObj = {
-      "city": city,
       "username": username,
       "tel": tel,
     };
@@ -63,22 +72,29 @@ Future<bool> register(String email, String password, String tel, String city,
   }
 }
 
-String getUsername() {
+String setUsername() {
   // Trigger the authentication flow
+
   var firebaseUser = FirebaseAuth.instance.currentUser;
   FirebaseFirestore.instance
       .collection("users")
       .doc(firebaseUser!.uid)
       .get()
       .then((value) {
-    print("BAK");
-    print(value.data());
-    username = value.data()!["username"];
+    //print("BAK");
+    //print(value.data());
+    usernamex = value.data()!["username"];
+    setter(usernamex);
+
+    //print(str);
   });
-  print(username);
-  if (username != null) {
-    return username;
+  print(getter());
+  return getter();
+  //print(usernamex.toString());
+  /*if (usernamex != null) {
+    return usernamex;
   } else {
     return '';
-  }
+  }*/
+  //return usernamex.toString();
 }

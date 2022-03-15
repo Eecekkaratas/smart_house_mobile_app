@@ -39,7 +39,7 @@ class _anasayfa extends State<anasayfa> {
   }
 
   String getDate_hour() {
-    if (now.hour < 12) {
+    if (now.hour < 12 && now.hour > 7) {
       return ("Günaydın,");
     } else if (12 <= now.hour && now.hour < 18) {
       return ("İyi Günler,");
@@ -145,7 +145,7 @@ class _anasayfa extends State<anasayfa> {
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),
                             child: Text(
-                              (getUsername()),
+                              (setUsername()),
                               style: TextStyle(
                                 fontSize: 25,
                               ),
@@ -163,15 +163,19 @@ class _anasayfa extends State<anasayfa> {
                 child: Row(
               children: [
                 Container(
-                    padding: EdgeInsets.only(top: 40, bottom: 20),
+                    //padding: EdgeInsets.only(top: 30, bottom: 20),
+                    width: 391,
+                    height: 40,
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.red)),
                     child: Text(
-                      'APP  2  ',
+                      'Kontroller',
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: (Colors.blueGrey),
-                        fontSize: 17,
+                        fontSize: 35,
                       ),
                     ))
               ],
