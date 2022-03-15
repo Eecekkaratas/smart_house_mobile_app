@@ -132,10 +132,13 @@ class _temperature extends State<temperature> {
                 ],
               ),
             ),
+
+            ////// SALON BAŞLIYOR
             Container(
               padding: EdgeInsets.all(20),
               margin: const EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
+                //color: const Color(0xff7c94b6),
                 border: Border.all(color: Colors.black),
               ),
               child: Column(
@@ -205,12 +208,6 @@ class _temperature extends State<temperature> {
                                 border: Border.all(color: Colors.blueAccent)),
                             width: 20.0,
                             height: 50.0,
-
-                            /*child: Icon(
-                      Icons.thermostat_outlined,
-                      color: Colors.red,
-                      size: 40,
-                    ),*/
                             child: Text(
                               '|',
                               textAlign: TextAlign.center,
@@ -534,6 +531,10 @@ class _temperature extends State<temperature> {
                 ],
               ),
             ),
+            /////
+            ///     SALON BİTİYOR
+            ///
+
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
