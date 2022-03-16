@@ -88,7 +88,7 @@ class _anasayfa extends State<anasayfa> {
               padding: EdgeInsets.only(top: 30),
               child: Container(
                 width: 320,
-                height: 150,
+                height: 180,
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -113,14 +113,19 @@ class _anasayfa extends State<anasayfa> {
                       //child: Text("sa"),
                     ),
                     Container(
+                      /*
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.red)),*/
                       child: Column(
                         children: [
                           Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.red)),
                             //Tarih çekimi
                             //padding: EdgeInsets.only(left: 20),
                             margin: EdgeInsets.only(left: 8, top: 15),
                             width: 150,
-                            height: 30,
+                            height: 60,
                             /*decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),*/
                             child: Text(
@@ -205,8 +210,8 @@ class _anasayfa extends State<anasayfa> {
               width: 350,
               height: 2,
               //margin: EdgeInsets.only(left: 0),
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blueGrey.shade600)),
+              /*decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey.shade600)),*/
             ),
             Container(
               width: 350,
@@ -218,8 +223,7 @@ class _anasayfa extends State<anasayfa> {
             Container(
               /*decoration:
                   BoxDecoration(border: Border.all(color: Colors.blueAccent)),*/
-
-              padding: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 50, left: 8),
               child: Row(children: [
                 Container(
                   /*decoration: BoxDecoration(
