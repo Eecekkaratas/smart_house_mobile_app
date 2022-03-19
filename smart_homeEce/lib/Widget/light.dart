@@ -84,7 +84,7 @@ class _light extends State<light> {
             Container(
                 // decoration:
                 //     BoxDecoration(border: Border.all(color: Colors.redAccent)),
-                padding: EdgeInsets.only(top: 50, bottom: 20),
+                padding: EdgeInsets.only(top: 50),
                 child: Text(
                   'ODALAR ',
                   textAlign: TextAlign.center,
@@ -96,6 +96,37 @@ class _light extends State<light> {
                   ),
                 )),
             Container(
+              width: 180,
+              height: 2,
+              margin: EdgeInsets.only(bottom: 30),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey.shade600)),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 125, bottom: 10),
+              child: Column(
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          // For setting the position of icon
+                          padding: EdgeInsets.only(right: 60),
+                        ),
+                        Container(
+                          child: Icon(
+                            Icons.tungsten_outlined,
+                            size: 45,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
               //padding: EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
@@ -105,7 +136,7 @@ class _light extends State<light> {
                       border: Border.all(color: Colors.grey.shade700),
                       borderRadius: BorderRadius.circular(30.0),
                     ),
-                    padding: EdgeInsets.only(left: 20),
+                    padding: EdgeInsets.only(left: 10),
                     // decoration: BoxDecoration(
                     //   border: Border.all(color: Colors.blueAccent),
                     // ),
@@ -121,7 +152,7 @@ class _light extends State<light> {
 
                             // decoration: BoxDecoration(
                             //     border: Border.all(color: Colors.blueAccent)),
-                            width: 75.0,
+                            width: 90.0,
                             height: 30.0,
                             child: Text(
                               'Salon : ',
@@ -234,16 +265,16 @@ class _light extends State<light> {
               ),
             ),
             Container(
-              decoration: BoxDecoration(
-                color: const Color(0xfff7ebe9),
-                border: Border.all(color: Colors.grey.shade700),
-                borderRadius: BorderRadius.circular(30.0),
-              ),
               //padding: EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      color: const Color(0xfff7ebe9),
+                      border: Border.all(color: Colors.grey.shade700),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    padding: EdgeInsets.only(left: 10),
                     // decoration: BoxDecoration(
                     //   border: Border.all(color: Colors.blueAccent),
                     // ),
@@ -256,9 +287,9 @@ class _light extends State<light> {
                       children: [
                         Container(
                             //padding: EdgeInsets.only(left: 10),
-                            // decoration: BoxDecoration(
-                            //     border: Border.all(color: Colors.blueAccent)),
-                            width: 75.0,
+                            //decoration: BoxDecoration(
+                            //  border: Border.all(color: Colors.blueAccent)),
+                            width: 90.0,
                             height: 30.0,
                             child: Text(
                               'Mutfak : ',
@@ -373,15 +404,15 @@ class _light extends State<light> {
               ),
             ),
             Container(
-              decoration: BoxDecoration(
-                color: const Color(0xfff7ebe9),
-                border: Border.all(color: Colors.grey.shade700),
-                borderRadius: BorderRadius.circular(30.0),
-              ),
               //padding: EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
                   Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xfff7ebe9),
+                      border: Border.all(color: Colors.grey.shade700),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
                     //padding: EdgeInsets.only(left: 20),
                     // decoration: BoxDecoration(
                     //   border: Border.all(color: Colors.blueAccent),
@@ -397,10 +428,10 @@ class _light extends State<light> {
                             //padding: EdgeInsets.only(left: 10),
                             // decoration: BoxDecoration(
                             //     border: Border.all(color: Colors.blueAccent)),
-                            width: 75.0,
+                            width: 90.0,
                             height: 30.0,
                             child: Text(
-                              'Oda 1 : ',
+                              'Oda 1: ',
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               //style: GoogleFonts.nunito(),
@@ -410,7 +441,7 @@ class _light extends State<light> {
                               ),
                             )),
                         Padding(
-                          padding: EdgeInsets.only(left: 15),
+                          padding: EdgeInsets.only(left: 22),
                           child: Stack(
                             children: <Widget>[
                               Align(
@@ -513,16 +544,16 @@ class _light extends State<light> {
               ),
             ),
             Container(
-              decoration: BoxDecoration(
-                color: const Color(0xfff7ebe9),
-                border: Border.all(color: Colors.grey.shade700),
-                borderRadius: BorderRadius.circular(30.0),
-              ),
               //padding: EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      color: const Color(0xfff7ebe9),
+                      border: Border.all(color: Colors.grey.shade700),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    //padding: EdgeInsets.only(left: 20),
                     // decoration: BoxDecoration(
                     //   border: Border.all(color: Colors.blueAccent),
                     // ),
@@ -534,13 +565,13 @@ class _light extends State<light> {
                     child: Row(
                       children: [
                         Container(
-                            //padding: EdgeInsets.only(left: 10),
-                            // decoration: BoxDecoration(
-                            //     border: Border.all(color: Colors.blueAccent)),
-                            width: 75.0,
+                            //padding: EdgeInsets.only(left: 2),
+                            //decoration: BoxDecoration(
+                            //  border: Border.all(color: Colors.blueAccent)),
+                            width: 90.0,
                             height: 30.0,
                             child: Text(
-                              'Oda 2 : ',
+                              'Oda 2: ',
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               //style: GoogleFonts.nunito(),
@@ -550,7 +581,7 @@ class _light extends State<light> {
                               ),
                             )),
                         Padding(
-                          padding: EdgeInsets.only(left: 15),
+                          padding: EdgeInsets.only(left: 22),
                           child: Stack(
                             children: <Widget>[
                               Align(
@@ -615,144 +646,6 @@ class _light extends State<light> {
                                       "OFF"); //'The room\'s lights are on!'
                                 } else if (dataO2['aydinlatma'] == 1 &&
                                     isSwitchedO2 == true) {
-                                  return const Text(
-                                      "ON"); //'The room\'s lights are off!'
-                                } else {
-                                  return const Text("");
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 50,
-                          height: 40,
-                          child: FlatButton(
-                              onPressed: () => null, //pop up
-                              child: Stack(
-                                children: <Widget>[
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Icon(
-                                      Icons.settings_outlined,
-                                      color: Colors.red,
-                                      size: 35,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              shape: new RoundedRectangleBorder(
-                                  borderRadius:
-                                      new BorderRadius.circular(30.0))),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              //padding: EdgeInsets.only(bottom: 50),
-              child: Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xfff7ebe9),
-                      border: Border.all(color: Colors.grey.shade700),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    padding: EdgeInsets.only(left: 20),
-                    // decoration: BoxDecoration(
-                    //   border: Border.all(color: Colors.blueAccent),
-                    // ),
-                    margin: const EdgeInsets.all(10.0),
-                    //color: Colors.white,
-                    width: 300.0,
-                    height: 80.0,
-
-                    child: Row(
-                      children: [
-                        Container(
-                            //padding: EdgeInsets.only(left: 10),
-
-                            // decoration: BoxDecoration(
-                            //     border: Border.all(color: Colors.blueAccent)),
-                            width: 75.0,
-                            height: 30.0,
-                            child: Text(
-                              'Salon : ',
-                              //textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                              //style: GoogleFonts.nunito(),
-
-                              style: const TextStyle(
-                                fontSize: 23,
-                              ),
-                            )),
-                        Padding(
-                          padding: EdgeInsets.only(left: 15),
-                          child: Stack(
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.center,
-                                child: Switch(
-                                  value: isSwitchedS,
-                                  onChanged: (isDeneme) {
-                                    //print(isSwitched);
-                                    setState(() {
-                                      if (data['aydinlatma'] == 0) {
-                                        collection
-                                            .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
-                                            .update({'aydinlatma': 1});
-                                        print("ON");
-                                        isSwitchedS = true;
-                                      } else {
-                                        collection
-                                            .doc(
-                                                'salon') // <-- Doc ID where data should be updated.
-                                            .update({'aydinlatma': 0});
-                                        print("OFF");
-                                        isSwitchedS = false;
-                                      }
-                                      //print(isSwitched);
-                                    });
-
-                                    //await users.collection("notes").doc("doc-id").update(noteToUpdate.toMap());
-                                  },
-                                  activeTrackColor: Colors.lightGreenAccent,
-                                  activeColor: Colors.green,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 10),
-                          width: 50.0,
-                          height: 15.0,
-                          child: Container(
-                            width: 80.0,
-                            height: 100.0,
-                            child: StreamBuilder<DocumentSnapshot>(
-                              stream: users,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
-                                if (snapshot.hasError) {
-                                  return Text('Something went wrong.');
-                                }
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Text('Loading...');
-                                }
-
-                                data = snapshot.requireData;
-                                if (data['aydinlatma'] == 0 &&
-                                    isSwitchedS == false) {
-                                  return const Text(
-                                      "OFF"); //'The room\'s lights are on!'
-                                } else if (data['aydinlatma'] == 1 &&
-                                    isSwitchedS == true) {
                                   return const Text(
                                       "ON"); //'The room\'s lights are off!'
                                 } else {
