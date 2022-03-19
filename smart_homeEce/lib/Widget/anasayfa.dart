@@ -124,7 +124,7 @@ class _anasayfa extends State<anasayfa> {
                             //Tarih çekimi
                             //padding: EdgeInsets.only(left: 20),
                             margin: EdgeInsets.only(left: 8, top: 15),
-                            width: 150,
+                            width: 130,
                             height: 60,
                             /*decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blueAccent)),*/
@@ -206,13 +206,13 @@ class _anasayfa extends State<anasayfa> {
                     ))
               ],
             )),
-            Container(
-              width: 350,
-              height: 2,
-              //margin: EdgeInsets.only(left: 0),
-              /*decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blueGrey.shade600)),*/
-            ),
+            // Container(
+            //   width: 350,
+            //   height: 2,
+            //   //margin: EdgeInsets.only(left: 0),
+            //   decoration: BoxDecoration(
+            //       border: Border.all(color: Colors.blueGrey.shade600)),
+            // ),
             Container(
               width: 350,
               height: 2,
@@ -471,6 +471,65 @@ class _anasayfa extends State<anasayfa> {
                 ),
               ]),
             ),
+            Container(
+                margin: EdgeInsets.only(top: 35),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: const Offset(10.0, 10.0),
+                      blurRadius: 25.0,
+                      spreadRadius: 0.1,
+                    ), //BoxShadow
+                  ],
+                  borderRadius: BorderRadius.all(const Radius.circular(50)),
+                ),
+                width: 140.0,
+                height: 50.0,
+                child: ElevatedButton(
+                  child: Stack(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.add_circle_outline_outlined,
+                          color: btn_color,
+                          size: 45,
+                        ),
+                      ),
+                    ],
+                  ),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                    ),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.red),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const temperature(
+                                title: '',
+                              )),
+                    );
+                  },
+                )),
+            Container(
+                padding: EdgeInsets.only(top: 10),
+                child: Text(
+                  'Ekle',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: (Colors.blueGrey),
+                    fontSize: 17,
+                  ),
+                )),
           ],
         ),
       ),

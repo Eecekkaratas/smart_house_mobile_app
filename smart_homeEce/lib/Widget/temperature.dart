@@ -277,10 +277,10 @@ class _temperature extends State<temperature> {
                               },
                             )),
                         TempPopup(
-                    minController: myController_S1_min,
-                    maxController: myController_S1_max,
-                    switchState: switchState_S2,
-                  ),
+                          minController: myController_S1_min,
+                          maxController: myController_S1_max,
+                          switchState: switchState_S2,
+                        ),
                       ],
                     ),
                   ),
@@ -543,10 +543,10 @@ class _temperature extends State<temperature> {
                               },
                             )),
                         TempPopup(
-                    minController: myController_S4_min,
-                    maxController: myController_S4_max,
-                    switchState: switchState_S4,
-                  ),
+                          minController: myController_S4_min,
+                          maxController: myController_S4_max,
+                          switchState: switchState_S4,
+                        ),
                       ],
                     ),
                   ),
@@ -725,7 +725,7 @@ class _temperature extends State<temperature> {
                           //onPressed: () {},
                         ),
                         Container(
-                          margin: const EdgeInsets.only(left: 15, right: 8),
+                            margin: const EdgeInsets.only(left: 15, right: 8),
                             //padding: EdgeInsets.only(top: 70),
                             /*decoration: BoxDecoration(
                                 border: Border.all(color: Colors.red)),*/
@@ -810,10 +810,10 @@ class _temperature extends State<temperature> {
                               },
                             )),
                         TempPopup(
-                    minController: myController_S3_min,
-                    maxController: myController_S3_max,
-                    switchState: switchState_S3,
-                  ),
+                          minController: myController_S3_min,
+                          maxController: myController_S3_max,
+                          switchState: switchState_S3,
+                        ),
                       ],
                     ),
                   ),
@@ -992,7 +992,7 @@ class _temperature extends State<temperature> {
                           //onPressed: () {},
                         ),
                         Container(
-                          margin: const EdgeInsets.only(left: 5, right: 8),
+                            margin: const EdgeInsets.only(left: 5, right: 8),
                             //padding: EdgeInsets.only(top: 70),
                             /*decoration: BoxDecoration(
                                 border: Border.all(color: Colors.red)),*/
@@ -1077,10 +1077,10 @@ class _temperature extends State<temperature> {
                               },
                             )),
                         TempPopup(
-                    minController: myController_S2_min,
-                    maxController: myController_S2_max,
-                    switchState: switchState_S2,
-                  ),
+                          minController: myController_S2_min,
+                          maxController: myController_S2_max,
+                          switchState: switchState_S2,
+                        ),
                       ],
                     ),
                   ),
@@ -1245,7 +1245,7 @@ class _TempPopup extends State<TempPopup> {
     }
 
     return Container(
-      width: 60,
+      width: 40,
       height: 150,
       decoration: BoxDecoration(
           //border: Border.all(color: Colors.blueAccent),
@@ -1269,13 +1269,11 @@ class _TempPopup extends State<TempPopup> {
         onPressed: () => showDialog<String>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-            title: const Text('Otomatik Sıcaklık Ayarlama'),
+            title: const Text('Sıcaklık Ayarlama'),
             content: Container(
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.white)),
-              //width: 90,
-              height: 150,
-
+              //decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+              //width: 150,
+              height: 100,
               child: Column(
                 children: [
                   Container(
@@ -1288,7 +1286,7 @@ class _TempPopup extends State<TempPopup> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.white)),
                           //padding: EdgeInsets.only(top: 20),
-                          child: Text("Min:"),
+                          child: Text("İstenilen oda sıcaklığı:"),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -1301,40 +1299,9 @@ class _TempPopup extends State<TempPopup> {
                           //child: Text("Değer:"),
 
                           child: SizedBox(
-                            width: 100,
+                            width: 60,
                             child: TextField(
                               controller: widget.minController,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 40),
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white)),
-                          //padding: EdgeInsets.only(top: 20),
-                          child: Text("Max:"),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white)),
-                          height: 20,
-
-                          padding: EdgeInsets.only(left: 10),
-                          margin: const EdgeInsets.only(left: 20.0),
-
-                          //child: Text("Değer:"),
-
-                          child: SizedBox(
-                            width: 100,
-                            child: TextField(
-                              controller: widget.maxController,
                               keyboardType: TextInputType.number,
                             ),
                           ),
@@ -1352,7 +1319,7 @@ class _TempPopup extends State<TempPopup> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.white)),
                           //padding: EdgeInsets.only(top: 20),
-                          child: Text("Auto Temperature Control: "),
+                          child: Text("Otomatik Sıcaklık Kontrolü: "),
                         ),
                         Container(
                             height: 20,
