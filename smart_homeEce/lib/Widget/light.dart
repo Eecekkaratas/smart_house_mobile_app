@@ -100,26 +100,32 @@ class _light extends State<light> {
               child: Column(
                 children: [
                   Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xfff7ebe9),
+                      border: Border.all(color: Colors.grey.shade700),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
                     padding: EdgeInsets.only(left: 20),
                     // decoration: BoxDecoration(
                     //   border: Border.all(color: Colors.blueAccent),
                     // ),
                     margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
-                    width: 365.0,
+                    width: 300.0,
                     height: 80.0,
 
                     child: Row(
                       children: [
                         Container(
-                            padding: EdgeInsets.only(left: 10),
+                            //padding: EdgeInsets.only(left: 10),
+
                             // decoration: BoxDecoration(
                             //     border: Border.all(color: Colors.blueAccent)),
-                            width: 105.0,
+                            width: 75.0,
                             height: 30.0,
                             child: Text(
                               'Salon : ',
-                              textAlign: TextAlign.center,
+                              //textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               //style: GoogleFonts.nunito(),
 
@@ -128,7 +134,7 @@ class _light extends State<light> {
                               ),
                             )),
                         Padding(
-                          padding: EdgeInsets.only(left: 40),
+                          padding: EdgeInsets.only(left: 15),
                           child: Stack(
                             children: <Widget>[
                               Align(
@@ -201,7 +207,7 @@ class _light extends State<light> {
                           ),
                         ),
                         Container(
-                          width: 80,
+                          width: 50,
                           height: 40,
                           child: FlatButton(
                               onPressed: () => null, //pop up
@@ -228,26 +234,31 @@ class _light extends State<light> {
               ),
             ),
             Container(
+              decoration: BoxDecoration(
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
+              ),
               //padding: EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
                   Container(
                     padding: EdgeInsets.only(left: 20),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                    ),
+                    // decoration: BoxDecoration(
+                    //   border: Border.all(color: Colors.blueAccent),
+                    // ),
                     margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
-                    width: 365.0,
+                    width: 300.0,
                     height: 80.0,
 
                     child: Row(
                       children: [
                         Container(
-                            padding: EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
-                            width: 105.0,
+                            //padding: EdgeInsets.only(left: 10),
+                            // decoration: BoxDecoration(
+                            //     border: Border.all(color: Colors.blueAccent)),
+                            width: 75.0,
                             height: 30.0,
                             child: Text(
                               'Mutfak : ',
@@ -260,7 +271,7 @@ class _light extends State<light> {
                               ),
                             )),
                         Padding(
-                          padding: EdgeInsets.only(left: 40),
+                          padding: EdgeInsets.only(left: 15),
                           child: Stack(
                             children: <Widget>[
                               Align(
@@ -335,7 +346,7 @@ class _light extends State<light> {
                           ),
                         ),
                         Container(
-                          width: 80,
+                          width: 50,
                           height: 40,
                           child: FlatButton(
                               onPressed: () => null, //pop up
@@ -362,26 +373,31 @@ class _light extends State<light> {
               ),
             ),
             Container(
+              decoration: BoxDecoration(
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
+              ),
               //padding: EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
                   Container(
                     padding: EdgeInsets.only(left: 20),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                    ),
+                    // decoration: BoxDecoration(
+                    //   border: Border.all(color: Colors.blueAccent),
+                    // ),
                     margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
-                    width: 365.0,
+                    width: 300.0,
                     height: 80.0,
 
                     child: Row(
                       children: [
                         Container(
-                            padding: EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
-                            width: 105.0,
+                            //padding: EdgeInsets.only(left: 10),
+                            // decoration: BoxDecoration(
+                            //     border: Border.all(color: Colors.blueAccent)),
+                            width: 75.0,
                             height: 30.0,
                             child: Text(
                               'Oda 1 : ',
@@ -394,7 +410,7 @@ class _light extends State<light> {
                               ),
                             )),
                         Padding(
-                          padding: EdgeInsets.only(left: 40),
+                          padding: EdgeInsets.only(left: 15),
                           child: Stack(
                             children: <Widget>[
                               Align(
@@ -470,7 +486,7 @@ class _light extends State<light> {
                           ),
                         ),
                         Container(
-                          width: 80,
+                          width: 50,
                           height: 40,
                           child: FlatButton(
                               onPressed: () => null, //pop up
@@ -497,26 +513,31 @@ class _light extends State<light> {
               ),
             ),
             Container(
+              decoration: BoxDecoration(
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
+              ),
               //padding: EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
                   Container(
                     padding: EdgeInsets.only(left: 20),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                    ),
+                    // decoration: BoxDecoration(
+                    //   border: Border.all(color: Colors.blueAccent),
+                    // ),
                     margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
-                    width: 365.0,
+                    width: 300.0,
                     height: 80.0,
 
                     child: Row(
                       children: [
                         Container(
-                            padding: EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
-                            width: 105.0,
+                            //padding: EdgeInsets.only(left: 10),
+                            // decoration: BoxDecoration(
+                            //     border: Border.all(color: Colors.blueAccent)),
+                            width: 75.0,
                             height: 30.0,
                             child: Text(
                               'Oda 2 : ',
@@ -529,7 +550,7 @@ class _light extends State<light> {
                               ),
                             )),
                         Padding(
-                          padding: EdgeInsets.only(left: 40),
+                          padding: EdgeInsets.only(left: 15),
                           child: Stack(
                             children: <Widget>[
                               Align(
@@ -604,7 +625,7 @@ class _light extends State<light> {
                           ),
                         ),
                         Container(
-                          width: 80,
+                          width: 50,
                           height: 40,
                           child: FlatButton(
                               onPressed: () => null, //pop up

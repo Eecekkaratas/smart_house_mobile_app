@@ -113,7 +113,7 @@ class _humudity extends State<humudity> {
               ),
               margin: const EdgeInsets.all(10.0),
               //color: Colors.white,
-              width: 210.0,
+              width: 250.0,
               height: 80.0,
 
               child: Row(
@@ -121,7 +121,7 @@ class _humudity extends State<humudity> {
                   Container(
                       // decoration: BoxDecoration(
                       //     border: Border.all(color: Colors.green)),
-                      width: 90.0,
+                      width: 100.0,
                       height: 30.0,
                       child: Text(
                         'Salon : ',
@@ -185,15 +185,16 @@ class _humudity extends State<humudity> {
               ),
               margin: const EdgeInsets.all(10.0),
               //color: Colors.white,
-              width: 210.0,
+              width: 250.0,
               height: 80.0,
 
               child: Row(
                 children: [
                   Container(
+                      padding: EdgeInsets.only(left: 10),
                       // decoration: BoxDecoration(
                       //     border: Border.all(color: Colors.green)),
-                      width: 90.0,
+                      width: 100.0,
                       height: 30.0,
                       child: Text(
                         'Mutfak : ',
@@ -261,7 +262,7 @@ class _humudity extends State<humudity> {
               ),
               margin: const EdgeInsets.all(10.0),
               //color: Colors.white,
-              width: 210.0,
+              width: 250.0,
               height: 80.0,
 
               child: Row(
@@ -269,7 +270,7 @@ class _humudity extends State<humudity> {
                   Container(
                       // decoration: BoxDecoration(
                       //     border: Border.all(color: Colors.green)),
-                      width: 90.0,
+                      width: 100.0,
                       height: 30.0,
                       child: Text(
                         'Oda 1 : ',
@@ -337,7 +338,7 @@ class _humudity extends State<humudity> {
               ),
               margin: const EdgeInsets.all(10.0),
               //color: Colors.white,
-              width: 210.0,
+              width: 250.0,
               height: 80.0,
 
               child: Row(
@@ -345,7 +346,7 @@ class _humudity extends State<humudity> {
                   Container(
                       // decoration: BoxDecoration(
                       //     border: Border.all(color: Colors.green)),
-                      width: 90.0,
+                      width: 100.0,
                       height: 30.0,
                       child: Text(
                         'Oda 2 : ',
