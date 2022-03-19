@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:smart_home/Widget/anasayfa.dart';
 import 'dart:developer';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 class HomeScreen extends StatelessWidget {
   final Stream<QuerySnapshot> users =
@@ -25,6 +26,12 @@ class light extends StatefulWidget {
 }
 
 class _light extends State<light> {
+  bool isChecked = false;
+  bool isChecked2 = false;
+  bool isChecked3 = false;
+  bool isChecked4 = false;
+
+  bool status = false;
   bool isSwitchedS = true;
   bool isSwitchedM = true;
   bool isSwitchedO1 = true;
@@ -49,6 +56,18 @@ class _light extends State<light> {
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0);
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     var data;
     var dataM;
     var dataO1;
@@ -103,7 +122,7 @@ class _light extends State<light> {
                   border: Border.all(color: Colors.blueGrey.shade600)),
             ),
             Container(
-              padding: EdgeInsets.only(left: 125, bottom: 10),
+              padding: EdgeInsets.only(left: 115, bottom: 10),
               child: Column(
                 children: [
                   Container(
@@ -170,7 +189,22 @@ class _light extends State<light> {
                             children: <Widget>[
                               Align(
                                 alignment: Alignment.center,
-                                child: Switch(
+                                child: /*FlutterSwitch(
+                                  width: 55.0,
+                                  height: 25.0,
+                                  valueFontSize: 25.0,
+                                  toggleSize: 45.0,
+                                  value: status,
+                                  borderRadius: 30.0,
+                                  padding: 8.0,
+                                  showOnOff: true,
+                                  onToggle: (val) {
+                                    setState(() {
+                                      status = val;
+                                    });
+                                  },
+                                ), */
+                                    Switch(
                                   value: isSwitchedS,
                                   onChanged: (isDeneme) {
                                     //print(isSwitched);
@@ -238,26 +272,50 @@ class _light extends State<light> {
                           ),
                         ),
                         Container(
+                          padding: EdgeInsets.only(top: 6),
+                          // decoration: BoxDecoration(
+                          //   border: Border.all(color: Colors.blueAccent),
+                          // ),
                           width: 50,
-                          height: 40,
-                          child: FlatButton(
-                              onPressed: () => null, //pop up
-                              child: Stack(
-                                children: <Widget>[
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Icon(
-                                      Icons.settings_outlined,
-                                      color: Colors.red,
-                                      size: 35,
-                                    ),
+                          height: 70,
+                          child: Column(children: [
+                            Container(
+                              child: Text("OTO"),
+                            ),
+                            Container(
+                                child: Checkbox(
+                              checkColor: Colors.red,
+                              fillColor:
+                                  MaterialStateProperty.resolveWith(getColor),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            )
+                                /*
+                              child: FlatButton(
+                                  onPressed: () => null, //pop up
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Icon(
+                                          Icons.settings_outlined,
+                                          color: Colors.red,
+                                          size: 35,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              shape: new RoundedRectangleBorder(
-                                  borderRadius:
-                                      new BorderRadius.circular(30.0))),
-                        ),
+                                  shape: new RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(30.0))),
+                            */
+                                )
+                          ]),
+                        )
                       ],
                     ),
                   ),
@@ -377,6 +435,51 @@ class _light extends State<light> {
                           ),
                         ),
                         Container(
+                          padding: EdgeInsets.only(top: 6),
+                          // decoration: BoxDecoration(
+                          //   border: Border.all(color: Colors.blueAccent),
+                          // ),
+                          width: 50,
+                          height: 70,
+                          child: Column(children: [
+                            Container(
+                              child: Text("OTO"),
+                            ),
+                            Container(
+                                child: Checkbox(
+                              checkColor: Colors.red,
+                              fillColor:
+                                  MaterialStateProperty.resolveWith(getColor),
+                              value: isChecked2,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked2 = value!;
+                                });
+                              },
+                            )
+                                /*
+                              child: FlatButton(
+                                  onPressed: () => null, //pop up
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Icon(
+                                          Icons.settings_outlined,
+                                          color: Colors.red,
+                                          size: 35,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  shape: new RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(30.0))),
+                            */
+                                )
+                          ]),
+                        ),
+                        /*Container(
                           width: 50,
                           height: 40,
                           child: FlatButton(
@@ -396,7 +499,7 @@ class _light extends State<light> {
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
                                       new BorderRadius.circular(30.0))),
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -516,6 +619,7 @@ class _light extends State<light> {
                             ),
                           ),
                         ),
+                        /*
                         Container(
                           width: 50,
                           height: 40,
@@ -536,6 +640,51 @@ class _light extends State<light> {
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
                                       new BorderRadius.circular(30.0))),
+                        ),*/
+                        Container(
+                          padding: EdgeInsets.only(top: 6),
+                          // decoration: BoxDecoration(
+                          //   border: Border.all(color: Colors.blueAccent),
+                          // ),
+                          width: 50,
+                          height: 70,
+                          child: Column(children: [
+                            Container(
+                              child: Text("OTO"),
+                            ),
+                            Container(
+                                child: Checkbox(
+                              checkColor: Colors.red,
+                              fillColor:
+                                  MaterialStateProperty.resolveWith(getColor),
+                              value: isChecked3,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked3 = value!;
+                                });
+                              },
+                            )
+                                /*
+                              child: FlatButton(
+                                  onPressed: () => null, //pop up
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Icon(
+                                          Icons.settings_outlined,
+                                          color: Colors.red,
+                                          size: 35,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  shape: new RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(30.0))),
+                            */
+                                )
+                          ]),
                         ),
                       ],
                     ),
@@ -655,6 +804,7 @@ class _light extends State<light> {
                             ),
                           ),
                         ),
+                        /*
                         Container(
                           width: 50,
                           height: 40,
@@ -675,6 +825,51 @@ class _light extends State<light> {
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
                                       new BorderRadius.circular(30.0))),
+                        ),*/
+                        Container(
+                          padding: EdgeInsets.only(top: 6),
+                          // decoration: BoxDecoration(
+                          //   border: Border.all(color: Colors.blueAccent),
+                          // ),
+                          width: 50,
+                          height: 70,
+                          child: Column(children: [
+                            Container(
+                              child: Text("OTO"),
+                            ),
+                            Container(
+                                child: Checkbox(
+                              checkColor: Colors.red,
+                              fillColor:
+                                  MaterialStateProperty.resolveWith(getColor),
+                              value: isChecked4,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked4 = value!;
+                                });
+                              },
+                            )
+                                /*
+                              child: FlatButton(
+                                  onPressed: () => null, //pop up
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Icon(
+                                          Icons.settings_outlined,
+                                          color: Colors.red,
+                                          size: 35,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  shape: new RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(30.0))),
+                            */
+                                )
+                          ]),
                         ),
                       ],
                     ),
