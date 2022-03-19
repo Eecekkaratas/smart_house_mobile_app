@@ -43,6 +43,9 @@ class _temperature extends State<temperature> {
   final switchState_S3 = false;
   final switchState_S2 = false;
 
+  var collection = FirebaseFirestore.instance.collection('ev1');
+  var data;
+
   String docName =
       FirebaseFirestore.instance.collection('odalar').doc().id; // Useles atm.
 
@@ -213,7 +216,7 @@ class _temperature extends State<temperature> {
                             width: 70.0,
                             height: 25.0,
                             child: StreamBuilder<DocumentSnapshot>(
-                              stream: salon,
+                              stream : salon,
                               builder: (BuildContext context,
                                   AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
@@ -1243,6 +1246,8 @@ class TempPopup extends StatefulWidget {
 }
 
 class _TempPopup extends State<TempPopup> {
+  var collectionSP = FirebaseFirestore.instance.collection('ev1');
+  
   bool isSwitchedS = true;
   bool isSwitchedM = true;
   bool isSwitchedO1 = true;
@@ -1324,6 +1329,11 @@ class _TempPopup extends State<TempPopup> {
                             child: TextField(
                               controller: widget.minController,
                               keyboardType: TextInputType.number,
+                              onSubmitted: (String inputValue) async {
+                                collectionSP
+                                    .doc('salon')
+                                    .update({'istenen_sicaklik': int.parse(inputValue)});
+                              },
                             ),
                           ),
                         ),

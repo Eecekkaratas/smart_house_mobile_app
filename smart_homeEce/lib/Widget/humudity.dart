@@ -443,6 +443,8 @@ class _TempPopup extends State<TempPopup> {
   final switchState_S3 = false;
   final switchState_S2 = false;
 
+  var collectionSOdaPop = FirebaseFirestore.instance.collection('ev1');
+
   bool isSwitchedS = true;
   bool isSwitchedM = true;
   bool isSwitchedO1 = true;
@@ -525,6 +527,11 @@ class _TempPopup extends State<TempPopup> {
                             child: TextField(
                               controller: myController_S1_min,
                               keyboardType: TextInputType.number,
+                              onSubmitted: (String inputValue) async {
+                                collectionSOdaPop
+                                    .doc('salon')
+                                    .update({'oda_bos_iken': int.parse(inputValue)});
+                              },
                             ),
                           ),
                         ),
@@ -557,6 +564,11 @@ class _TempPopup extends State<TempPopup> {
                             child: TextField(
                               controller: myController_S1_max,
                               keyboardType: TextInputType.number,
+                              onSubmitted: (String inputValue) async {
+                                collectionSOdaPop
+                                    .doc('salon')
+                                    .update({'oda_dolu_iken': int.parse(inputValue)});
+                              },
                             ),
                           ),
                         ),
