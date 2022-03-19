@@ -105,7 +105,7 @@ class _temperature extends State<temperature> {
                     fontSize: 37,
                   ),
                 )),
-                Container(
+            Container(
               width: 180,
               height: 2,
               //margin: EdgeInsets.only(left: 0),
@@ -172,7 +172,7 @@ class _temperature extends State<temperature> {
                           width: 100,
                           height: 30,
                           //margin: const EdgeInsets.only(left: 65, right: 50),
-                          child: ElevatedButton(
+                          child: OutlinedButton(
                             child: Stack(children: <Widget>[
                               //elevation: 20.0,
                               Text(
@@ -184,17 +184,24 @@ class _temperature extends State<temperature> {
                                 ),
                               ),
                             ]),
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                              ),
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(btn_color),
+                            style: OutlinedButton.styleFrom(
+                              // shape: MaterialStateProperty.all<
+                              //     RoundedRectangleBorder>(
+                              //   RoundedRectangleBorder(
+                              //     borderRadius: BorderRadius.circular(30.0),
+                              //   ),
+                              // ),
+                              shadowColor: Colors.red,
+                              elevation: 5,
+                              side: BorderSide(color: Colors.red, width: 1),
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30))),
+                              backgroundColor: btn_color,
+                              // backgroundColor:
+                              //     MaterialStateProperty.all<Color>(btn_color),
                             ),
-                            onPressed: () {},
+                            onPressed: null,
                           ),
                           //onPressed: () {},
                         ),
@@ -451,17 +458,24 @@ class _temperature extends State<temperature> {
                                 ),
                               ),
                             ]),
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                              ),
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(btn_color),
+                            style: OutlinedButton.styleFrom(
+                              // shape: MaterialStateProperty.all<
+                              //     RoundedRectangleBorder>(
+                              //   RoundedRectangleBorder(
+                              //     borderRadius: BorderRadius.circular(30.0),
+                              //   ),
+                              // ),
+                              shadowColor: Colors.red,
+                              elevation: 5,
+                              //side: BorderSide(color: Colors.black, width: 1),
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30))),
+                              backgroundColor: btn_color,
+                              // backgroundColor:
+                              //     MaterialStateProperty.all<Color>(btn_color),
                             ),
-                            onPressed: () {},
+                            onPressed: null,
                           ),
                           //onPressed: () {},
                         ),

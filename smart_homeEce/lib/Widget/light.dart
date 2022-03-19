@@ -82,14 +82,18 @@ class _light extends State<light> {
         child: Column(
           children: [
             Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.redAccent)),
-                padding: EdgeInsets.only(top: 50),
+                // decoration:
+                //     BoxDecoration(border: Border.all(color: Colors.redAccent)),
+                padding: EdgeInsets.only(top: 50, bottom: 20),
                 child: Text(
-                  'Odalar ',
+                  'ODALAR ',
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.nunitoSans(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: (Colors.blueGrey),
+                    fontSize: 37,
+                  ),
                 )),
             Container(
               //padding: EdgeInsets.only(bottom: 50),
@@ -97,9 +101,9 @@ class _light extends State<light> {
                 children: [
                   Container(
                     padding: EdgeInsets.only(left: 20),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                    ),
+                    // decoration: BoxDecoration(
+                    //   border: Border.all(color: Colors.blueAccent),
+                    // ),
                     margin: const EdgeInsets.all(10.0),
                     //color: Colors.white,
                     width: 365.0,
@@ -109,8 +113,8 @@ class _light extends State<light> {
                       children: [
                         Container(
                             padding: EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
+                            // decoration: BoxDecoration(
+                            //     border: Border.all(color: Colors.blueAccent)),
                             width: 105.0,
                             height: 30.0,
                             child: Text(
@@ -199,20 +203,6 @@ class _light extends State<light> {
                         Container(
                           width: 80,
                           height: 40,
-                          //padding: EdgeInsets.only(left: 10),
-                          /*
-                          child: PopupMenuButton(
-                            child: Center(child: Text('click here')),
-                            itemBuilder: (context) {
-                              return List.generate(5, (index) {
-                                return PopupMenuItem(
-                                  child: Text('button no $index'),
-                                );
-                              });
-                            },
-                          ),
-
-                          */
                           child: FlatButton(
                               onPressed: () => null, //pop up
                               child: Stack(
@@ -347,20 +337,6 @@ class _light extends State<light> {
                         Container(
                           width: 80,
                           height: 40,
-                          //padding: EdgeInsets.only(left: 10),
-                          /*
-                          child: PopupMenuButton(
-                            child: Center(child: Text('click here')),
-                            itemBuilder: (context) {
-                              return List.generate(5, (index) {
-                                return PopupMenuItem(
-                                  child: Text('button no $index'),
-                                );
-                              });
-                            },
-                          ),
-
-                          */
                           child: FlatButton(
                               onPressed: () => null, //pop up
                               child: Stack(
@@ -496,20 +472,6 @@ class _light extends State<light> {
                         Container(
                           width: 80,
                           height: 40,
-                          //padding: EdgeInsets.only(left: 10),
-                          /*
-                          child: PopupMenuButton(
-                            child: Center(child: Text('click here')),
-                            itemBuilder: (context) {
-                              return List.generate(5, (index) {
-                                return PopupMenuItem(
-                                  child: Text('button no $index'),
-                                );
-                              });
-                            },
-                          ),
-
-                          */
                           child: FlatButton(
                               onPressed: () => null, //pop up
                               child: Stack(
@@ -644,20 +606,6 @@ class _light extends State<light> {
                         Container(
                           width: 80,
                           height: 40,
-                          //padding: EdgeInsets.only(left: 10),
-                          /*
-                          child: PopupMenuButton(
-                            child: Center(child: Text('click here')),
-                            itemBuilder: (context) {
-                              return List.generate(5, (index) {
-                                return PopupMenuItem(
-                                  child: Text('button no $index'),
-                                );
-                              });
-                            },
-                          ),
-
-                          */
                           child: FlatButton(
                               onPressed: () => null, //pop up
                               child: Stack(

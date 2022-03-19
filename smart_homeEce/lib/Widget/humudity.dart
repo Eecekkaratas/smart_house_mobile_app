@@ -33,6 +33,7 @@ class _humudity extends State<humudity> {
   final myController_S3_max = TextEditingController();
   final myController_S4_min = TextEditingController();
   final myController_S4_max = TextEditingController();
+  final switchState_S1 = true;
   final switchState_S4 = true;
   final switchState_S3 = false;
   final switchState_S2 = false;
@@ -67,8 +68,8 @@ class _humudity extends State<humudity> {
         child: Column(
           children: [
             Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.redAccent)),
+                // decoration:
+                //     BoxDecoration(border: Border.all(color: Colors.redAccent)),
                 padding: EdgeInsets.only(top: 30),
                 child: Text(
                   'ODALAR ',
@@ -81,7 +82,7 @@ class _humudity extends State<humudity> {
                   ),
                 )),
             Container(
-              padding: EdgeInsets.only(left: 125, top: 30),
+              padding: EdgeInsets.only(left: 125, top: 30, bottom: 20),
               child: Column(
                 children: [
                   Container(
@@ -89,12 +90,12 @@ class _humudity extends State<humudity> {
                       children: [
                         Container(
                           // For setting the position of icon
-                          padding: EdgeInsets.only(right: 15),
+                          padding: EdgeInsets.only(right: 60),
                         ),
                         Container(
                           child: Icon(
                             Icons.person_outlined,
-                            size: 35,
+                            size: 45,
                             color: Colors.red,
                           ),
                         ),
@@ -106,18 +107,20 @@ class _humudity extends State<humudity> {
             ),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
               ),
-              margin: const EdgeInsets.all(5.0),
+              margin: const EdgeInsets.all(10.0),
               //color: Colors.white,
-              width: 335.0,
+              width: 210.0,
               height: 80.0,
 
               child: Row(
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green)),
+                      // decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.green)),
                       width: 90.0,
                       height: 30.0,
                       child: Text(
@@ -133,9 +136,9 @@ class _humudity extends State<humudity> {
                       )),
                   Container(
                       //padding: EdgeInsets.only(top: 70),
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 70.0,
+                      // decoration:
+                      //     BoxDecoration(border: Border.all(color: Colors.red)),
+                      width: 50.0,
                       height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: salon,
@@ -167,27 +170,29 @@ class _humudity extends State<humudity> {
                   /////
                   ///
                   TempPopup(
-                    minController: myController_S2_min,
-                    maxController: myController_S2_max,
-                    switchState: switchState_S2,
+                    minController: myController_S1_min,
+                    maxController: myController_S1_max,
+                    switchState: switchState_S1,
                   ),
                 ],
               ),
             ),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
               ),
-              margin: const EdgeInsets.all(5.0),
+              margin: const EdgeInsets.all(10.0),
               //color: Colors.white,
-              width: 335.0,
+              width: 210.0,
               height: 80.0,
 
               child: Row(
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green)),
+                      // decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.green)),
                       width: 90.0,
                       height: 30.0,
                       child: Text(
@@ -203,9 +208,9 @@ class _humudity extends State<humudity> {
                       )),
                   Container(
                       //padding: EdgeInsets.only(top: 70),
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 70.0,
+                      // decoration:
+                      //     BoxDecoration(border: Border.all(color: Colors.red)),
+                      width: 50.0,
                       height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: mutfak,
@@ -240,23 +245,30 @@ class _humudity extends State<humudity> {
                           );
                         },
                       )),
+                  TempPopup(
+                    minController: myController_S2_min,
+                    maxController: myController_S2_max,
+                    switchState: switchState_S2,
+                  ),
                 ],
               ),
             ),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
               ),
-              margin: const EdgeInsets.all(5.0),
+              margin: const EdgeInsets.all(10.0),
               //color: Colors.white,
-              width: 335.0,
+              width: 210.0,
               height: 80.0,
 
               child: Row(
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green)),
+                      // decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.green)),
                       width: 90.0,
                       height: 30.0,
                       child: Text(
@@ -272,9 +284,9 @@ class _humudity extends State<humudity> {
                       )),
                   Container(
                       //padding: EdgeInsets.only(top: 70),
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 70.0,
+                      // decoration:
+                      //     BoxDecoration(border: Border.all(color: Colors.red)),
+                      width: 50.0,
                       height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: oda_1,
@@ -309,23 +321,30 @@ class _humudity extends State<humudity> {
                           );
                         },
                       )),
+                  TempPopup(
+                    minController: myController_S3_min,
+                    maxController: myController_S3_max,
+                    switchState: switchState_S3,
+                  ),
                 ],
               ),
             ),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
+                color: const Color(0xfff7ebe9),
+                border: Border.all(color: Colors.grey.shade700),
+                borderRadius: BorderRadius.circular(30.0),
               ),
-              margin: const EdgeInsets.all(5.0),
+              margin: const EdgeInsets.all(10.0),
               //color: Colors.white,
-              width: 335.0,
+              width: 210.0,
               height: 80.0,
 
               child: Row(
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green)),
+                      // decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.green)),
                       width: 90.0,
                       height: 30.0,
                       child: Text(
@@ -341,9 +360,9 @@ class _humudity extends State<humudity> {
                       )),
                   Container(
                       //padding: EdgeInsets.only(top: 70),
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.red)),
-                      width: 70.0,
+                      // decoration:
+                      //     BoxDecoration(border: Border.all(color: Colors.red)),
+                      width: 50.0,
                       height: 25.0,
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: oda_2,
@@ -378,6 +397,11 @@ class _humudity extends State<humudity> {
                           );
                         },
                       )),
+                  TempPopup(
+                    minController: myController_S4_min,
+                    maxController: myController_S4_max,
+                    switchState: switchState_S4,
+                  ),
                 ],
               ),
             ),
@@ -406,6 +430,18 @@ class TempPopup extends StatefulWidget {
 }
 
 class _TempPopup extends State<TempPopup> {
+  final myController_S1_min = TextEditingController();
+  final myController_S1_max = TextEditingController();
+  final myController_S2_min = TextEditingController();
+  final myController_S2_max = TextEditingController();
+  final myController_S3_min = TextEditingController();
+  final myController_S3_max = TextEditingController();
+  final myController_S4_min = TextEditingController();
+  final myController_S4_max = TextEditingController();
+  final switchState_S4 = true;
+  final switchState_S3 = false;
+  final switchState_S2 = false;
+
   bool isSwitchedS = true;
   bool isSwitchedM = true;
   bool isSwitchedO1 = true;
@@ -457,7 +493,7 @@ class _TempPopup extends State<TempPopup> {
             content: Container(
               //decoration: BoxDecoration(border: Border.all(color: Colors.red)),
               //width: 150,
-              height: 100,
+              height: 150,
               child: Column(
                 children: [
                   Container(
@@ -470,22 +506,55 @@ class _TempPopup extends State<TempPopup> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.white)),
                           //padding: EdgeInsets.only(top: 20),
-                          child: Text("İstenilen oda sıcaklığı:"),
+                          child: Text("Oda Boş İken:"),
                         ),
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.white)),
-                          height: 30,
+                          height: 20,
 
                           padding: EdgeInsets.only(left: 10),
-                          margin: const EdgeInsets.only(left: 20.0),
+                          margin: const EdgeInsets.only(left: 20.0, top: 10),
 
                           //child: Text("Değer:"),
 
                           child: SizedBox(
-                            width: 60,
+                            width: 100,
+                            height: 20,
                             child: TextField(
-                              controller: widget.minController,
+                              controller: myController_S1_min,
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 30),
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white)),
+                          //padding: EdgeInsets.only(top: 20),
+                          child: Text("Oda Dolu İken:"),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white)),
+                          height: 10,
+
+                          padding: EdgeInsets.only(left: 10),
+                          margin: const EdgeInsets.only(left: 15.0),
+
+                          //child: Te
+                          //xt("Değer:"),
+
+                          child: SizedBox(
+                            width: 100,
+                            child: TextField(
+                              controller: myController_S1_max,
                               keyboardType: TextInputType.number,
                             ),
                           ),
@@ -496,14 +565,14 @@ class _TempPopup extends State<TempPopup> {
                   Container(
                     decoration:
                         BoxDecoration(border: Border.all(color: Colors.white)),
-                    padding: EdgeInsets.only(top: 30),
+                    padding: EdgeInsets.only(top: 40),
                     child: Row(
                       children: [
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.white)),
                           //padding: EdgeInsets.only(top: 20),
-                          child: Text("Otomatik Sıcaklık Kontrolü: "),
+                          child: Text("Otomatik Ayarla: "),
                         ),
                         Container(
                             height: 20,
