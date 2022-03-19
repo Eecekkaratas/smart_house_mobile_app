@@ -105,9 +105,16 @@ class _temperature extends State<temperature> {
                     fontSize: 37,
                   ),
                 )),
+                Container(
+              width: 180,
+              height: 2,
+              //margin: EdgeInsets.only(left: 0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey.shade600)),
+            ),
             Container(
               margin: const EdgeInsets.only(bottom: 5),
-              padding: EdgeInsets.only(left: 150, top: 30),
+              padding: EdgeInsets.only(left: 150, top: 20),
               child: Column(
                 children: [
                   Container(

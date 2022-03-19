@@ -20,24 +20,54 @@ class anasayfa extends StatefulWidget {
 }
 
 class _anasayfa extends State<anasayfa> {
+  DateTime date = DateTime.now();
   late DateTime now = DateTime.now();
-
+  String dayTR = "Pazartesi";
+  late String dayEN = DateFormat('EEEE').format(date);
   var user = FirebaseAuth.instance.currentUser;
 
   Color bg_color = const Color.fromRGBO(239, 246, 251, 1.0); //239R 246G 251B
   Color btn_color = const Color.fromRGBO(233, 240, 245, 1.0);
 
   Color btn_color2 = const Color.fromRGBO(222, 235, 238, 1.0);
-  DateTime date = DateTime.now();
+  
   //Buton: 238R 245G 250B
+  
+
+  
+  String translatedDay() {
+    if(dayEN == "Monday"){
+      return "Pazartesi";
+      }
+    if(dayEN == "Tuesday"){
+      return "Salı";
+    }
+    if(dayEN == "Wednesday"){
+      return "Çarşamba";
+    }
+    if(dayEN == "Thursday"){
+      return "Perşembe";
+    }
+    if(dayEN == "Friday"){
+      return "Cuma";
+    }
+    if(dayEN == "Saturday"){
+      return "Cumartesi";
+    }
+    else {
+      return "Pazar";
+    }    
+  }
 
   String getDate() {
     return (now.day.toString() +
         "/0" +
         now.month.toString() +
         " " +
-        DateFormat('EEEE').format(date));
+        translatedDay());
   }
+  
+
 
   String getDate_hour() {
     if (now.hour < 12 && now.hour > 7) {
@@ -119,8 +149,8 @@ class _anasayfa extends State<anasayfa> {
                       child: Column(
                         children: [
                           Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.red)),
+                            /*decoration: BoxDecoration(
+                                border: Border.all(color: Colors.red)),*/
                             //Tarih çekimi
                             //padding: EdgeInsets.only(left: 20),
                             margin: EdgeInsets.only(left: 8, top: 15),
